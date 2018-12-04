@@ -1,0 +1,61 @@
+
+@prefixLeft: slide-left-fade;
+@prefixRight: slide-right-fade;
+@duration: 250ms;
+
+.@{prefixLeft}-enter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 10000;
+  opacity: 0;
+  transform: translate3d(30%, 0, 0);
+}
+
+.@{prefixLeft}-enter.@{prefixLeft}-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all @duration ease-out;
+}
+
+.@{prefixLeft}-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.@{prefixLeft}-leave.@{prefixLeft}-leave-active {
+  opacity: 0;
+  transform: translate3d(-30%, 0, 0);
+  transition: all @duration ease-out;
+}
+
+
+.@{prefixRight}-enter {
+  opacity: 0;
+  transform: translate3d(-30%, 0, 0);
+}
+
+.@{prefixRight}-enter.@{prefixRight}-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all @duration ease-out;
+}
+
+.@{prefixRight}-leave {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  z-index: 10000;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.@{prefixRight}-leave.@{prefixRight}-leave-active {
+  opacity: 0;
+  transform: translate3d(30%, 0, 0);
+  transition: all @duration ease-out;
+}
+

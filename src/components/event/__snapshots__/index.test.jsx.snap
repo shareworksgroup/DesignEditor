@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Event component test Calendar snapshot test 1`] = `
+<div
+  className="data-event-table"
+>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/05/18 7:34 am
+    </p>
+    <h5>
+      Not cooling
+    </h5>
+  </div>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/07/18 2:30 pm
+    </p>
+    <h5>
+      Making noise
+    </h5>
+  </div>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/12/18 1:00 pm
+    </p>
+    <h5>
+      Making noise
+    </h5>
+  </div>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/20/18 9:40 am
+    </p>
+    <h5>
+      Making noise
+    </h5>
+  </div>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/22/18 9:40 am
+    </p>
+    <h5>
+      Making noise
+    </h5>
+  </div>
+  <div
+    className="data-event"
+  >
+    <p>
+      06/23/18 9:40 am
+    </p>
+    <h5>
+      Making noise
+    </h5>
+  </div>
+</div>
+`;

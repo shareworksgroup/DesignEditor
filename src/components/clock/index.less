@@ -1,0 +1,82 @@
+.clock_date {
+  font-size: 14px;
+  font-weight: normal;
+  color: #f79232;
+}
+
+.hero-circle {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #f79232;
+  border-radius: 50%
+}
+
+.over-state .hero-circle {
+  border: 2px solid red
+}
+
+.hero-face {
+  position: relative;
+  width: 100%;
+  height: 100%
+}
+
+.hero-face::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  content: '';
+  border-radius: 50%;
+  background: #f79232
+}
+
+.hero-hour {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin: -1px 0 -1px -30%;
+  padding: 1px 0 1px 30%;
+  -webkit-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
+  background: #f79232
+}
+
+.hero-minute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin: -35% -1px 0;
+  padding: 35% 1px 0;
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  background: #f79232
+}
+
+.hero-second {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  margin: -42% -1px 0 0;
+  padding: 42% 1px 0;
+  -webkit-transform-origin: 50% 100%;
+  -ms-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  background: #f79232
+}
+
+.over-state .hero-hour,.over-state .hero-minute,.over-state .hero-second,.over-state .hero-face::after {
+  background: red
+}

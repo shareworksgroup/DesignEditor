@@ -1,0 +1,92 @@
+@theme-color: #3d82f7;
+@boot-color: #3071d4;
+
+.rc-pagination {
+  display: flex;
+  float: right;
+  text-align: right;
+  padding-left: 0;
+  list-style: none;
+  border-radius: 0.3125rem;
+}
+.rc-pagination > li {
+  list-style: none;
+}
+.rc-pagination-total-text {
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0 8px 0 0;
+}
+.rc-pagination:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
+  visibility: hidden;
+}
+.rc-pagination-item {
+  cursor: pointer;  
+  position: relative;
+  display: block;
+  padding: 0.25rem 0.5rem;
+  margin-left: 2px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: @boot-color;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+.rc-pagination-item-link{
+	&:extend(.rc-pagination-item);
+}
+
+.rc-pagination-item a {
+  text-decoration: none;
+  color: #666;
+}
+.rc-pagination-item:hover {
+  z-index: 2;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+.rc-pagination-item-active {
+  z-index: 1;
+  color: #fff;
+  background-color: @boot-color;
+  border-color: @boot-color; 
+  &:hover {
+    color: #000;
+    background-color: @boot-color;
+    border-color: @boot-color; 
+  }
+}
+.rc-pagination-item-active a {
+  color: #fff;
+}
+.rc-pagination-item-active:hover a {
+  color: #fff;
+}
+.rc-pagination-jump-next, 
+.rc-pagination-jump-prev {
+  .rc-pagination-item-link {
+    display: none;
+  }
+}
+.rc-pagination-prev a:after {
+  content: "Previous";
+  display: block;
+}
+.rc-pagination-next a:after {
+  content: "Next";
+  display: block;
+}
+.rc-pagination-disabled {
+  cursor: not-allowed;
+}
+.rc-pagination-disabled a {
+  color: #ccc;
+}

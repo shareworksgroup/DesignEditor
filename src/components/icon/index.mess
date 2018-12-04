@@ -1,0 +1,7 @@
+.icon {
+  color: #3071d4;
+  &:hover {
+    filter: brightness(120%);
+  }
+  
+}

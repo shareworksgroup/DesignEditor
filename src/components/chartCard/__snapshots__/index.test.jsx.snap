@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ChartCard component test snapshot test 1`] = `
+<div
+  className="widget-container"
+>
+  <div
+    className="heading"
+  >
+    <i
+      className="mdi-device-wifi-tethering"
+    />
+    <span
+      className="heading-title"
+    >
+      Financial Overview MTD
+    </span>
+    <div
+      className="heading-control"
+    >
+      <ul
+        className="nav navbar-nav"
+      >
+        <li
+          className="dropdown"
+        >
+          <a
+            className="dropdown-toggle"
+            href="javascript:void(0)"
+            onClick={[Function]}
+          >
+            <span
+              aria-hidden="true"
+              className="fa fa-ellipsis-v"
+            />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    className="widget-content"
+    onClick={[Function]}
+  >
+    <span
+      className="contentmsg"
+    >
+      I am ChartCard Content
+    </span>
+  </div>
+</div>
+`;

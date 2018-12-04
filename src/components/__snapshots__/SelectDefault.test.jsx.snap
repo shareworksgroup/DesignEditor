@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SelectDefault component test snapshot test 1`] = `
+<div
+  className="search-group"
+>
+  <div
+    className="rc-select rc-select-enabled rc-select-allow-clear"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onFocus={[Function]}
+    onMouseDown={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "width": "100%",
+      }
+    }
+  >
+    <div
+      aria-autocomplete="list"
+      aria-expanded={false}
+      aria-haspopup="true"
+      className="rc-select-selection
+            rc-select-selection--single"
+      onKeyDown={[Function]}
+      role="combobox"
+      tabIndex={0}
+    >
+      <div
+        className="rc-select-selection__rendered"
+      >
+        <div
+          className="rc-select-selection__placeholder"
+          onClick={[Function]}
+          onMouseDown={[Function]}
+          style={
+            Object {
+              "WebkitUserSelect": "none",
+              "display": "none",
+              "userSelect": "none",
+            }
+          }
+          unselectable="on"
+        >
+          placeholder
+        </div>
+        <div
+          className="rc-select-selection-selected-value"
+          style={
+            Object {
+              "display": "block",
+              "opacity": 1,
+            }
+          }
+          title="changsha"
+        >
+          changsha
+        </div>
+        <div
+          className="rc-select-search rc-select-search--inline"
+          style={
+            Object {
+              "display": "none",
+            }
+          }
+        >
+          <div
+            className="rc-select-search__field__wrap"
+          >
+            <input
+              autoComplete="off"
+              className="rc-select-search__field"
+              onChange={[Function]}
+              onKeyDown={[Function]}
+              value=""
+            />
+            <span
+              className="rc-select-search__field__mirror"
+            >
+              
+               
+            </span>
+          </div>
+        </div>
+      </div>
+      <span
+        className="rc-select-selection__clear"
+        onClick={[Function]}
+        onMouseDown={[Function]}
+        style={
+          Object {
+            "WebkitUserSelect": "none",
+            "userSelect": "none",
+          }
+        }
+        unselectable="on"
+      />
+      <span
+        className="rc-select-arrow"
+        onClick={[Function]}
+        style={
+          Object {
+            "WebkitUserSelect": "none",
+            "userSelect": "none",
+          }
+        }
+        unselectable="on"
+      >
+        <b />
+      </span>
+    </div>
+  </div>
+</div>
+`;

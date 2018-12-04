@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TinyCard component test TinyCard snapshot test 1`] = `
+<a
+  className="grid-item ripple"
+  href="javascript:void(0)"
+  onClick={[Function]}
+  target="_blank"
+>
+  <span
+    className="number"
+  >
+    <i
+      className="mdi-communication-email"
+    />
+    <span>
+      50
+    </span>
+  </span>
+  <span
+    className="text"
+  >
+    Unread Messages
+  </span>
+</a>
+`;

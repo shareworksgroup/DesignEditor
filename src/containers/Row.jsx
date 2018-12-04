@@ -1,0 +1,12 @@
+import React from 'react';
+import Items from './RowItems';
+
+class Row extends React.Component {
+  render(){
+    return <ul className="ds_row">
+      {Items.map((Component, index) => <Component key={index} />)}
+    </ul>
+  }
+}
+
+export default Row;

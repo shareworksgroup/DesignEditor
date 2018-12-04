@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Masonry component test Masonry snapshot test 1`] = `
+<div
+  className="masonry-container"
+>
+  <div>
+    1
+  </div>
+  <div>
+    2
+  </div>
+  <div>
+    3
+  </div>
+  <div>
+    4
+  </div>
+</div>
+`;

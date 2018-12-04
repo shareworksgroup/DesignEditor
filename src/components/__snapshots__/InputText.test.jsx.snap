@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InputText component test show/hide dropdown list test 1`] = `
+<div
+  className=""
+  onMouseLeave={[Function]}
+>
+  <div
+    className="search-group"
+  >
+    <input
+      className="form-control input-sm"
+      data-autocomplete="ReactiveWoNumber"
+      data-bind="value: woNum"
+      name="TestReactiveWoNumber"
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      type="text"
+      value="changsha"
+    />
+    <a
+      className="close"
+      onClick={[MockFunction]}
+    >
+      <i
+        className="fa fa-close f12"
+      />
+    </a>
+  </div>
+  <ul
+    className="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all react-ipt-ul"
+    id="ui-id-2"
+    style={
+      Object {
+        "display": "none",
+      }
+    }
+  >
+    <li
+      className="input-sigle-active ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        changsha
+      </a>
+    </li>
+    <li
+      className="ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        xiangtan
+      </a>
+    </li>
+    <li
+      className="ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        loudi
+      </a>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`InputText component test show/hide dropdown list test 2`] = `
+<div
+  className=""
+  onMouseLeave={[Function]}
+>
+  <div
+    className="search-group"
+  >
+    <input
+      className="form-control input-sm"
+      data-autocomplete="ReactiveWoNumber"
+      data-bind="value: woNum"
+      name="TestReactiveWoNumber"
+      onChange={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onMouseEnter={[Function]}
+      type="text"
+      value="changsha"
+    />
+    <a
+      className="close"
+      onClick={[MockFunction]}
+    >
+      <i
+        className="fa fa-close f12"
+      />
+    </a>
+  </div>
+  <ul
+    className="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content ui-corner-all react-ipt-ul"
+    id="ui-id-2"
+    style={
+      Object {
+        "display": "block",
+      }
+    }
+  >
+    <li
+      className="input-sigle-active ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        changsha
+      </a>
+    </li>
+    <li
+      className="ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        xiangtan
+      </a>
+    </li>
+    <li
+      className="ui-menu-item"
+      onClick={[Function]}
+      role="presentation"
+    >
+      <a
+        className="ui-corner-all"
+        id="ui-id-32"
+      >
+        loudi
+      </a>
+    </li>
+  </ul>
+</div>
+`;
