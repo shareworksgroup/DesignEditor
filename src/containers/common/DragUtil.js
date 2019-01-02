@@ -1,4 +1,4 @@
-export const getSource = (data) => ({
+export const getSource = (data = {}) => ({
   beginDrag(props) {
     console.log(props)
     return { ...data };

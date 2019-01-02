@@ -4,8 +4,8 @@ import rootStore from '@store/store';
 import { DragType } from '../lib/enum';
 import { DropTarget } from 'react-dnd';
 import PlaceHolder from './common/PlaceHolder';
-import RowList from './RowItems';
-import RowEditor from './RowItems/RowEditor';
+import RowList from './sidebar/RowItems';
+import RowEditor from './editor/RowEditor';
 
 const target = {
   drop(props, monitor, component) {

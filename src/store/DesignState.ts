@@ -26,6 +26,18 @@ class DesignState {
     }
   };
 
+  @observable
+  extensions = [];
+
+  @action
+  addExtension(extension){
+    this.extensions.push(extension);
+  }
+
+  getExtension(type){
+    return this.extensions.find(i => i.type === type);
+  }
+
   getData(){
     return toJS(this.data);
   }

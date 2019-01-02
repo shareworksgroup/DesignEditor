@@ -1,11 +1,12 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
+import { DropTarget, DragSource } from 'react-dnd';
 import rootStore from '@store/store';
-import Column from '../common/Column';
+import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
 import { DragType, RowType } from '../../lib/enum';
-import { DropTarget, DargSource } from 'react-dnd';
+import * as Util from '../common/DragUtil';
 
 const target = {
   drop(props, monitor, component) {
@@ -30,13 +31,13 @@ class RowEditor extends React.Component {
     this.subtype = props.subtype;
   }
   render() {
-    const { connectDropTarget, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
+    const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className="blockbuilder-layer blockbuilder-layer-selectable">
-          <Selector />
+          <Selector onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row" style={{padding: 10}}>
             <div className="container" style={{maxWidth: 600}}>
               <div className="row">
@@ -54,4 +55,10 @@ class RowEditor extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(DropTarget([DragType.ROW], target, collect)(RowEditor)));
+const Dragger = DragSource(
+  DragType.ROW, 
+  Util.getSource(), 
+  Util.getCollect()
+)(RowEditor);
+
+export default inject('rootStore')(observer(DropTarget([DragType.ROW], target, collect)(Dragger)));

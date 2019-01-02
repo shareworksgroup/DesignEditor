@@ -34,7 +34,10 @@ class Column extends React.Component {
         <span>No content here. Drag content from right.</span>
       </div>}
       {
-        column.contents.map(i => <span key={i.type}>{i.type}</span>)
+        column.contents.map(i => {
+          const Content = DesignState.getExtension(i.type);
+          return <Content key={i.values._meta.guid} {...i.values}/>;
+        })
       }
   </div>);
   }

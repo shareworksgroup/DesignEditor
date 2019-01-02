@@ -22,7 +22,7 @@
     top: 0px;
     right: 410px;
     bottom: 0px;
-    overflow: scroll;
+    overflow-y: scroll;
   }
   .ds_sidebar {
     position: fixed;
@@ -148,8 +148,8 @@
     }
   }
   .ds-body {
-    min-height: 100vh;
-    background-color: rgb(255, 255, 255);
+    min-height: calc(100vh - 40px);
+    background-color: rgb(250, 250, 250);
     font-family: Montserrat, sans-serif;
     margin: 0 auto;
     .ds_placeholder{
@@ -297,6 +297,17 @@
     }
     .u_column {
       position: relative;
+      .ds_content_button {
+        &>div>a{
+          color: rgb(255, 255, 255);
+          background-color: rgb(58, 174, 224);
+          border-radius: 4px;
+          line-height: 120%;
+          display: inline-block;
+          text-decoration: none;
+          padding: 10px 20px;
+        }
+      }
     }
   }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Items from './RowItems';
+import Items from './sidebar/RowItems';
 
 class Row extends React.Component {
   render(){
