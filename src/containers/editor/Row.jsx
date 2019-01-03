@@ -5,13 +5,19 @@ import rootStore from '@store/store';
 import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
-import { DragType, RowType } from '../../lib/enum';
+import { DragType, OperationMode } from '../../lib/enum';
 import * as Util from '../common/DragUtil';
 
 const target = {
   drop(props, monitor, component) {
-    console.log(props, monitor.getItem(), component);
-    rootStore.DesignState.insertRow(monitor.getItem(), props.guid);
+    //console.log('insert into row')
+
+    const item = monitor.getItem();
+    if (item.mode === OperationMode.INSERT) {
+      rootStore.DesignState.insertRow(monitor.getItem(), props.guid);
+    } else if (item.mode === OperationMode.MOVE) {
+      rootStore.DesignState.moveRow(item, props.guid);
+    }
   },
   canDrop(props){
     return true;
@@ -24,7 +30,7 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
-class RowEditor extends React.Component {
+class Row extends React.Component {
   constructor(props) {
     super(props);
     this.guid = props.guid;
@@ -38,7 +44,7 @@ class RowEditor extends React.Component {
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className="blockbuilder-layer blockbuilder-layer-selectable">
           <Selector onRef={(dom) => {connectDragSource(dom);}}/>
-          <div className="u_row" style={{padding: 10}}>
+          <div className="u_row">
             <div className="container" style={{maxWidth: 600}}>
               <div className="row">
                 {
@@ -57,8 +63,8 @@ class RowEditor extends React.Component {
 
 const Dragger = DragSource(
   DragType.ROW, 
-  Util.getSource(), 
+  Util.getSource({ mode: OperationMode.MOVE }, (props) => ({ guid: props.guid, type: props.subtype })), 
   Util.getCollect()
-)(RowEditor);
+)(Row);
 
 export default inject('rootStore')(observer(DropTarget([DragType.ROW], target, collect)(Dragger)));

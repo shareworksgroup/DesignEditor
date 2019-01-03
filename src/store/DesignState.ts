@@ -104,6 +104,20 @@ class DesignState {
   }
 
   @action
+  moveRow(row, offsetGuid) {
+    const moveGuid = row.guid;
+    const rows = this.data.body.rows;
+    const index = _.findIndex(rows, row => row.values._meta.guid === moveGuid);
+    const rowData = rows.splice(index, 1)[0];
+    if (offsetGuid) {
+      const offsetIndex = _.findIndex(rows, row => row.values._meta.guid === offsetGuid);
+      rows.splice(offsetIndex, 0, rowData);
+    } else {
+      rows.push(rowData);
+    }
+  }
+
+  @action
   addContent(content, meta){
     this.data.body.rows.forEach((row, index) => {
       const column = row.columns.filter((column) => column.values._meta.guid === meta.guid)[0];
@@ -117,6 +131,46 @@ class DesignState {
             }
           }
         })
+      }
+    });
+  }
+
+  @action
+  insertContent(content, offsetGuid, columnGuid){
+    this.data.body.rows.forEach((row, index) => {
+      const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
+      if (column) {
+        const index = _.findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
+        column.contents.splice(index, 0, {
+          type: content.type,
+          values:{
+            _meta: {
+              guid: this.guid(),
+              subtype: content.type
+            }
+          }
+        })
+      }
+    });
+  }
+
+  @action
+  moveContent(content, offsetGuid, columnGuid){
+    this.data.body.rows.forEach((row, index) => {
+      const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
+      if (column) {
+        const contents = column.contents;
+        const moveGuid = content.guid;
+        const index = _.findIndex(contents, content => content.values._meta.guid === moveGuid);
+        const contentData = contents.splice(index, 1)[0];
+
+        if (offsetGuid) {
+          const offsetIndex = _.findIndex(contents, content => content.values._meta.guid === offsetGuid);
+          contents.splice(offsetIndex, 0, contentData);
+        } else {
+          contents.push(contentData);
+        }
+
       }
     });
   }

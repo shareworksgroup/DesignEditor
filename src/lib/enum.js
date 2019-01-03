@@ -1,8 +1,9 @@
 export const DragType = {
   CONTENT: 'content',
   ROW: 'row',
-  BODY: 'body'
+  BODY: 'body',
 };
+
 
 export const ContentType = {
   BUTTON: 'button',
@@ -20,4 +21,10 @@ export const RowType = {
   ONETWO: 'onetwo',
   TWOONE: 'twoone',
   ONETWOONETWO: 'onetwoonetwo',
+};
+
+export const OperationMode = {
+  INSERT: 1,
+  MOVE: 2,
+  REMOVE: 3,
 };

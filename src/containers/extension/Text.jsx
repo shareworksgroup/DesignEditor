@@ -16,7 +16,12 @@ class Text extends Extension {
   }
 
   render(){
-    
+    const { text = "I am text." } = this.props;
+    return <div className="ds_content_text">
+      <div>
+        <p>{text}</p>
+      </div>
+    </div>
   }
 }
 

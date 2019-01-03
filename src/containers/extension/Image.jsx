@@ -15,8 +15,17 @@ class Image extends Extension {
     return 'Image';
   }
 
+  clickIamge = () => {
+    alert(2222)
+  }
+
   render(){
-    
+    const { url } = this.props;
+    return <div className="ds_content_image">
+      <div>
+        { url ? <img src={url} /> : <p onClick={this.clickIamge}>IMAGE</p> }
+      </div>
+    </div>
   }
 }
 

@@ -16,7 +16,9 @@ class Html extends Extension {
   }
 
   render(){
-    
+    return <div className="ds_content_html">
+      <div dangerouslySetInnerHTML={{__html: '<span>he<i style="color:red;font-weight:bold;">ll</i>o world</span>'}}></div>
+    </div>
   }
 }
 

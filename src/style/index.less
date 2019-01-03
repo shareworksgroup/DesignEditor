@@ -190,11 +190,7 @@
     }
     .blockbuilder-layer {
       position: relative;
-      &:hover{
-        .blockbuilder-layer-selector {
-          display:block;
-        }
-      }
+      
     }
     .blockbuilder-layer-selector {
       position: absolute;
@@ -203,7 +199,6 @@
       right: 0;
       bottom: 0;
       width: 100%;
-      display: none;
     }
     .blockbuilder-layer-type {
       font-family: 'Open Sans', sans-serif;
@@ -278,7 +273,6 @@
     .blockbuilder-layer-selectable .blockbuilder-layer-selector:after {
       content: ' ';
       opacity: 0;
-      z-index: 100;
       position: absolute;
       top: 1px;
       left: 1px;
@@ -295,9 +289,13 @@
     .svg-inline--fa.fa-w-16 {
       width: 1em;
     }
+    .u_row {
+      padding: 10px;
+    }
     .u_column {
       position: relative;
       .ds_content_button {
+        padding: 10px;
         &>div>a{
           color: rgb(255, 255, 255);
           background-color: rgb(58, 174, 224);
@@ -306,6 +304,58 @@
           display: inline-block;
           text-decoration: none;
           padding: 10px 20px;
+        }
+      }
+      .ds_content_divider {
+        padding: 10px;
+        &>hr {
+          margin: 20px 0px;
+          border-color:#BDC1C4;
+          border-style: dashed;
+        }
+      }
+      .ds_content_html{
+        padding: 10px;
+        &>div{
+        }
+      }
+      .ds_content_image{
+        padding: 10px;
+        &>div>p{
+          background: #CCCCCC;
+          color:#969696;
+          height:100px;
+          font-size: 24px;
+          font-family: Arial, Helvetica, sans-serif;
+          line-height: 100px;
+          text-align: center;
+        }
+      }
+     
+      .ds_content_text{
+        padding: 10px;
+        &>div>p{
+          color:#6D6D6D;
+          font-size: 16px;
+          font-family: Montserrat, sans-serif;
+        }
+      }
+
+      .ds_content_video{
+        padding: 10px;
+        &>div>p{
+          background: #CCCCCC;
+          color:#969696;
+          height:170px;
+          font-size: 24px;
+          font-family: Arial, Helvetica, sans-serif;
+          line-height: 170px;
+          text-align: center;
+          &>i{
+            color:#EBEBEB;
+            font-size: 80px;
+            line-height: 170px;
+          }
         }
       }
     }

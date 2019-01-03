@@ -1,7 +1,7 @@
-export const getSource = (data = {}) => ({
-  beginDrag(props) {
-    console.log(props)
-    return { ...data };
+export const getSource = (data = {}, transfer) => ({
+  beginDrag(props, monitor, compoenent) {
+    const item = transfer ? transfer(props) : {};
+    return { ...data, ...item };
   },
   canDrag: (props) => true
 });

@@ -16,15 +16,14 @@ class Button extends Extension {
   }
 
   render() {
-    console.log(this.props)
-    return <div class="ds_content_button">
-    <div style={{
-      textAlign: 'center'
-    }}>
-    <a class="editable" >
-    Button Text
-    </a>
-    </div>
+    return <div className="ds_content_button">
+      <div style={{
+        textAlign: 'center'
+      }}>
+        <a className="editable" >
+        Button Text
+        </a>
+      </div>
     </div>;
   }
 }

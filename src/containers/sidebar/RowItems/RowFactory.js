@@ -1,5 +1,5 @@
 import React from 'react';
-import { DragType } from '../../../lib/enum';
+import { DragType, OperationMode } from '../../../lib/enum';
 import { DragSource } from 'react-dnd';
 import * as Util from '../../common/DragUtil';
 
@@ -20,7 +20,7 @@ function RowFactory(rowType, segmentations = [1]) {
       </li>);
     }
   }
-  return DragSource(DragType.ROW, Util.getSource({ type: rowType, cells: segmentations }), Util.getCollect())(RowElement);
+  return DragSource(DragType.ROW, Util.getSource({ mode: OperationMode.INSERT, type: rowType, cells: segmentations }), Util.getCollect())(RowElement);
 }
 
 export default RowFactory;

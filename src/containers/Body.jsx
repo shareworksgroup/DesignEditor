@@ -1,15 +1,22 @@
  import React from 'react';
 import { inject, observer } from 'mobx-react';
 import rootStore from '@store/store';
-import { DragType } from '../lib/enum';
+import { DragType, OperationMode } from '../lib/enum';
 import { DropTarget } from 'react-dnd';
 import PlaceHolder from './common/PlaceHolder';
 import RowList from './sidebar/RowItems';
-import RowEditor from './editor/RowEditor';
+import Row from './editor/Row';
 
 const target = {
   drop(props, monitor, component) {
-    rootStore.DesignState.addRow(monitor.getItem());
+
+    const item = monitor.getItem();
+    if (item.mode === OperationMode.INSERT) {
+      rootStore.DesignState.addRow(item);
+    } else if (item.mode === OperationMode.MOVE) {
+      rootStore.DesignState.moveRow(item);
+    }
+    
   },
   canDrop(props, monitor, component){
     return monitor.isOver({ shallow: true });
@@ -31,7 +38,7 @@ class Body extends React.Component {
      {
        data.body.rows.map(row => {
          const meta = row.values._meta;
-         return <RowEditor key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+         return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
         })
       }
       { (isOver && canDrop) && <PlaceHolder />}

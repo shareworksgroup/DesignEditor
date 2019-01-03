@@ -16,7 +16,9 @@ class Divider extends Extension {
   }
 
   render(){
-    
+    return <div className="ds_content_divider">
+      <hr />
+    </div>
   }
 }
 
