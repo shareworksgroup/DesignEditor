@@ -1,4 +1,5 @@
 import React from 'react';
+import { inject, observer } from 'mobx-react';
 import Items from './sidebar/RowItems';
 
 class Row extends React.Component {
@@ -9,4 +10,4 @@ class Row extends React.Component {
   }
 }
 
-export default Row;
+export default inject('rootStore')(observer(Row));

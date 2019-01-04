@@ -9,4 +9,5 @@ export default [
   RowFactor(RowType.FOUR, [1, 1, 1, 1]),
   RowFactor(RowType.ONETWO, [1, 2]),
   RowFactor(RowType.TWOONE, [2, 1]),
-  RowFactor(RowType.ONETWOONETWO, [1, 2, 1, 2])];
+  RowFactor(RowType.ONETWOONETWO, [1, 2, 1, 2]),
+  RowFactor(RowType.TWOONETWOONE, [2, 1, 2, 1])];

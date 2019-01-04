@@ -54,6 +54,6 @@ const Dragger = DragSource(
   Util.getSource({ mode: OperationMode.MOVE }, (props) => {
     return { guid: props.guid, type: props.type }}), 
   Util.getCollect()
-)(Content);
+)(inject('rootStore')(observer(Content)));
 
-export default inject('rootStore')(observer(DropTarget([DragType.CONTENT], target, collect)(Dragger)));
+export default DropTarget([DragType.CONTENT], target, collect)(Dragger);

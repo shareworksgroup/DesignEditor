@@ -12,6 +12,7 @@ const target = {
     if (item.mode === OperationMode.INSERT ) {
       rootStore.DesignState.addContent(item, props.column.values._meta);
     } else {
+      console.log('move content')
       rootStore.DesignState.moveContent(item, null, props.guid);
     }
   },
@@ -30,8 +31,7 @@ class Column extends React.Component {
 
 
   render() {
-    const { connectDropTarget, isOver, canDrop, guid, size, rootStore: { DesignState }  } = this.props;
-    const column = DesignState.getColumn(guid);
+    const { connectDropTarget, isOver, column, canDrop, guid, size, rootStore: { DesignState }  } = this.props;
     const style = column.contents.length === 0 ? {position: 'absolute', top:0, left:0, width: '100%'} : {};
     return connectDropTarget(<div className={`col-${size} u_column`} >
       { column.contents.length === 0 && <div className="blockbuilder-placeholder-empty">
@@ -51,4 +51,4 @@ class Column extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(DropTarget([DragType.CONTENT], target, collect)(Column)));
+export default DropTarget([DragType.CONTENT], target, collect)(inject('rootStore')(observer(Column)));

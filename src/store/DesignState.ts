@@ -156,13 +156,12 @@ class DesignState {
 
   @action
   moveContent(content, offsetGuid, columnGuid){
-    this.data.body.rows.forEach((row, index) => {
+    // get and remove content from old position
+    const contentData = this.getContent(content.guid, true);
+    this.data.body.rows.some((row) => {
       const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
       if (column) {
         const contents = column.contents;
-        const moveGuid = content.guid;
-        const index = _.findIndex(contents, content => content.values._meta.guid === moveGuid);
-        const contentData = contents.splice(index, 1)[0];
 
         if (offsetGuid) {
           const offsetIndex = _.findIndex(contents, content => content.values._meta.guid === offsetGuid);
@@ -170,16 +169,22 @@ class DesignState {
         } else {
           contents.push(contentData);
         }
-
+        return true;
       }
+      return false;
     });
   }
 
-  getContent(guid) {
+  @action
+  getContent(guid, remove = false) {
     let content = null;
     this.data.body.rows.some((row) => {
       row.columns.some((column) => {
         content = column.contents.filter(content => content.values._meta.guid === guid)[0];
+        if (content && remove) {
+          const index = _.findIndex(column.contents, content => content.values._meta.guid === guid);
+          column.contents.splice(index, 1);
+        }
         return !!content;
       });
       return !!content;

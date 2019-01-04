@@ -21,6 +21,7 @@ export const RowType = {
   ONETWO: 'onetwo',
   TWOONE: 'twoone',
   ONETWOONETWO: 'onetwoonetwo',
+  TWOONETWOONE: 'twoonetwoone',
 };
 
 export const OperationMode = {

@@ -33,7 +33,7 @@ class Body extends React.Component {
 
   render(){
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
-    const data = DesignState.getData();
+    const data = DesignState.data;
     return connectDropTarget(<div className="ds-body design-web">
      {
        data.body.rows.map(row => {
@@ -46,4 +46,4 @@ class Body extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(DropTarget([DragType.ROW], target, collect)(Body)));
+export default DropTarget([DragType.ROW], target, collect)(inject('rootStore')(observer(Body)));
