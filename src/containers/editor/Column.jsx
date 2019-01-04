@@ -41,7 +41,7 @@ class Column extends React.Component {
         column.contents.map(i => {
           const Extension = DesignState.getExtension(i.type);
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
-            <Extension {...i.values} />
+            <Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} />
           </Content>;
         })
       }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
+import classnames from 'classnames';
 import rootStore from '@store/store';
 import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
@@ -31,18 +32,27 @@ const collect = (connect, monitor) => ({
 });
 
 class Row extends React.Component {
+
   constructor(props) {
     super(props);
     this.guid = props.guid;
     this.subtype = props.subtype;
   }
+
+  onSelect = (e) => {
+    console.log('click row')
+    e.stopPropagation();
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.setSelected(guid);
+  }
+
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
-        {connectDropTarget(<div className="blockbuilder-layer blockbuilder-layer-selectable">
+        {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')} onMouseUp={this.onSelect}>
           <Selector onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row">
             <div className="container" style={{maxWidth: 600}}>

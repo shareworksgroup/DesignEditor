@@ -53,6 +53,7 @@
     "build": "./node_modules/.bin/webpack --mode production"
   },
   "dependencies": {
+    "@tinymce/tinymce-react": "^2.4.0",
     "classnames": "^2.2.6",
     "guid": "0.0.12",
     "lodash": "^4.17.11",
@@ -66,7 +67,8 @@
     "react-dnd": "^6.0.0",
     "react-dnd-html5-backend": "^6.0.0",
     "react-dom": "^16.4.1",
-    "react-transition-group": "^1.2.1"
+    "react-transition-group": "^1.2.1",
+    "tinymce": "^4.9.2"
   },
   "jest": {
     "moduleDirectories": [

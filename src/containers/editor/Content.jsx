@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
 import rootStore from '@store/store';
@@ -37,12 +38,20 @@ class Content extends React.Component {
     this.guid = props.guid;
     this.subtype = props.subtype;
   }
+
+  onSelect = (e) => {
+    console.log('click content')
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.setSelected(guid);
+    e.stopPropagation();
+  }
+
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, children, guid, rootStore: { DesignState } } = this.props;
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
-        {connectDropTarget(<div className="blockbuilder-layer blockbuilder-layer-selectable">
-          <Selector onRef={(dom) => {connectDragSource(dom);}} placeholder="Content" />
+        {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')}  onMouseUp={this.onSelect}>
+          <Selector onRef={(dom) => {connectDragSource(dom);}} placeholder="Content" selected={guid === DesignState.selected} />
           { children }
         </div>)}
     </React.Fragment>;

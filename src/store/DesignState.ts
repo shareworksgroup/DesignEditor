@@ -27,6 +27,14 @@ class DesignState {
   };
 
   @observable
+  selected = null;
+
+  @action
+  setSelected(guid) {
+    this.selected = guid;
+  }
+
+  @observable
   extensions = [];
 
   @action

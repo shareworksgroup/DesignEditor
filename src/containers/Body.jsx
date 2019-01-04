@@ -31,10 +31,16 @@ const collect = (connect, monitor) => ({
 
 class Body extends React.Component {
 
+  onBodyClick = () => {
+    const { rootStore: { DesignState } } = this.props;
+    DesignState.setSelected(null);
+    console.log('body click')
+  }
+
   render(){
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
     const data = DesignState.data;
-    return connectDropTarget(<div className="ds-body design-web">
+    return connectDropTarget(<div className="ds-body design-web" onMouseUp={this.onBodyClick}>
      {
        data.body.rows.map(row => {
          const meta = row.values._meta;
