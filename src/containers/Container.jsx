@@ -14,13 +14,17 @@ class Container extends React.Component {
   componentDidMount() {
     const { children } = this.props;
     [Button, Divider, Html, Image, Text].forEach(Content => {
-      Content.type = new Content().getContentType();
+      const content = new Content();
+      Content.type = content.getContentType();
       rootStore.DesignState.addExtension(Content)
+      rootStore.DesignState.setAttribute(Content.type, content.getInitialAttribute());
     });
     React.Children.forEach(children, Child => {
       if (Child) {
-        Child.type.type = new Child.type().getContentType();
+        const content = new Child.type()
+        Child.type.type = content.getContentType();
         rootStore.DesignState.addExtension(Child.type);
+        rootStore.DesignState.setAttribute(Child.type.type, content.getInitialAttribute());
       }
     });
   }

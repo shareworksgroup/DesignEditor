@@ -29,3 +29,10 @@ export const OperationMode = {
   MOVE: 2,
   REMOVE: 3,
 };
+
+export const DesignType = {
+  BODY: 'u_body',
+  ROW: 'u_row',
+  COLUMN: 'u_column',
+  CONTENT: 'u_content',
+};

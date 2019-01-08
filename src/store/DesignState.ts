@@ -1,6 +1,7 @@
 import { observable, computed, action, decorate, autorun, keepAlive, reaction, when, configure, toJS, runInAction, set, remove } from 'mobx';
 import * as Util from '../lib/util';
 import _ from 'lodash';
+import { DesignType } from '../lib/enum';
 
 
 class DesignState {
@@ -20,7 +21,7 @@ class DesignState {
         fontFamily: 'MicroSoft Yahei',
         _meta:{
           guid: this.guid(),
-          type: 'u_body'
+          type: DesignType.BODY
         }
       }
     }
@@ -37,6 +38,8 @@ class DesignState {
   @observable
   extensions = [];
 
+ 
+
   @action
   addExtension(extension){
     this.extensions.push(extension);
@@ -44,6 +47,12 @@ class DesignState {
 
   getExtension(type){
     return this.extensions.find(i => i.type === type);
+  }
+
+  attribute = {};
+
+  setAttribute(type, attribute) {
+    this.attribute[type] = attribute;
   }
 
   getData(){
@@ -59,7 +68,7 @@ class DesignState {
         values: {
           _meta:{
             guid: this.guid(),
-            type: 'u_column'
+            type: DesignType.COLUMN
           }
         }
       })),
@@ -73,7 +82,7 @@ class DesignState {
         selectable: true,
         _meta: {
           guid: this.guid(),
-          type: 'u_row',
+          type: DesignType.ROW,
           subtype: row.type,
         }
       }
@@ -90,7 +99,7 @@ class DesignState {
         values: {
           _meta:{
             guid: this.guid(),
-            type: 'u_column'
+            type: DesignType.COLUMN
           }
         }
       })),
@@ -104,7 +113,7 @@ class DesignState {
         selectable: true,
         _meta: {
           guid: this.guid(),
-          type: 'u_row',
+          type: DesignType.ROW,
           subtype: row.type,
         }
       }
@@ -133,9 +142,11 @@ class DesignState {
         column.contents.push({
           type: content.type,
           values:{
+            ...this.attribute[content.type],
             _meta: {
               guid: this.guid(),
-              subtype: content.type
+              subtype: content.type,
+              type: DesignType.CONTENT
             }
           }
         })
@@ -152,9 +163,11 @@ class DesignState {
         column.contents.splice(index, 0, {
           type: content.type,
           values:{
+            ...this.attribute[content.type],
             _meta: {
               guid: this.guid(),
-              subtype: content.type
+              subtype: content.type,
+              type: DesignType.CONTENT
             }
           }
         })
@@ -211,6 +224,18 @@ class DesignState {
       return !!column;
     });
     return column;
+  }
+
+  @action
+  updateAttribute(guid, key, value){
+    const data = this.getRow(guid) || this.getContent(guid);
+    if (data) {
+      data.values = {...data.values, ...{ [key]: value }};
+    }
+  }
+
+  getDataByGuid(guid){
+    return this.getRow(guid) || this.getContent(guid);
   }
 
   guid(){

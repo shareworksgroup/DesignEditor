@@ -61,6 +61,7 @@
     "mobx": "^4.2.1",
     "mobx-react": "^5.1.2",
     "rc-animate": "^2.5.4",
+    "rc-color-picker": "^1.2.6",
     "rc-dialog": "^7.1.7",
     "rc-tooltip": "^3.7.3",
     "react": "^16.4.1",

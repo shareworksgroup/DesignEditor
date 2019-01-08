@@ -10,7 +10,9 @@ class Extension extends React.Component {
 
   getContentType(){}
 
+  getInitialAttribute(){}
 
+  getProperties(){}
 }
 
 export default Extension;
