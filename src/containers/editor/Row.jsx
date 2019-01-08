@@ -53,7 +53,7 @@ class Row extends React.Component {
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')} onMouseUp={this.onSelect}>
-          <Selector onRef={(dom) => {connectDragSource(dom);}}/>
+          <Selector type="row" onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row">
             <div className="container" style={{maxWidth: 600}}>
               <div className="row">

@@ -1,7 +1,10 @@
 import React from 'react';
+import classnames from 'classnames';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
+import { Input, Number } from '../../components';
+import { Link, Color, Align, LineHeight,BorderRadius  } from '../sidebar/Property/items';
 
 class Button extends Extension {
   getIconClass() {
@@ -18,52 +21,51 @@ class Button extends Extension {
 
   getInitialAttribute(){
     return {
-      linktype: '_self',
-      text:'ss',
-      link: 'http://www.baidu.com'
+      linkType: '_self',
+      text:'Text Button',
+      link: 'http://www.baidu.com',
+      textColor: '#fff',
+      backgroundColor: '#3aaee0',
+      hoverColor: '#2a92bf',
+      textAlign: 'center',
+      lineHeight: 120,
+      borderRadius: 4
     };
   }
 
   getProperties(values, update) {
-    console.log(values)
+    const { textColor, linkType, link, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = values;
     return <React.Fragment>
       <Group title="LINK">
-        <div className="blockbuilder-widget blockbuilder-link-widget">
-          <div className="row">
-            <div className="blockbuilder-widget-label col-6">
-              <label className="blockbuilder-label-primary"><span>Button Link</span></label>
-            </div>
-            <div className="col-6">
-              <select className="form-control form-control-sm" value={values.linktype} onChange={(e)=>{update('linktype', e.target.value)}}>
-                <option value="_self">Same Tab</option>
-                <option value="_blank">New Tab</option>
-              </select>
-            </div>
-          </div>
-          <div className="row pt-1">
-            <div className="col-12">
-              <div className="input-group">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">URL</span>
-                </div>
-                <input type="text" value={values.link} className="form-control" onChange={(e)=>{update('link', e.target.value)}} />
-              </div>
-            </div>
-          </div>
-          <input type="text" value={values.text} className="form-control" onChange={(e)=>{update('text', e.target.value)}} />
-
-        </div>
+        <Link link={link} linkType={linkType} title="Button Link" onUpdate={update}/>
+      </Group>
+      <Group title="COLORS">
+        <Color title="Colors" colors={{
+          textColor,
+          backgroundColor,
+          hoverColor
+        }} onUpdate={update} />
+      </Group>
+      <Group title="SPACING">
+        <Align align={textAlign} onUpdate={update} />
+        <LineHeight lineHeight={lineHeight} onUpdate={update} />
+        <BorderRadius borderRadius={borderRadius} onUpdate={update} />
       </Group>
     </React.Fragment>
   }
 
   render() {
-    const { text } = this.props;
+    const { text, textColor, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
     return <div className="ds_content_button">
       <div style={{
-        textAlign: 'center'
+        textAlign: textAlign
       }}>
-        <a className="editable" >
+        <a className="editable" style={{
+          color: textColor,
+          backgroundColor: backgroundColor,
+          lineHeight: lineHeight+'%',
+          borderRadius: borderRadius+'px'
+        }}>
           {text || "Button Text"}
         </a>
       </div>

@@ -51,7 +51,7 @@ class Content extends React.Component {
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')}  onMouseUp={this.onSelect}>
-          <Selector onRef={(dom) => {connectDragSource(dom);}} placeholder="Content" selected={guid === DesignState.selected} />
+          <Selector type="content" onRef={(dom) => {connectDragSource(dom);}} placeholder="Content" selected={guid === DesignState.selected} />
           { children }
         </div>)}
     </React.Fragment>;

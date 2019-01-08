@@ -32,7 +32,12 @@ class DesignState {
 
   @action
   setSelected(guid) {
-    this.selected = guid;
+    this.selected = null;
+    setTimeout(() => {
+      runInAction(() => {
+        this.selected = guid;
+      });
+    });
   }
 
   @observable
