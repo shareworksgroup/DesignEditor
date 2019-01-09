@@ -1,34 +1,45 @@
-import { observable, computed, action, decorate, autorun, keepAlive, reaction, when, configure, toJS, runInAction, set, remove } from 'mobx';
+import { observable, action, toJS, runInAction, set, remove } from 'mobx';
 import * as Util from '../lib/util';
 import _ from 'lodash';
 import { DesignType } from '../lib/enum';
 
 const NoColor = 'rgba(255, 255, 255, 0)';
+
 class DesignState {
   transparent: any
 
+
   constructor(transparent) {
     this.transparent = transparent;
+    this.init();
+  }
+
+  @action
+  init(){
+    this.data =  {
+      body: {
+        rows: [],
+        values: {
+          backgroundColor: "#ffffff",
+          width: 800,
+          fontFamily: 'MicroSoft Yahei',
+          _meta:{
+            guid: this.guid(),
+            type: DesignType.BODY
+          }
+        }
+      }
+    };
+    this.selected = null;
+    this.extensions = [];
+    this.attribute = {};
   }
 
   @observable
-  data = {
-    body: {
-      rows: [],
-      values: {
-        backgroundColor: "#ffffff",
-        width: 800,
-        fontFamily: 'MicroSoft Yahei',
-        _meta:{
-          guid: this.guid(),
-          type: DesignType.BODY
-        }
-      }
-    }
-  };
+  data;
 
   @observable
-  selected = null;
+  selected;
 
   @action
   setSelected(guid) {
@@ -44,7 +55,7 @@ class DesignState {
   }
 
   @observable
-  extensions = [];
+  extensions;
 
  
 
@@ -57,7 +68,7 @@ class DesignState {
     return this.extensions.find(i => i.type === type);
   }
 
-  attribute = {};
+  attribute;
 
   setAttribute(type, attribute) {
     this.attribute[type] = attribute;

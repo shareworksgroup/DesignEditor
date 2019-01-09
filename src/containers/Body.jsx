@@ -34,7 +34,6 @@ class Body extends React.Component {
   onBodyClick = () => {
     const { rootStore: { DesignState } } = this.props;
     DesignState.setSelected(null);
-    console.log('body click')
   }
 
   render(){

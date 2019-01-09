@@ -21,7 +21,6 @@ class SideBar extends React.Component {
   onTabClick = () => {
     const { rootStore: { DesignState } } = this.props;
     DesignState.setSelected(null);
-    console.log('sidebar click')
   }
   render(){
     const { rootStore: { DesignState } } = this.props;

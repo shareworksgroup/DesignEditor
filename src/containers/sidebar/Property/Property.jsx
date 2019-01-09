@@ -33,7 +33,6 @@ class Property extends React.Component {
       title = 'Content';
       extension = DesignState.getExtension(meta.subtype);
     }
-    console.log('property');
     return <div className="blockbuilder-options-panel">
     <div className="blockbuilder-options-header">
       <div className="row">

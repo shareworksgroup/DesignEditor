@@ -16,11 +16,15 @@ class Space extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = Space.computeState(props);
+  }
+
+  static computeState (props) {
     const { value } = props;
     let val = value.replace(/px/g, '')
     const values = val.split(' ').map(i => parseInt(i, 10));
     const moreValue = values.length > 1 ;
-    this.state = {
+    return {
       more: moreValue,
       top: moreValue ? values[0] : parseInt(val, 10), 
       right: moreValue ? values[1] : parseInt(val, 10), 
@@ -28,7 +32,10 @@ class Space extends React.Component {
       left: moreValue ? values[3] : parseInt(val, 10), 
       all: moreValue ? values[0] : parseInt(val, 10), 
     };
-    console.log(this.state)
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    return Space.computeState(nextProps);
   }
 
   onMore = (checked) => {

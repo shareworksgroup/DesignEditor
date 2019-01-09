@@ -33,13 +33,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /(\.js)|(\.jsx)|(\.ts)|(\.tsx)$/,
+        test: /(\.js)|(\.jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
         options: {
           presets: ['react', 'es2015', 'stage-0', "mobx"],
           plugins: ['transform-runtime']
         }
+      },
+      {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
+        use: 'ts-loader'
       },
       {
         test: /\.css$/,

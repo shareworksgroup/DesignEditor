@@ -12,7 +12,6 @@ const target = {
     if (item.mode === OperationMode.INSERT ) {
       rootStore.DesignState.addContent(item, props.column.values._meta);
     } else {
-      console.log('move content')
       rootStore.DesignState.moveContent(item, null, props.guid);
     }
   },

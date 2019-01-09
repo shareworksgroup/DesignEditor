@@ -11,10 +11,8 @@ import * as Util from '../common/DragUtil';
 
 const target = {
   drop(props, monitor, component) {
-    console.log('insert into content')
 
     const item = monitor.getItem();
-    console.log(item, props);
     if (item.mode === OperationMode.INSERT) {
       rootStore.DesignState.insertContent(monitor.getItem(), props.guid, props.columnGuid);
     } else if (item.mode === OperationMode.MOVE) {
@@ -40,7 +38,6 @@ class Content extends React.Component {
   }
 
   onSelect = (e) => {
-    console.log('click content')
     const { guid, rootStore: { DesignState } } = this.props;
     DesignState.setSelected(guid);
     e.stopPropagation();

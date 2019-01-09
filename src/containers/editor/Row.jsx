@@ -11,8 +11,6 @@ import * as Util from '../common/DragUtil';
 
 const target = {
   drop(props, monitor, component) {
-    //console.log('insert into row')
-
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
       rootStore.DesignState.insertRow(monitor.getItem(), props.guid);
@@ -40,7 +38,6 @@ class Row extends React.Component {
   }
 
   onSelect = (e) => {
-    console.log('click row')
     e.stopPropagation();
     const { guid, rootStore: { DesignState } } = this.props;
     DesignState.setSelected(guid);
