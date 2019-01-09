@@ -40,12 +40,13 @@ class Button extends Extension {
       hoverColor: '#2a92bf',
       textAlign: 'center',
       lineHeight: 120,
-      borderRadius: 4
+      borderRadius: 4, 
+      containerPadding: '10px',
     };
   }
 
   getProperties(values, update) {
-    const { color, linkType, link, backgroundColor, hoverColor, padding, textAlign, lineHeight, borderRadius } = values;
+    const { color, linkType, link, backgroundColor, hoverColor, containerPadding, padding, textAlign, lineHeight, borderRadius } = values;
     return <React.Fragment>
       <Group title="LINK">
         <Link link={link} linkType={linkType} title="Button Link" onUpdate={update}/>
@@ -62,6 +63,9 @@ class Button extends Extension {
         <LineHeight lineHeight={lineHeight} onUpdate={update} />
         <BorderRadius borderRadius={borderRadius} onUpdate={update} />
         <Space title="Padding" value={padding} attribute="padding" onUpdate={update}/>
+      </Group>
+      <Group title="GENERAL">
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
       </Group>
     </React.Fragment>
   }
@@ -86,29 +90,34 @@ class Button extends Extension {
     }
   }
 
-    //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-    componentWillReceiveProps({ color, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
-      if (this.editor) {
-        const body = this.editor.getBody();
-        if (!body) {
-          return;
-        }
-        body.style.color = color;
-        body.style.padding = padding;
-        body.style.backgroundColor = backgroundColor;
-        body.style.textAlign = textAlign;
-        body.style.lineHeight = lineHeight;
-        body.style.borderRadius = borderRadius;
-        body.style.lineHeight = lineHeight+'%';
-        body.style.textAlign = textAlign;
+  handleEditorChange = (value) => {
+    const { onUpdate } = this.props;
+    onUpdate('text', value.target.getContent({format: 'raw'}));
+  }
+
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps({ color, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
+    if (this.editor) {
+      const body = this.editor.getBody();
+      if (!body) {
+        return;
       }
+      body.style.color = color;
+      body.style.padding = padding;
+      body.style.backgroundColor = backgroundColor;
+      body.style.textAlign = textAlign;
+      body.style.borderRadius = borderRadius + 'px';
+      body.style.lineHeight = lineHeight+'%';
+      body.style.textAlign = textAlign;
     }
+  }
 
   render() {
-    const { text, color, padding, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
+    const { text, color, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
     return <div className="ds_content_button">
       <div style={{
-        textAlign: textAlign
+        textAlign: textAlign,
+        padding: containerPadding,
       }}>
         { focus ? 
         <Editor

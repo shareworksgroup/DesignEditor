@@ -153,7 +153,18 @@ body{
         }
       }
     }
+   
     .property-panel {
+      &.body-property-panel{
+        position: relative;
+        top: auto;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        box-shadow: none;
+        background-color: #F9F9F9;
+        margin-top: 5px;
+      }
       position: absolute;
       top: 100px;
       bottom:0;
@@ -179,6 +190,14 @@ body{
       .row {
         display: flex;
         flex-wrap: wrap;
+      }
+      .blockbuilder-options-content {
+          position: absolute;
+          width: 100%;
+          top: 46px;
+          bottom: 0px;
+          right: 0px;
+          overflow-y: auto;
       }
       .blockbuilder-options-panel .blockbuilder-options-header .icon {
         color: #505659;
@@ -413,6 +432,9 @@ body{
   .svg-inline--fa.fa-w-14 {
       width: 0.875em;
   }
+    .u_body {
+      margin: 0 auto;
+    }
     .u_row {
       padding: 10px;
     }
@@ -432,10 +454,11 @@ body{
       }
       .ds_content_divider {
         padding: 10px;
-        &>hr {
-          margin: 20px 0px;
-          border-color:#BDC1C4;
-          border-style: dashed;
+        &>.ds_content_divider_container>div {
+          line-height: 1px;
+          height: 0;
+          vertical-align: middle;
+          display: inline-block;
         }
       }
       .ds_content_html{
@@ -612,5 +635,24 @@ body{
 .more-options{
   .col-6{
     padding-top: 10px;
+  }
+}
+.blockbuilder-widget-hint {
+  color: #8F9699;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.blockbuilder-dropzone {
+  margin-top: 3px;
+  border: 2px dashed #CCC;
+  cursor: pointer;
+  padding: 15px;
+  text-align: center;
+  color: #999;
+  display: block;
+  &:hover {
+      border-color: #999;
+      color: #777;
   }
 }

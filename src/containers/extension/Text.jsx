@@ -13,7 +13,7 @@ import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
 import { Input, Number } from '../../components';
-import { Link, Colors, Align, LineHeight,BorderRadius, Color } from '../sidebar/Property/items';
+import { Link, Colors, Align, LineHeight,BorderRadius, Color, Space } from '../sidebar/Property/items';
 
 
 const dynamicList = [
@@ -47,12 +47,13 @@ class Text extends Extension {
       text:'Hello World',
       textAlign: 'center',
       lineHeight: 120,
-      padding: '5px 10px 10px 10px'
+      padding: '5px 10px 10px 10px',
+      containerPadding: '10px'
     };
   }
 
   getProperties(values, update){
-    const { color, textAlign, lineHeight, padding } = values;
+    const { color, textAlign, lineHeight, containerPadding } = values;
     return <React.Fragment>
       <Group title="TEXT">
         <Color title="Color" value={color} attribute="color" onUpdate={update}/>
@@ -60,13 +61,14 @@ class Text extends Extension {
         <LineHeight lineHeight={lineHeight} onUpdate={update} />
       </Group>
       <Group title="GENERAL">
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
       </Group>
       </React.Fragment>;
   }
 
   handleEditorChange = (value) => {
-    
-    this.setState({ text: value.target.getContent({format: 'raw'}) });
+    const { onUpdate } = this.props;
+    onUpdate('text', value.target.getContent({format: 'raw'}));
   }
 
   onRef = (editor) => {
@@ -110,12 +112,13 @@ class Text extends Extension {
   }
 
   render(){
-    const { focus = false, text, textAlign, lineHeight,  color } = this.props;
+    const { focus = false, text, textAlign, lineHeight, containerPadding,  color } = this.props;
     return <div className="ds_content_text">
       <div style={{
         textAlign,
         color,
         lineHeight: lineHeight+'%',
+        padding: containerPadding,
       }}>
         { focus ? 
         <Editor

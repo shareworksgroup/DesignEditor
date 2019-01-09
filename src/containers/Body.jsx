@@ -40,14 +40,20 @@ class Body extends React.Component {
   render(){
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
     const data = DesignState.data;
+    const { width, backgroundColor } = data.body.values;
     return connectDropTarget(<div className="ds-body design-web" onMouseUp={this.onBodyClick}>
-     {
-       data.body.rows.map(row => {
-         const meta = row.values._meta;
-         return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
-        })
-      }
-      { (isOver && canDrop) && <PlaceHolder />}
+      <div className="u_body" style={{
+        width,
+        backgroundColor
+      }}>
+      {
+        data.body.rows.map(row => {
+          const meta = row.values._meta;
+          return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+          })
+        }
+        { (isOver && canDrop) && <PlaceHolder />}
+      </div>
     </div>);
   }
 }

@@ -6,8 +6,10 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import SideBar from './SideBar';
 import Main from './Main';
 import Extension from './extension/Extension';
+import * as ProperWidget from './sidebar/Property/items';
 import styles from '../style/index.less';
 import { Button, Divider, Html, Image, Text } from './extension';
+import Group from './sidebar/Property/Group';
 
 window.rootStore = rootStore;
 class Container extends React.Component {
@@ -42,5 +44,9 @@ class Container extends React.Component {
 }
 
 exports.Extension = Extension;
+
+exports.PropertyWidget = ProperWidget;
+
+exports.PropertyGroup = Group;
 
 export default Container;

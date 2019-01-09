@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Calendar component test Calendar snapshot test 1`] = `
-<div
-  type="text"
-/>
-`;

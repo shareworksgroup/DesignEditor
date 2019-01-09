@@ -5,11 +5,19 @@ import Content from './Content';
 import Row from './Row';
 import { Tabs } from '../components';
 import Property from './sidebar/Property/Property';
+import BodyProperty from './sidebar/Property/BodyProperty';
 
 class SideBar extends React.Component {
   state={
     active: 0
   }
+
+  
+  onUpdate = (key, value) => {
+    const { rootStore: { DesignState }} = this.props;
+    DesignState.updateBodyAttribute(key, value);
+  }
+
   onTabClick = () => {
     const { rootStore: { DesignState } } = this.props;
     DesignState.setSelected(null);
@@ -17,11 +25,16 @@ class SideBar extends React.Component {
   }
   render(){
     const { rootStore: { DesignState } } = this.props;
+    const body = DesignState.data.body.values;
     return <div className="ds_sidebar">
       <Tabs onClick={this.onTabClick}>
-        <Tabs.Tab tab="Content"><Content /></Tabs.Tab>
-        <Tabs.Tab tab="Row"><Row /></Tabs.Tab>
-        <Tabs.Tab tab="Body">Body</Tabs.Tab>
+        <Tabs.Tab tab="Content" icon="mdi-action-dashboard"><Content /></Tabs.Tab>
+        <Tabs.Tab tab="Row" icon="mdi-action-view-headline"><Row /></Tabs.Tab>
+        <Tabs.Tab tab="Body" icon="mdi-action-payment">
+          <div className="property-panel body-property-panel">
+            <BodyProperty {...body} onUpdate={this.onUpdate}/>
+          </div>
+        </Tabs.Tab>
       </Tabs>
       <Property visible={!!DesignState.selected} propertyId={DesignState.selected} destroyOnClose/>
     </div>;

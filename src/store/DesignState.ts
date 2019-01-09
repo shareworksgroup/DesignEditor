@@ -3,7 +3,7 @@ import * as Util from '../lib/util';
 import _ from 'lodash';
 import { DesignType } from '../lib/enum';
 
-
+const NoColor = 'rgba(255, 255, 255, 0)';
 class DesignState {
   transparent: any
 
@@ -17,7 +17,7 @@ class DesignState {
       rows: [],
       values: {
         backgroundColor: "#ffffff",
-        contentWidth: "450px",
+        width: 800,
         fontFamily: 'MicroSoft Yahei',
         _meta:{
           guid: this.guid(),
@@ -81,8 +81,8 @@ class DesignState {
         }
       })),
       values: {
-        backgroundColor: "#fff",
-        columnsBackgroundColor: "#fff",
+        backgroundColor: NoColor,
+        columnsBackgroundColor: NoColor,
         deletable: true,
         draggable: true,
         noStackMobile: false,
@@ -112,8 +112,8 @@ class DesignState {
         }
       })),
       values: {
-        backgroundColor: "",
-        columnsBackgroundColor: "",
+        backgroundColor: NoColor,
+        columnsBackgroundColor: NoColor,
         deletable: true,
         draggable: true,
         noStackMobile: false,
@@ -237,6 +237,14 @@ class DesignState {
   @action
   updateAttribute(guid, key, value){
     const data = this.getRow(guid) || this.getContent(guid);
+    if (data) {
+      data.values = {...data.values, ...{ [key]: value }};
+    }
+  }
+
+  @action
+  updateBodyAttribute(key, value){
+    const data = this.data.body
     if (data) {
       data.values = {...data.values, ...{ [key]: value }};
     }

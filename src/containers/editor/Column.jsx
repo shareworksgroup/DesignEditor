@@ -30,6 +30,11 @@ const collect = (connect, monitor) => ({
 class Column extends React.Component {
 
 
+  onUpdate = (guid, key, value) => {
+    const { rootStore: { DesignState }} = this.props;
+    DesignState.updateAttribute(guid, key, value);
+  }
+
   render() {
     const { connectDropTarget, isOver, column, canDrop, guid, size, rootStore: { DesignState }  } = this.props;
     const style = column.contents.length === 0 ? {position: 'absolute', top:0, left:0, width: '100%'} : {};
@@ -41,7 +46,7 @@ class Column extends React.Component {
         column.contents.map(i => {
           const Extension = DesignState.getExtension(i.type);
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
-            <Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} />
+            <Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/>
           </Content>;
         })
       }

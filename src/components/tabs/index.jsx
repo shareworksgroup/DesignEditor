@@ -14,7 +14,7 @@ class Tabs extends React.Component {
       {React.Children.map(children, (Value, index) => {
         return <li className="nav-item">
         <a onClick={() => { this.setState({ selectedIndex: index }) }} className={classnames("nav-link", this.state.selectedIndex === index && "active")}>
-          <i className="mdi-action-dashboard icon" />{Value.props.tab}
+          <i className={`${Value.props.icon} icon`} />{Value.props.tab}
         </a>
       </li>
       })}

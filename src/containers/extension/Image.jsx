@@ -1,4 +1,6 @@
 import React from 'react';
+import Group from '../sidebar/Property/Group';
+import { Space, Link, Align, Input, Switch, ImageEditor } from '../sidebar/Property/items';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 
@@ -15,15 +17,48 @@ class Image extends Extension {
     return 'Image';
   }
 
-  clickIamge = () => {
-    alert(2222)
+  getInitialAttribute(){
+    return {
+      link: '',
+      linkType: '_self',
+      containerPadding: '10px',
+      textAlign: 'center',
+      fullWidth: false,
+      alter: 'Image',
+      url: ''
+    };
+  }
+
+  getProperties(values, update) {
+    const { link, linkType, alter, fullWidth, textAlign, url, containerPadding } = values;
+    return <React.Fragment>
+      <Group title="IMAGE">
+        <ImageEditor attribute="url" onUpdate={update}/>
+        <Input title="Image URL" value={url} attribute="url" onUpdate={update}/>
+        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update}/>
+        <Align title="Align" align={textAlign} onUpdate={update} />
+        <Input title="Alternate Text" value={alter} attribute="alter" onUpdate={update}/>
+      </Group>
+      <Group title="ACTION">
+        <Link link={link} linkType={linkType} title="Image Link" onUpdate={update}/>
+      </Group>
+      <Group title="GENERAL">
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
+      </Group>
+    </React.Fragment>
   }
 
   render(){
-    const { url } = this.props;
-    return <div className="ds_content_image">
-      <div>
-        { url ? <img src={url} /> : <p onClick={this.clickIamge}>IMAGE</p> }
+    const { url, containerPadding, textAlign, alter, fullWidth  } = this.props;
+    const imgStyle = fullWidth ? { width: '100%' } : { maxWidth: '100%' };
+    return <div className="ds_content_image" 
+    style={{
+      padding: containerPadding,
+    }}>
+      <div style={{
+        textAlign,
+      }}>
+        { url ? <img alt={alter} src={url} style={imgStyle} /> : <p>IMAGE</p> }
       </div>
     </div>
   }
