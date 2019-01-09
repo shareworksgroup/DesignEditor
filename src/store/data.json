@@ -1,0 +1,347 @@
+{
+  "body": {
+    "rows": [
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#ffffff",
+                  "text": "Hello World",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "7585ce62-1771-9835-77cc-93ff5a1ba9d7",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "fd5c1357-6fb6-208d-f8ca-b308e6a63aa0",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#460e0e",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "1e943222-7d4a-1ad9-b3e6-a861e3a1e6cf",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "button",
+                "values": {
+                  "linkType": "_self",
+                  "text": "Text Button",
+                  "link": "http://www.baidu.com",
+                  "color": "#fff",
+                  "padding": "10px 20px 10px 20px",
+                  "backgroundColor": "#3aaee0",
+                  "hoverColor": "#2a92bf",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "borderRadius": 4,
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "fb1f4475-1d8f-b786-0887-b3ef21c7bad4",
+                    "subtype": "button",
+                    "type": "u_content"
+                  }
+                }
+              },
+              {
+                "type": "divider",
+                "values": {
+                  "width": 100,
+                  "lineStyle": "solid",
+                  "lineWidth": 1,
+                  "lineColor": "#ccc",
+                  "textAlign": "center",
+                  "containerPadding": "0px",
+                  "_meta": {
+                    "guid": "931cb834-fe11-1f8d-8b7c-ae52443aa1b3",
+                    "subtype": "divider",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "f102c7a6-7369-7c11-bba1-33f03c3b9626",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "04f2f556-3f83-f08c-f19b-24febdf1be23",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          1,
+          1,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "link": "",
+                  "linkType": "_self",
+                  "containerPadding": "10px",
+                  "textAlign": "center",
+                  "fullWidth": false,
+                  "alter": "Image",
+                  "url": "https://s3.amazonaws.com/smsone.attachment.jira.dev/2019/JPG/sms_921b083f-0b00-4771-9826-36daac53735a.jpg?AWSAccessKeyId=AKIAJ4FSO2OEKJ6KBSGQ&Expires=1547109094&Signature=1gbSbNvoDTGP9KnFZoppGQ90RjI%3D",
+                  "_meta": {
+                    "guid": "642fd097-e528-9d43-fd94-abcd45e81213",
+                    "subtype": "image",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "25fbfdd8-836a-81a6-bec9-1067cc2a9035",
+                "type": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "html",
+                "values": {
+                  "html": "<p>Html Sample</p>",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "cf0a5f5e-6d38-f268-0678-6cb55838df12",
+                    "subtype": "html",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "515daa4f-48c4-d6a6-f195-2207bc61605d",
+                "type": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#000",
+                  "text": "Hello World",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "0ae553f1-7fda-54bd-aeb9-0501aee0abc0",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "fb9d3f95-379d-6e02-e58d-fe6873033fe7",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "897a07cb-627d-9448-2708-2cc0346d64eb",
+            "type": "u_row",
+            "subtype": "three"
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "divider",
+                "values": {
+                  "width": 100,
+                  "lineStyle": "solid",
+                  "lineWidth": 1,
+                  "lineColor": "#ccc",
+                  "textAlign": "center",
+                  "containerPadding": "0px",
+                  "_meta": {
+                    "guid": "91876108-7095-67e3-a9e5-cc4197f2ac35",
+                    "subtype": "divider",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "7fd3b291-460c-16a1-5cf3-db40b8859761",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "eafd3b61-e84d-e996-2a8f-9de586e3e12d",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          1,
+          2
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "video",
+                "values": {
+                  "containerPadding": "10px",
+                  "textAlign": "center",
+                  "fullWidth": false,
+                  "url": "http://v2v.cc/~j/theora_testsuite/320x240.ogg",
+                  "_meta": {
+                    "guid": "1bafa648-2915-2b2a-af38-a4641f875b74",
+                    "subtype": "video",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "97501fc1-b352-6b9f-2c74-a2fb45c8384c",
+                "type": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#000",
+                  "text": "<p style=\"text-align: left;\" data-mce-style=\"text-align: left;\"><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; text-align: start;\" data-mce-style=\"color: #333333; font-family: arial; font-size: 13px; text-align: start;\">汇图网,国内领先的正版商业图库,原创作品交易平台,中国版权协会理事单位.汇聚众多优秀摄影师、设计师,提供海量可授权商业使用的高清正版摄影</span><span style=\"color: rgb(204, 0, 0); font-family: arial; font-size: 13px; text-align: start;\" data-mce-style=\"color: #cc0000; font-family: arial; font-size: 13px; text-align: start;\">图片</span><span style=\"color: rgb(51, 51, 51); font-family: arial; font-size: 13px; text-align: start;\" data-mce-style=\"color: #333333; font-family: arial; font-size: 13px; text-align: start;\">、设计素材.</span><span id=\"_mce_caret\" data-mce-bogus=\"1\" data-mce-type=\"format-caret\"></span><br></p>",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "19c2dce0-23dd-5f02-7722-5f4a3d136aa5",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "08dc0b0c-cbdb-e92e-42f9-9eb8dc738f1a",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "3c6bb9ea-59b3-57cb-ae6d-3b538276cf73",
+            "type": "u_row",
+            "subtype": "onetwo"
+          }
+        }
+      }
+    ],
+    "values": {
+      "backgroundColor": "#e8ffff",
+      "width": 800,
+      "fontFamily": "MicroSoft Yahei",
+      "_meta": {
+        "guid": "1b6245c2-dfa0-7f5b-3608-6bf291896339",
+        "type": "u_body"
+      }
+    }
+  }
+}
