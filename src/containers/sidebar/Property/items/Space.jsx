@@ -26,6 +26,7 @@ class Space extends React.Component {
     const moreValue = values.length > 1 ;
     return {
       more: moreValue,
+      value: value,
       top: moreValue ? values[0] : parseInt(val, 10), 
       right: moreValue ? values[1] : parseInt(val, 10), 
       bottom: moreValue ? values[2] : parseInt(val, 10), 
@@ -35,7 +36,7 @@ class Space extends React.Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    return Space.computeState(nextProps);
+    return nextProps.value !== prevState.value ? Space.computeState(nextProps) : null;
   }
 
   onMore = (checked) => {
