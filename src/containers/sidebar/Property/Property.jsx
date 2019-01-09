@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import { DesignType } from '../../../lib/enum';
 import { LazyRenderBox } from '../../../components';
 import Group from './Group';
+import RowProperty from './RowProperty';
 
 class Property extends React.Component {
 
@@ -47,7 +48,7 @@ class Property extends React.Component {
       </div>
     </div>
     <div className="blockbuilder-options-content">
-      { extension ? new extension().getProperties(data.values, this.onUpdate) : null}
+      { extension ? new extension().getProperties(data.values, this.onUpdate) : <RowProperty {...data.values} onUpdate={this.onUpdate} />}
     </div>
   </div>;
   }

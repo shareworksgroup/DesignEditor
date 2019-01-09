@@ -1,10 +1,7 @@
 import React from 'react';
 import { Input, Align, Number } from '../../../../components';
 
-class Link extends React.Component {
-  render(){
-    const { title, linkType, link, onUpdate = () => {}} = this.props;
-    return <div className="blockbuilder-widget blockbuilder-link-widget">
+const Link = ({ title, linkType, link, onUpdate = () => {}}) => (<div className="blockbuilder-widget blockbuilder-link-widget">
     <div className="row">
       <div className="blockbuilder-widget-label col-6">
         <label className="blockbuilder-label-primary"><span>{title}</span></label>
@@ -21,8 +18,6 @@ class Link extends React.Component {
         <Input addOn="URL" onChange={(e)=>{onUpdate('link', e.target.value)}} value={link} />
       </div>
     </div>
-  </div>;
-  }
-}
+</div>);
 
 export default Link;

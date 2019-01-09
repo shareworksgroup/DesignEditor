@@ -11,6 +11,10 @@ import 'tinymce/plugins/contextmenu';
 import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
+import Group from '../sidebar/Property/Group';
+import { Input, Number } from '../../components';
+import { Link, Colors, Align, LineHeight,BorderRadius, Color } from '../sidebar/Property/items';
+
 
 const dynamicList = [
   { key: 'wostatus', title: 'wostatus' },
@@ -22,7 +26,6 @@ const dynamicList = [
 class Text extends Extension {
 
   state={
-    text: 'I am text.',
     showDynamic: false
   }
 
@@ -36,6 +39,29 @@ class Text extends Extension {
 
   getLabel(){
     return 'Text';
+  }
+
+  getInitialAttribute(){
+    return {
+      color: '#000',
+      text:'Hello World',
+      textAlign: 'center',
+      lineHeight: 120,
+      padding: '5px 10px 10px 10px'
+    };
+  }
+
+  getProperties(values, update){
+    const { color, textAlign, lineHeight, padding } = values;
+    return <React.Fragment>
+      <Group title="TEXT">
+        <Color title="Color" value={color} attribute="color" onUpdate={update}/>
+        <Align align={textAlign} onUpdate={update} />
+        <LineHeight lineHeight={lineHeight} onUpdate={update} />
+      </Group>
+      <Group title="GENERAL">
+      </Group>
+      </React.Fragment>;
   }
 
   handleEditorChange = (value) => {
@@ -70,15 +96,31 @@ class Text extends Extension {
     }
   }
 
+  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+  componentWillReceiveProps({ textAlign, lineHeight,  color }) {
+    if (this.editor) {
+      const body = this.editor.getBody();
+      if (!body) {
+        return;
+      }
+      body.style.color = color;
+      body.style.lineHeight = lineHeight+'%';
+      body.style.textAlign = textAlign;
+    }
+  }
+
   render(){
-    const { focus = false } = this.props;
-    console.log('render', this.state.text)
+    const { focus = false, text, textAlign, lineHeight,  color } = this.props;
     return <div className="ds_content_text">
-      <div >
+      <div style={{
+        textAlign,
+        color,
+        lineHeight: lineHeight+'%',
+      }}>
         { focus ? 
         <Editor
           ref={this.onRef}
-          initialValue={this.state.text}
+          initialValue={text}
           init={{
             menubar: false,
             plugins: [
@@ -92,7 +134,7 @@ class Text extends Extension {
           }}
           onChange={this.handleEditorChange}
         />
-        : <p  dangerouslySetInnerHTML={{__html: this.state.text }}></p>}
+        : <p  dangerouslySetInnerHTML={{__html: text }}></p>}
       </div>
       {this.state.showDynamic && <div className="dynamic" style={{ left: this.state.x + 10, top: this.state.y + 40 }}>
         <ul>

@@ -32,6 +32,9 @@ class DesignState {
 
   @action
   setSelected(guid) {
+    if (guid === this.selected) {
+      return;
+    }
     this.selected = null;
     setTimeout(() => {
       runInAction(() => {
@@ -78,8 +81,8 @@ class DesignState {
         }
       })),
       values: {
-        backgroundColor: "",
-        columnsBackgroundColor: "",
+        backgroundColor: "#fff",
+        columnsBackgroundColor: "#fff",
         deletable: true,
         draggable: true,
         noStackMobile: false,

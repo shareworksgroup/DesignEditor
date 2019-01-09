@@ -49,13 +49,20 @@ class Row extends React.Component {
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
+    const { backgroundColor, columnsBackgroundColor, padding } = row.values;
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')} onMouseUp={this.onSelect}>
           <Selector type="row" onRef={(dom) => {connectDragSource(dom);}}/>
-          <div className="u_row">
-            <div className="container" style={{maxWidth: 600}}>
+          <div className="u_row" style={{
+            backgroundColor,
+            padding,
+          }}>
+            <div className="container" style={{
+              maxWidth: 600,
+              backgroundColor: columnsBackgroundColor
+              }}>
               <div className="row">
                 {
                   cells.map((i, index) => (<Column

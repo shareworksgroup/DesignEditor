@@ -1,10 +1,20 @@
 import React from 'react';
+import tinymce from 'tinymce/tinymce';
+import 'tinymce/themes/modern/theme';
+
+import 'tinymce/plugins/link';
+import 'tinymce/plugins/autolink';
+import 'tinymce/plugins/textcolor';
+import 'tinymce/plugins/lists';
+import 'tinymce/plugins/contextmenu';
+
+import { Editor } from '@tinymce/tinymce-react';
 import classnames from 'classnames';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
 import { Input, Number } from '../../components';
-import { Link, Color, Align, LineHeight,BorderRadius  } from '../sidebar/Property/items';
+import { Link, Colors, Align, LineHeight,BorderRadius, Color, Space } from '../sidebar/Property/items';
 
 class Button extends Extension {
   getIconClass() {
@@ -24,7 +34,8 @@ class Button extends Extension {
       linkType: '_self',
       text:'Text Button',
       link: 'http://www.baidu.com',
-      textColor: '#fff',
+      color: '#fff',
+      padding: '10px 20px 10px 20px',
       backgroundColor: '#3aaee0',
       hoverColor: '#2a92bf',
       textAlign: 'center',
@@ -34,14 +45,14 @@ class Button extends Extension {
   }
 
   getProperties(values, update) {
-    const { textColor, linkType, link, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = values;
+    const { color, linkType, link, backgroundColor, hoverColor, padding, textAlign, lineHeight, borderRadius } = values;
     return <React.Fragment>
       <Group title="LINK">
         <Link link={link} linkType={linkType} title="Button Link" onUpdate={update}/>
       </Group>
       <Group title="COLORS">
-        <Color title="Colors" colors={{
-          textColor,
+        <Colors title="Colors" colors={{
+          color,
           backgroundColor,
           hoverColor
         }} onUpdate={update} />
@@ -50,24 +61,76 @@ class Button extends Extension {
         <Align align={textAlign} onUpdate={update} />
         <LineHeight lineHeight={lineHeight} onUpdate={update} />
         <BorderRadius borderRadius={borderRadius} onUpdate={update} />
+        <Space title="Padding" value={padding} attribute="padding" onUpdate={update}/>
       </Group>
     </React.Fragment>
   }
 
+  
+  onRef = (editor) => {
+    if (editor) {
+      this.editor = editor.editor;
+        this.editor.on('Input', () => {
+          if (this.editor) {
+            const position = this.editor.selection.getRng().endOffset;
+            if (position > 0) {
+              const text = this.editor.selection.getSel().anchorNode.data;
+              if(text.substr(position-1, 1) === '#') {
+                const rect = this.editor.selection.getBoundingClientRect();
+                this.setState({ showDynamic: true, x: rect.left, y: rect.top });
+              }
+            }
+          }
+        });
+      window.editor = editor.editor;
+    }
+  }
+
+    //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+    componentWillReceiveProps({ color, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
+      if (this.editor) {
+        const body = this.editor.getBody();
+        if (!body) {
+          return;
+        }
+        body.style.color = color;
+        body.style.padding = padding;
+        body.style.backgroundColor = backgroundColor;
+        body.style.textAlign = textAlign;
+        body.style.lineHeight = lineHeight;
+        body.style.borderRadius = borderRadius;
+        body.style.lineHeight = lineHeight+'%';
+        body.style.textAlign = textAlign;
+      }
+    }
+
   render() {
-    const { text, textColor, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
+    const { text, color, padding, backgroundColor, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
     return <div className="ds_content_button">
       <div style={{
         textAlign: textAlign
       }}>
-        <a className="editable" style={{
-          color: textColor,
-          backgroundColor: backgroundColor,
+        { focus ? 
+        <Editor
+          tagName="a"
+          ref={this.onRef}
+          initialValue={text}
+          init={{
+            menubar: false,
+            toolbar: ['fontselect fontsizeselect | bold italic underline' ],
+            inline: true,
+          }}
+          onChange={this.handleEditorChange}
+        />
+        : <a className="editable" style={{
+          color,
+          backgroundColor,
+          padding,
           lineHeight: lineHeight+'%',
           borderRadius: borderRadius+'px'
         }}>
-          {text || "Button Text"}
-        </a>
+          {text}
+        </a>}
       </div>
     </div>;
   }
