@@ -39,11 +39,12 @@ class Body extends React.Component {
   render(){
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
     const data = DesignState.data;
-    const { width, backgroundColor } = data.body.values;
+    const { width, backgroundColor, fontFamily } = data.body.values;
     return connectDropTarget(<div className="ds-body design-web" onMouseUp={this.onBodyClick}>
       <div className="u_body" style={{
         width,
-        backgroundColor
+        backgroundColor,
+        fontFamily
       }}>
       {
         data.body.rows.map(row => {
