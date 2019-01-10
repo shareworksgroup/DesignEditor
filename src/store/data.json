@@ -1,0 +1,388 @@
+{
+  "body": {
+    "rows": [
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#388286",
+                  "text": "<p><span style=\"font-size: 36pt; font-family: &quot;arial black&quot;, sans-serif;\" data-mce-style=\"font-size: 36pt; font-family: 'arial black', sans-serif;\">Hello World</span></p>",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "439b1004-6716-6670-ac4b-2e4859cbd2dd",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "1e0823ef-ec1f-ec04-1f16-d735c8e53ff6",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "4eca2b7d-9aff-5c91-02bf-1bf993cb1d63",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          1,
+          2
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "link": "",
+                  "linkType": "_self",
+                  "containerPadding": "0px",
+                  "textAlign": "center",
+                  "fullWidth": false,
+                  "alter": "Image",
+                  "url": "https://s3.amazonaws.com/smsone.attachment.jira.dev/2019/JPG/sms_f35ffb2b-017d-4332-90f1-fef845b79ba7.jpg?AWSAccessKeyId=AKIAJ4FSO2OEKJ6KBSGQ&Expires=1547116955&Signature=Sexu3Q4lUNu58Nb2d%2F%2F4qxWXoxM%3D",
+                  "_meta": {
+                    "guid": "699eee5c-cd1d-0376-ea6b-1c191f9079a6",
+                    "subtype": "image",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "4befd4e4-8887-39de-df17-c9c83ca0b5e7",
+                "type": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#000",
+                  "text": "<div class=\"r\" style=\"font-size: small; line-height: 1.2; color: #222222; font-family: arial, sans-serif; text-align: left;\" data-mce-style=\"font-size: small; line-height: 1.2; color: #222222; font-family: arial, sans-serif; text-align: left;\"><h3 class=\"LC20lb\" style=\"font-size: 18px; font-weight: normal; display: inline-block;\" data-mce-style=\"font-size: 18px; font-weight: normal; display: inline-block;\">everal issues with strict property checks and definite assignement ...</h3><a href=\"https://github.com/Microsoft/TypeScript/issues/20740\" style=\"color: #660099; cursor: pointer;\" data-mce-href=\"https://github.com/Microsoft/TypeScript/issues/20740\" data-mce-style=\"color: #660099; cursor: pointer;\"><br></a><div class=\"TbwUpd\" style=\"padding-bottom: 2px; padding-top: 2px; display: inline-block;\" data-mce-style=\"padding-bottom: 2px; padding-top: 2px; display: inline-block;\"><strong><cite class=\"iUh30\" style=\"color: #006621; font-style: normal; font-size: 14px; padding-top: 1px;\" data-mce-style=\"color: #006621; font-style: normal; font-size: 14px; padding-top: 1px;\">https://github.com/Microsoft/TypeScript/issues/20740</cite></strong></div><div class=\"action-menu ab_ctl\" style=\"display: inline; position: relative; margin-top: 1px; margin-right: 3px; margin-left: 3px; user-select: none; vertical-align: middle;\" data-mce-style=\"display: inline; position: relative; margin-top: 1px; margin-right: 3px; margin-left: 3px; user-select: none; vertical-align: middle;\"><a class=\"GHDvEf ab_button\" href=\"https://www.google.com/search?q=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;rlz=1C1GCEU_zh-CNCN820CN820&amp;oq=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;aqs=chrome..69i57.3938j0j4&amp;sourceid=chrome&amp;ie=UTF-8#\" id=\"am-b1\" aria-label=\"结果选项\" aria-expanded=\"false\" aria-haspopup=\"true\" role=\"button\" data-ved=\"2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQ7B0wAXoECAgQAg\" style=\"font-size: 11px; border-radius: 0px; cursor: default; font-weight: bold; height: 12px; line-height: 27px; margin-top: 1px; margin-bottom: 2px; min-width: 0px; text-align: center; transition: none 0s ease 0s; user-select: none; background-image: none; color: #444444; box-shadow: 0px 0px 0px 0px; filter: none; width: 13px; text-decoration-line: none; display: inline-block;\" data-mce-href=\"https://www.google.com/search?q=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;rlz=1C1GCEU_zh-CNCN820CN820&amp;oq=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;aqs=chrome..69i57.3938j0j4&amp;sourceid=chrome&amp;ie=UTF-8\" data-mce-style=\"font-size: 11px; border-radius: 0px; cursor: default; font-weight: bold; height: 12px; line-height: 27px; margin-top: 1px; margin-bottom: 2px; min-width: 0px; text-align: center; transition: none 0s ease 0s; user-select: none; background-image: none; color: #444444; box-shadow: 0px 0px 0px 0px; filter: none; width: 13px; text-decoration-line: none; display: inline-block;\"></a><div class=\"action-menu-panel ab_dropdown\" role=\"menu\" data-ved=\"2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQqR8wAXoECAgQAw\" style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.2); font-size: 13px; position: absolute; right: auto; top: 12px; white-space: nowrap; z-index: 3; transition: opacity 0.218s ease 0s; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; left: 0px; visibility: hidden;\" data-mce-style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.2); font-size: 13px; position: absolute; right: auto; top: 12px; white-space: nowrap; z-index: 3; transition: opacity 0.218s ease 0s; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; left: 0px; visibility: hidden;\" data-mce-tabindex=\"-1\"><ol><li class=\"action-menu-item ab_dropdownitem\" role=\"menuitem\" style=\"list-style: none; user-select: none; cursor: pointer;\" data-mce-style=\"list-style: none; user-select: none; cursor: pointer;\"><br></li></ol></div></div><strong><a class=\"fl\" href=\"https://translate.google.com/translate?hl=zh-CN&amp;sl=en&amp;u=https://github.com/Microsoft/TypeScript/issues/20740&amp;prev=search\" style=\"text-decoration-line: none; color: #1a0dab; cursor: pointer; font-size: 14px;\" data-mce-href=\"https://translate.google.com/translate?hl=zh-CN&amp;sl=en&amp;u=https://github.com/Microsoft/TypeScript/issues/20740&amp;prev=search\" data-mce-style=\"text-decoration-line: none; color: #1a0dab; cursor: pointer; font-size: 14px;\">翻译此页</a></strong></div><div class=\"s\" style=\"max-width: 48em; color: #545454; line-height: 1.54; font-family: arial, sans-serif; font-size: small; text-align: left;\" data-mce-style=\"max-width: 48em; color: #545454; line-height: 1.54; font-family: arial, sans-serif; font-size: small; text-align: left;\"><br></div>",
+                  "textAlign": "center",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "8d8d8562-9f93-d5a3-b0bd-b0e9460a4ded",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "linkType": "_self",
+                  "text": "<span style=\"font-family: &quot;arial black&quot;, sans-serif;\" data-mce-style=\"font-family: 'arial black', sans-serif;\">Go to See See ?</span>",
+                  "link": "http://www.baidu.com",
+                  "color": "#fff",
+                  "padding": "10px 20px 10px 20px",
+                  "backgroundColor": "#0ba021",
+                  "hoverColor": "#2a92bf",
+                  "textAlign": "left",
+                  "lineHeight": 120,
+                  "borderRadius": 4,
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "7cdde1f2-4590-7cfb-3dda-1199c8ee4547",
+                    "subtype": "button",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "5a3a4673-249d-454b-41a3-2c7ce2ded739",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "0px",
+          "selectable": true,
+          "_meta": {
+            "guid": "35a15450-34e3-11c9-3a39-1899629e9e37",
+            "type": "u_row",
+            "subtype": "onetwo"
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "divider",
+                "values": {
+                  "width": 100,
+                  "lineStyle": "dashed",
+                  "lineWidth": 1,
+                  "lineColor": "#ccc",
+                  "textAlign": "center",
+                  "containerPadding": "0px",
+                  "_meta": {
+                    "guid": "351ad559-b1c6-5299-90da-db07279942e1",
+                    "subtype": "divider",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "ce905da1-17ff-6c30-f818-f96a65cfcbe5",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "10px",
+          "selectable": true,
+          "_meta": {
+            "guid": "df0dfae2-52be-8322-af07-8de10e4f10d6",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          2,
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "color": "#000",
+                  "text": "<div class=\"r\" style=\"font-size: small; line-height: 1.2; color: rgb(34, 34, 34); font-family: arial, sans-serif; text-align: left;\"><a href=\"https://github.com/mobxjs/mobx/issues/1507\" ping=\"/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://github.com/mobxjs/mobx/issues/1507&amp;ved=2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQFjACegQIBxAB\" style=\"color: rgb(102, 0, 153); cursor: pointer;\"><h3 class=\"LC20lb\" style=\"font-size: 18px; font-weight: normal; display: inline-block;\">nitialize properties in constructor when using strict · Issue #1507 ...</h3><br><div class=\"TbwUpd\" style=\"padding-bottom: 2px; padding-top: 2px; display: inline-block;\"><cite class=\"iUh30\" style=\"color: rgb(0, 102, 33); font-style: normal; font-size: 14px; padding-top: 1px;\">https://github.com/mobxjs/mobx/issues/1507</cite></div></a><div class=\"action-menu ab_ctl\" style=\"display: inline; position: relative; margin-top: 1px; margin-right: 3px; margin-left: 3px; user-select: none; vertical-align: middle;\"><a class=\"GHDvEf ab_button\" href=\"https://www.google.com/search?q=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;rlz=1C1GCEU_zh-CNCN820CN820&amp;oq=typescript+decorators+Since+strict-mode+is+enabled%2C&amp;aqs=chrome..69i57.3938j0j4&amp;sourceid=chrome&amp;ie=UTF-8#\" id=\"am-b2\" aria-label=\"结果选项\" aria-expanded=\"false\" aria-haspopup=\"true\" role=\"button\" jsaction=\"m.tdd;keydown:m.hbke;keypress:m.mskpe\" data-ved=\"2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQ7B0wAnoECAcQAg\" style=\"font-size: 11px; border-radius: 0px; cursor: default; font-weight: bold; height: 12px; line-height: 27px; margin-top: 1px; margin-bottom: 2px; min-width: 0px; text-align: center; transition: none 0s ease 0s; user-select: none; background-image: none; color: rgb(68, 68, 68); box-shadow: 0px 0px 0px 0px; filter: none; width: 13px; text-decoration-line: none; display: inline-block;\"><span class=\"mn-dwn-arw\" style=\"border-color: rgb(0, 102, 33) transparent; border-style: solid; border-top-width: 5px; border-right-width: 4px; border-left-width: 4px; width: 0px; height: 0px; margin-left: 3px; top: 7.5px; margin-top: -4px; position: absolute; left: 0px;\"></span></a><div class=\"action-menu-panel ab_dropdown\" role=\"menu\" tabindex=\"-1\" jsaction=\"keydown:m.hdke;mouseover:m.hdhne;mouseout:m.hdhue\" data-ved=\"2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQqR8wAnoECAcQAw\" style=\"background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-width: 1px; border-style: solid; border-color: rgba(0, 0, 0, 0.2); font-size: 13px; position: absolute; right: auto; top: 12px; white-space: nowrap; z-index: 3; transition: opacity 0.218s ease 0s; box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px; left: 0px; visibility: hidden;\"><ol><li class=\"action-menu-item ab_dropdownitem\" role=\"menuitem\" style=\"list-style: none; user-select: none; cursor: pointer;\"><a class=\"fl\" href=\"https://webcache.googleusercontent.com/search?q=cache:BQAc1z1s1HgJ:https://github.com/mobxjs/mobx/issues/1507+&amp;cd=3&amp;hl=zh-CN&amp;ct=clnk\" ping=\"/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://webcache.googleusercontent.com/search%3Fq%3Dcache:BQAc1z1s1HgJ:https://github.com/mobxjs/mobx/issues/1507%2B%26cd%3D3%26hl%3Dzh-CN%26ct%3Dclnk&amp;ved=2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQIDACegQIBxAE\" style=\"text-decoration-line: none; color: rgb(51, 51, 51); cursor: pointer; font-size: 14px; display: block; padding: 7px 18px; outline: 0px;\"></a></li></ol></div></div><a class=\"fl\" href=\"https://translate.google.com/translate?hl=zh-CN&amp;sl=en&amp;u=https://github.com/mobxjs/mobx/issues/1507&amp;prev=search\" ping=\"/url?sa=t&amp;source=web&amp;rct=j&amp;url=https://translate.google.com/translate%3Fhl%3Dzh-CN%26sl%3Den%26u%3Dhttps://github.com/mobxjs/mobx/issues/1507%26prev%3Dsearch&amp;ved=2ahUKEwjgtPi2s-DfAhVB-WEKHetdA_UQ7gEwAnoECAcQBg\" style=\"text-decoration-line: none; color: rgb(26, 13, 171); cursor: pointer; font-size: 14px;\">翻译此页</a></div><div class=\"s\" style=\"max-width: 48em; color: rgb(84, 84, 84); line-height: 1.54; font-family: arial, sans-serif; font-size: small; text-align: left;\"><span class=\"st\" style=\"line-height: 1.4; overflow-wrap: break-word;\"><span class=\"f\" style=\"color: rgb(128, 128, 128);\">2018年4月19日 -&nbsp;</span>Uncaught Error: [mobx]&nbsp;<span style=\"color: rgb(221, 75, 57);\">Since strict</span>-<span style=\"color: rgb(221, 75, 57);\">mode is enabled</span>, changing observed ... The JavaScript that gets emitted by&nbsp;<span style=\"color: rgb(221, 75, 57);\">TypeScript</span>&nbsp;includes this&nbsp;...</span><div class=\"TXwUJf\" style=\"color: rgb(128, 128, 128);\">缺少字词：&nbsp;<s>decorators</s></div></div>",
+                  "textAlign": "center",
+                  "lineHeight": 160,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "43b21035-8d2e-4a10-8251-86cef84e293d",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "color": "#ce1d1d",
+                  "text": "Hello World",
+                  "textAlign": "left",
+                  "lineHeight": 120,
+                  "padding": "5px 10px 10px 10px",
+                  "containerPadding": "10px",
+                  "_meta": {
+                    "guid": "ebaebea8-2ace-f80e-6c63-e4b147fc94c1",
+                    "subtype": "text",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "c815ac33-dc8f-6285-c0a5-9ec461d754a3",
+                "type": "u_column"
+              }
+            }
+          },
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "link": "",
+                  "linkType": "_self",
+                  "containerPadding": "0px",
+                  "textAlign": "center",
+                  "fullWidth": false,
+                  "alter": "Image",
+                  "url": "https://s3.amazonaws.com/smsone.attachment.jira.dev/2019/JPG/sms_3821298a-6599-4ea7-a040-2c8dc739e62e.jpg?AWSAccessKeyId=AKIAJ4FSO2OEKJ6KBSGQ&Expires=1547117986&Signature=eqKEsLUcVOAcwMJdTgehMfkDcQk%3D",
+                  "_meta": {
+                    "guid": "dca4caef-9d04-fde3-4c5f-77070e32feae",
+                    "subtype": "image",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "5b01b4a2-4c27-9b57-e1e2-502318567b9d",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "0px",
+          "selectable": true,
+          "_meta": {
+            "guid": "70211636-19a1-baa9-3288-a72130de5b4c",
+            "type": "u_row",
+            "subtype": "twoone"
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "divider",
+                "values": {
+                  "width": 100,
+                  "lineStyle": "dashed",
+                  "lineWidth": 1,
+                  "lineColor": "#ccc",
+                  "textAlign": "center",
+                  "containerPadding": "0px",
+                  "_meta": {
+                    "guid": "135f85ef-1583-a52a-9e7d-3ecd12cc1eab",
+                    "subtype": "divider",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "56dffa5b-d590-1e07-42ab-9716a5ff1b62",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "2px",
+          "selectable": true,
+          "_meta": {
+            "guid": "0d383949-6b2a-387c-ff3f-ac8f4e122e39",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      },
+      {
+        "cells": [
+          1
+        ],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "video",
+                "values": {
+                  "containerPadding": "0px",
+                  "textAlign": "center",
+                  "fullWidth": true,
+                  "url": "http://v2v.cc/~j/theora_testsuite/320x240.ogg",
+                  "_meta": {
+                    "guid": "12001d32-6c4c-9ea5-90c9-57646f932300",
+                    "subtype": "video",
+                    "type": "u_content"
+                  }
+                }
+              }
+            ],
+            "values": {
+              "_meta": {
+                "guid": "e72c0b8c-690f-d38b-e96c-a85da8e69110",
+                "type": "u_column"
+              }
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "rgba(255, 255, 255, 0)",
+          "columnsBackgroundColor": "rgba(255, 255, 255, 0)",
+          "deletable": true,
+          "draggable": true,
+          "noStackMobile": false,
+          "padding": "0px",
+          "selectable": true,
+          "_meta": {
+            "guid": "67cb2f30-551a-5d17-3bc6-c2bea9b00252",
+            "type": "u_row",
+            "subtype": "single"
+          }
+        }
+      }
+    ],
+    "values": {
+      "backgroundColor": "#ffffff",
+      "width": 800,
+      "fontFamily": "MicroSoft Yahei",
+      "_meta": {
+        "guid": "1c93d5d7-20bc-5ccb-3614-d311803edd5c",
+        "type": "u_body"
+      }
+    }
+  }
+}
