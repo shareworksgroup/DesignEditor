@@ -17,6 +17,17 @@ class Image extends Extension {
     return 'Image';
   }
 
+  toHtml(data) {
+    const { url, containerPadding, link, linkType, textAlign, alter, fullWidth  } = data;
+    const imgStyle = fullWidth ? ` width: 100% ` : ` max-width: 100% `;
+    return `<div 
+    style="padding:${containerPadding}">
+      <div style="text-align:${textAlign}">
+        <a href="${link}" style="text-decoration: none;" target="${linkType}"><img alt="${alter}" src="${url}" style="${imgStyle}" /></a>
+      </div>
+    </div>`;
+  }
+
   getInitialAttribute(){
     return {
       link: '',

@@ -29,11 +29,25 @@ class Button extends Extension {
     return 'Button';
   }
 
+  toHtml(data){
+    const { text, color, link, linkType, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius, _meta } = data;
+    return `<div>
+      <div style="text-align:${textAlign};padding:${containerPadding}">
+      <style>
+        #button_${_meta.guid}:hover{
+          background-color:${hoverColor} !important;
+        }
+      </style>
+      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${text}</a>
+      </div>
+    </div>`;
+  }
+
   getInitialAttribute(){
     return {
       linkType: '_self',
       text:'Text Button',
-      link: 'http://www.baidu.com',
+      link: '',
       color: '#fff',
       padding: '10px 20px 10px 20px',
       backgroundColor: '#3aaee0',

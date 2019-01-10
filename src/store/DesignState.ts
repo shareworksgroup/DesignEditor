@@ -1,7 +1,7 @@
 import { observable, action, toJS, runInAction, set, remove } from 'mobx';
 import * as Util from '../lib/util';
 import _ from 'lodash';
-import { DesignType } from '../lib/enum';
+import { DesignType, OperationMode } from '../lib/enum';
 
 const NoColor = 'rgba(255, 255, 255, 0)';
 
@@ -11,35 +11,27 @@ class DesignState {
 
   constructor(transparent) {
     this.transparent = transparent;
-    this.init();
   }
 
-  @action
-  init(){
-    this.data =  {
-      body: {
-        rows: [],
-        values: {
-          backgroundColor: "#ffffff",
-          width: 800,
-          fontFamily: 'MicroSoft Yahei',
-          _meta:{
-            guid: this.guid(),
-            type: DesignType.BODY
-          }
+  @observable
+  data = {
+    body: {
+      rows: [],
+      values: {
+        backgroundColor: "#ffffff",
+        width: 800,
+        fontFamily: 'MicroSoft Yahei',
+        containerPadding: '0px',
+        _meta:{
+          guid: this.guid(),
+          type: DesignType.BODY
         }
       }
-    };
-    this.selected = null;
-    this.extensions = [];
-    this.attribute = {};
-  }
+    }
+  };
 
   @observable
-  data;
-
-  @observable
-  selected;
+  selected = null;
 
   @action
   setSelected(guid) {
@@ -55,7 +47,7 @@ class DesignState {
   }
 
   @observable
-  extensions;
+  extensions = [];
 
  
 
@@ -68,7 +60,11 @@ class DesignState {
     return this.extensions.find(i => i.type === type);
   }
 
-  attribute;
+  getExtensions(){
+    return toJS(this.extensions);
+  }
+
+  attribute = {};
 
   setAttribute(type, attribute) {
     this.attribute[type] = attribute;
@@ -76,6 +72,11 @@ class DesignState {
 
   getData(){
     return toJS(this.data);
+  }
+
+  @action
+  setData(json){
+    this.data = json;
   }
 
   @action
@@ -159,7 +160,6 @@ class DesignState {
       const column = row.columns.filter((column) => column.values._meta.guid === meta.guid)[0];
       if (column) {
         column.contents.push({
-          type: content.type,
           values:{
             ...this.attribute[content.type],
             _meta: {
@@ -180,7 +180,6 @@ class DesignState {
       if (column) {
         const index = _.findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
         column.contents.splice(index, 0, {
-          type: content.type,
           values:{
             ...this.attribute[content.type],
             _meta: {
@@ -197,7 +196,7 @@ class DesignState {
   @action
   moveContent(content, offsetGuid, columnGuid){
     // get and remove content from old position
-    const contentData = this.getContent(content.guid, true);
+    const contentData = this.getContent(content.guid, OperationMode.REMOVE);
     this.data.body.rows.some((row) => {
       const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
       if (column) {
@@ -216,20 +215,59 @@ class DesignState {
   }
 
   @action
-  getContent(guid, remove = false) {
+  getContent(guid, operation?: OperationMode) {
     let content = null;
     this.data.body.rows.some((row) => {
       row.columns.some((column) => {
         content = column.contents.filter(content => content.values._meta.guid === guid)[0];
-        if (content && remove) {
+        if (content && operation) {
           const index = _.findIndex(column.contents, content => content.values._meta.guid === guid);
-          column.contents.splice(index, 1);
+          if (operation === OperationMode.REMOVE) {
+            column.contents.splice(index, 1);
+          } else if (operation === OperationMode.COPY) {
+            const copy = JSON.parse(JSON.stringify(content));
+            copy.values._meta.guid = this.guid();
+            column.contents.splice(index+1, 0, copy);
+          }
         }
         return !!content;
       });
       return !!content;
     });
     return content;
+  }
+
+  @action
+  deleteContent(guid){
+    this.getContent(guid, OperationMode.REMOVE);
+    this.setSelected(null);
+  }
+
+  @action
+  deleteRow(guid) {
+    const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
+    this.data.body.rows.splice(index, 1);
+    this.setSelected(null);
+  }
+
+  @action
+  copyContent(guid) {
+    this.getContent(guid, OperationMode.COPY);
+  }
+
+  @action
+  copyRow(guid) {
+    const row = this.getRow(guid);
+    const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
+    const copy = JSON.parse(JSON.stringify(row));
+    copy.values._meta.guid = this.guid();
+    _.each(copy.columns, column => {
+      column.values._meta.guid = this.guid();
+      _.each(column.contents, content => {
+        content.values._meta.guid = this.guid();
+      });
+    });
+    this.data.body.rows.splice(index + 1, 0, copy);
   }
 
   getRow(guid) {
@@ -268,6 +306,7 @@ class DesignState {
   guid(){
     return Util.guid();
   }
+
 }
 
 export default DesignState;

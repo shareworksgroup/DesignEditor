@@ -43,12 +43,28 @@ class Content extends React.Component {
     e.stopPropagation();
   }
 
+  onDelete = () => {
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.deleteContent(guid);
+  }
+
+  onCopy = () => {
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.copyContent(guid);
+  }
+
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, children, guid, rootStore: { DesignState } } = this.props;
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')}  onMouseUp={this.onSelect}>
-          <Selector type="content" onRef={(dom) => {connectDragSource(dom);}} placeholder="Content" selected={guid === DesignState.selected} />
+          <Selector
+            type="content"
+            onRef={(dom) => {connectDragSource(dom);}}
+            placeholder="Content"
+            onDelete={this.onDelete}
+            onCopy={this.onCopy}
+          />
           { children }
         </div>)}
     </React.Fragment>;

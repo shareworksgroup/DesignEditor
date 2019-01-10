@@ -41,6 +41,15 @@ class Text extends Extension {
     return 'Text';
   }
 
+  toHtml(data) {
+    const { text, textAlign, lineHeight, containerPadding, color } = data;
+    return `<div>
+      <div style="text-align:${textAlign};color:${color};line-height:${lineHeight}%;padding:${containerPadding}">
+        <p>${text}</p>
+      </div>
+    </div>`;
+  }
+
   getInitialAttribute(){
     return {
       color: '#000',

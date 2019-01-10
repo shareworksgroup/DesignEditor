@@ -78,6 +78,7 @@
     "react-dnd-html5-backend": "^6.0.0",
     "react-dom": "^16.4.1",
     "react-switch": "^3.0.4",
+    "react-tiny-fab": "^2.0.0",
     "react-transition-group": "^1.2.1",
     "tinymce": "^4.9.2"
   },

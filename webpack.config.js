@@ -5,6 +5,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');//css样式从js�
 
 
 module.exports = {
+  mode: 'production',
+
   devServer: {
     contentBase: path.join(__dirname, "dist"),
     host: 'localhost',
@@ -30,12 +32,14 @@ module.exports = {
   output: {
     filename: '[name].js',
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
         test: /(\.js)|(\.jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
+        resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
         options: {
           presets: ['react', 'es2015', 'stage-0', "mobx"],
           plugins: ['transform-runtime']

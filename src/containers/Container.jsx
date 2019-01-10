@@ -9,6 +9,7 @@ import Extension from './extension/Extension';
 import * as ProperWidget from './sidebar/Property/items';
 import styles from '../style/index.less';
 import { Button, Divider, Html, Image, Text } from './extension';
+import Transfer from '../lib/transfer';
 import Group from './sidebar/Property/Group';
 
 window.rootStore = rootStore;
@@ -31,7 +32,22 @@ class Container extends React.Component {
     });
   }
 
+  export(){
+    const rawData = this.getData();
+    const transfer = new Transfer(rawData, rootStore.DesignState.getExtensions());
+    return transfer.toHtml();
+  }
+
+  getData(){
+    return rootStore.DesignState.getData();
+  }
+
+  setData(json){
+    rootStore.DesignState.setData(json);
+  }
+
   render(){
+    const { onSave = () => {} } = this.props;
     return <Provider rootStore={rootStore}>
     <DragDropContextProvider backend={HTML5Backend}>
       <div className="ds_container">

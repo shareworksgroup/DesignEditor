@@ -10,6 +10,8 @@ class Extension extends React.Component {
 
   getContentType(){}
 
+  toHtml(json){}
+
   getInitialAttribute(){}
 
   getProperties(){}

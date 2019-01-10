@@ -43,7 +43,7 @@ class Column extends React.Component {
       </div>}
       {
         column.contents.map(i => {
-          const Extension = DesignState.getExtension(i.type);
+          const Extension = DesignState.getExtension(i.values._meta.subtype);
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
             <Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/>
           </Content>;

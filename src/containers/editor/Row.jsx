@@ -43,6 +43,16 @@ class Row extends React.Component {
     DesignState.setSelected(guid);
   }
 
+  onDelete = () => {
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.deleteRow(guid);
+  }
+
+  onCopy = () => {
+    const { guid, rootStore: { DesignState } } = this.props;
+    DesignState.copyRow(guid);
+  }
+
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
@@ -51,7 +61,11 @@ class Row extends React.Component {
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')} onMouseUp={this.onSelect}>
-          <Selector type="row" onRef={(dom) => {connectDragSource(dom);}}/>
+          <Selector
+            type="row"
+            onDelete={this.onDelete}
+            onCopy={this.onCopy}
+            onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row" style={{
             backgroundColor,
             padding,

@@ -17,6 +17,15 @@ class Divider extends Extension {
     return 'Divider';
   }
 
+  toHtml(data) {
+    const { width, lineStyle, lineWidth, lineColor, textAlign, containerPadding } = data;
+    return `<div>
+      <div style="padding:${containerPadding};text-align:${textAlign}">
+        <div style="border-top:${lineWidth}px ${lineStyle} ${lineColor};width: ${width}%;display:inline-block;"></div>
+      </div>
+    </div>`;
+  }
+
   getInitialAttribute(){
     return {
       width: 100,

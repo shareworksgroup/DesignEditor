@@ -373,6 +373,7 @@ body{
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: Montserrat, sans-serif;
     }
     .blockbuilder-layer-drag-rows {
       right: 0px;
@@ -473,7 +474,6 @@ body{
           color:#969696;
           height:100px;
           font-size: 24px;
-          font-family: Arial, Helvetica, sans-serif;
           line-height: 100px;
           text-align: center;
         }
@@ -483,7 +483,6 @@ body{
         padding: 10px;
         color:#6D6D6D;
         font-size: 16px;
-        font-family: Montserrat, sans-serif;
         &>div>p{
         }
         .dynamic{
@@ -517,7 +516,6 @@ body{
           color:#969696;
           height:170px;
           font-size: 24px;
-          font-family: Arial, Helvetica, sans-serif;
           line-height: 170px;
           text-align: center;
           &>i{
@@ -654,5 +652,189 @@ body{
   &:hover {
       border-color: #999;
       color: #777;
+  }
+}
+
+
+
+.float-btn-add {
+  position: fixed;
+  z-index: 1031;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  color: #333;
+  border: 0;
+  border-radius: 50%;
+  background: #fafafa;
+  box-shadow: 1px 3px 10px rgba(0,0,0,.22);
+  outline: 0;
+  cursor: pointer
+}
+
+.float-btn-add .btn-float {
+  line-height: 60px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  background-color: #3071d4;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.11)
+}
+
+.float-btn-add .btn-float>i {
+  line-height: normal;
+  vertical-align: sub;
+  font-size: 24px
+}
+
+.float-btn-add .btn-float>span {
+  font-size: 12px;
+  line-height: 20px;
+  position: absolute;
+  top: 18px;
+  right: 68px;
+  padding: 3px 8px;
+  text-align: center;
+  white-space: nowrap;
+  color: #fff;
+  border-radius: 4px;
+  background-color: #000
+}
+
+.float-btn-add .btn-float>span::after {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 0;
+  height: 0;
+  margin-top: -5px;
+  content: '';
+  border-width: 5px 0 5px 5px;
+  border-style: solid;
+  border-left-color: #000
+}
+
+.float-btn-add .btn-float>img {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -25px;
+  margin-top: -25px
+}
+
+.float-btn-add .btn-float:hover {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  -moz-transition: -moz-transform .3s ease-out;
+  -o-transition: transform .3s ease-out;
+  transition: transform .3s ease-out;
+  box-shadow: 0 12px 40px rgba(0,0,0,.33)
+}
+
+.float-btn-add .btn-float:active,.float-btn-add .btn-float:focus {
+  outline: 0
+}
+
+.float-btn-add .btn-more-list {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition-delay: .05s;
+  -webkit-transform: translateY(-60px);
+  transform: translateY(-60px)
+}
+
+.float-btn-add .btn-more-list>.btn-float {
+  font-size: 18px;
+  margin-bottom: 20px;
+  transition: all .5s;
+  opacity: 0
+}
+
+.float-btn-add .btn-more-list>.btn-float.green {
+  background: #00e676
+}
+
+.float-btn-add .btn-more-list>.btn-float.blue {
+  background: #40c4ff
+}
+
+.float-btn-add .btn-more-list>.btn-float.yellow {
+  background: #ffa000
+}
+
+.float-btn-add .btn-more-list>.btn-float.purple {
+  background: #8e24aa
+}
+
+.float-btn-add .btn-more-list>.btn-float.light-blue {
+  background: #856fff
+}
+
+.float-btn-add .btn-more-list>.btn-float.pink {
+  background: #e91e63
+}
+
+.float-btn-add .float-btn-group {
+  position: relative;
+  float: right
+}
+
+.float-btn-add .float-btn-group.open>.btn-float {
+  background-color: #ddd!important;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg)
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float {
+  opacity: 1
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(7) {
+  transition-delay: .02s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(6) {
+  transition-delay: .05s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(5) {
+  transition-delay: .1s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(4) {
+  transition-delay: .15s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(3) {
+  transition-delay: .2s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(2) {
+  transition-delay: .25s
+}
+
+.float-btn-add .float-btn-group.open>.btn-more-list .btn-float:nth-child(1) {
+  transition-delay: .3s
+}
+
+.float-btn-add.float-btn-new {
+  top: 180px;
+  bottom: auto
+}
+
+@media (max-width: 414px) {
+  .float-btn-add.float-btn-new {
+      top:auto;
+      bottom: 30px
   }
 }

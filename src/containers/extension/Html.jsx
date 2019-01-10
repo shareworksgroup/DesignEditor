@@ -17,6 +17,15 @@ class Html extends Extension {
     return 'Html';
   }
 
+  toHtml(data) {
+    const { html, containerPadding } = data;
+    return `<div>
+      <div style="padding:${containerPadding};">
+        <div>${html}</div>
+      </div>
+    </div>`;
+  }
+
   getInitialAttribute(){
     return {
       html: '<p>Html Sample</p>',

@@ -1,7 +1,7 @@
 
 import { configure } from 'mobx';
 import stateInjector from './stateInjector';
-configure({ enforceActions: 'always' });
+configure({ enforceActions: 'observed' });
 
 class RootStore {
   axiosInstance: any;
