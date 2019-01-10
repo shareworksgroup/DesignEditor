@@ -30,11 +30,10 @@ Thumbs.db
 /node_modules
 
 # 目标文件
-/dist
-/dist/*
+
+/dist/index.js
+/dist/index.html
 # vendor.min.js 的配置文件
 manifest.json
 .vscode
 *.scssc
-/mocks/app.js
-/mocks/app4Internal.js

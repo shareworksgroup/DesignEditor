@@ -1,15 +1,22 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { Provider } from 'mobx-react';
-import rootStore from '@store/store';
-import { DragDropContextProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import Container from './containers/Container';
-import styles from './style/index.less';
+import Container, { Extension } from './containers/Container';
+import Video from './Video';
+import ConfigButton from './ConfigButton';
 
-window.rootStore = rootStore;
-ReactDom.render(<Provider rootStore={rootStore}>
-  <DragDropContextProvider backend={HTML5Backend}>
-    <Container />
-  </DragDropContextProvider>
-</Provider>, document.getElementById('root'));
+let instance = null;
+
+const onPreview = () => {
+  if (instance) {
+    const page = window.open('', '_blank');
+    page.document.write(instance.export());
+  }
+}
+
+ReactDom.render(<div>
+  <Container ref={(obj)=>{ instance = obj; window.instance = obj; }}>
+    <Video />
+  </Container>
+  
+  <ConfigButton onPreview={onPreview} />
+</div>, document.getElementById('root'));

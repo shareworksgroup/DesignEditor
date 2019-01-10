@@ -1,12 +1,25 @@
 {
+
   "compilerOptions": {
     "module": "ES6",
-    "target": "es6",
-    "jsx": "react",
-    "allowJs": true,
-    "allowSyntheticDefaultImports": true,
+    "outDir": "./dist",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports":true,
     "experimentalDecorators": true,
-    "noImplicitAny": false
+    "target": "es5",
+    "jsx":"react",
+    "typeRoots": [
+      "node_modules/@types",
+      "typings"
+    ],
+    "lib": [
+      "es7",
+      "es6",
+      "dom"
+    ]
   },
   "exclude": ["node_modules", "dist"]
 }

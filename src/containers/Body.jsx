@@ -1,15 +1,22 @@
  import React from 'react';
 import { inject, observer } from 'mobx-react';
 import rootStore from '@store/store';
-import { DragType } from '../lib/enum';
+import { DragType, OperationMode } from '../lib/enum';
 import { DropTarget } from 'react-dnd';
 import PlaceHolder from './common/PlaceHolder';
-import RowList from './RowItems';
-import RowEditor from './RowItems/RowEditor';
+import RowList from './sidebar/RowItems';
+import Row from './editor/Row';
 
 const target = {
   drop(props, monitor, component) {
-    rootStore.DesignState.addRow(monitor.getItem());
+
+    const item = monitor.getItem();
+    if (item.mode === OperationMode.INSERT) {
+      rootStore.DesignState.addRow(item);
+    } else if (item.mode === OperationMode.MOVE) {
+      rootStore.DesignState.moveRow(item);
+    }
+    
   },
   canDrop(props, monitor, component){
     return monitor.isOver({ shallow: true });
@@ -24,19 +31,32 @@ const collect = (connect, monitor) => ({
 
 class Body extends React.Component {
 
+  onBodyClick = () => {
+    const { rootStore: { DesignState } } = this.props;
+    DesignState.setSelected(null);
+  }
+
   render(){
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
-    const data = DesignState.getData();
-    return connectDropTarget(<div className="ds-body design-web">
-     {
-       data.body.rows.map(row => {
-         const meta = row.values._meta;
-         return <RowEditor key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
-        })
-      }
-      { (isOver && canDrop) && <PlaceHolder />}
+    const data = DesignState.data;
+    const { width, backgroundColor, fontFamily, containerPadding } = data.body.values;
+    return connectDropTarget(<div className="ds-body design-web" onMouseUp={this.onBodyClick}>
+      <div className="u_body" style={{
+        width,
+        backgroundColor,
+        fontFamily,
+        padding: containerPadding
+      }}>
+      {
+        data.body.rows.map(row => {
+          const meta = row.values._meta;
+          return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+          })
+        }
+        { (isOver && canDrop) && <PlaceHolder />}
+      </div>
     </div>);
   }
 }
 
-export default inject('rootStore')(observer(DropTarget([DragType.ROW], target, collect)(Body)));
+export default DropTarget([DragType.ROW], target, collect)(inject('rootStore')(observer(Body)));

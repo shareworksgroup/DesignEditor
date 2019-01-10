@@ -1,32 +1,43 @@
 import React from 'react';
 import classnames from 'classnames';
+import { inject, observer } from 'mobx-react';
 import Content from './Content';
 import Row from './Row';
+import { Tabs } from '../components';
+import Property from './sidebar/Property/Property';
+import BodyProperty from './sidebar/Property/BodyProperty';
 
 class SideBar extends React.Component {
   state={
     active: 0
   }
+
+  
+  onUpdate = (key, value) => {
+    const { rootStore: { DesignState }} = this.props;
+    DesignState.updateBodyAttribute(key, value);
+  }
+
+  onTabClick = () => {
+    const { rootStore: { DesignState } } = this.props;
+    DesignState.setSelected(null);
+  }
   render(){
+    const { rootStore: { DesignState } } = this.props;
+    const body = DesignState.data.body.values;
     return <div className="ds_sidebar">
-      <ul className="nav nav-tabs">
-        <li className="nav-item">
-          <a onClick={()=>{this.setState({ active: 0 })}} className={classnames("nav-link", this.state.active === 0 && "active")}><i className="mdi-action-dashboard icon"/>Content</a>
-        </li>
-        <li className="nav-item">
-          <a onClick={()=>{this.setState({ active: 1 })}} className={classnames("nav-link", this.state.active === 1 && "active")}><i className="mdi-action-view-headline icon"/>Row</a>
-        </li>
-        <li className="nav-item">
-          <a onClick={()=>{this.setState({ active: 2 })}} className={classnames("nav-link", this.state.active === 2 && "active")}><i className="mdi-action-payment icon"/>Body</a>
-        </li>
-      </ul>
-      <div>
-        { this.state.active === 0 && <div><Content /></div>}
-        { this.state.active === 1 && <div><Row /></div>}
-        { this.state.active === 2 && <div>body</div>}
-      </div>
+      <Tabs onClick={this.onTabClick}>
+        <Tabs.Tab tab="Content" icon="mdi-action-dashboard"><Content /></Tabs.Tab>
+        <Tabs.Tab tab="Row" icon="mdi-action-view-headline"><Row /></Tabs.Tab>
+        <Tabs.Tab tab="Body" icon="mdi-action-payment">
+          <div className="property-panel body-property-panel">
+            <BodyProperty {...body} onUpdate={this.onUpdate}/>
+          </div>
+        </Tabs.Tab>
+      </Tabs>
+      <Property visible={!!DesignState.selected} propertyId={DesignState.selected} destroyOnClose/>
     </div>;
   }
 }
 
-export default SideBar;
+export default inject('rootStore')(observer(SideBar));

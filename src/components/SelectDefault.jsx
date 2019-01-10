@@ -14,7 +14,6 @@ class SelectDefault extends React.Component {
     } else {
       value = e
     }
-    console.log('onChange', value)
     if (value) {
       const clickedItem = this.props.data.find(data => data.Id === value)
       this.props.choose(this.props.data, clickedItem)
