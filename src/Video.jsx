@@ -18,7 +18,7 @@ class Video extends Extension {
 
   toHtml(data) {
     const { url, containerPadding, textAlign, fullWidth } = data;
-    const videoStyle = fullWidth ? ` width: '100%' ` : ` maxWidth: '100%' `;
+    const videoStyle = fullWidth ? ` width: 100% ` : ` maxWidth: 100% `;
     return `<div style="padding:${containerPadding}">
       <div style="text-align:${textAlign}">
         <video controls src="${url}" style="${videoStyle}" />
