@@ -16,7 +16,7 @@ class ConfigButton extends React.Component {
       <Action
         text="Preview"
         onClick={onPreview}
-        style={{backgroundColor:'#1677D2'}}
+        style={{backgroundColor:'#539225'}}
       >
         <i className="mdi-image-remove-red-eye"></i>
       </Action>
