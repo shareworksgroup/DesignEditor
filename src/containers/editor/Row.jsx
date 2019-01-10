@@ -57,8 +57,6 @@ class Row extends React.Component {
     const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
     const { backgroundColor, columnsBackgroundColor, padding } = row.values;
-    console.log(backgroundColor)
-    debugger;
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
@@ -69,7 +67,7 @@ class Row extends React.Component {
             onCopy={this.onCopy}
             onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row" style={{
-            backgroundColor:backgroundColor,
+            backgroundColor,
             padding,
           }}>
             <div className="container" style={{
