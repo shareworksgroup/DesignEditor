@@ -6,11 +6,11 @@ import 'tinymce/plugins/link';
 import 'tinymce/plugins/autolink';
 import 'tinymce/plugins/textcolor';
 import 'tinymce/plugins/lists';
-import 'tinymce/plugins/contextmenu';
+import 'tinymce/plugins/colorpicker';
 
 import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
-import { ContentType } from '../../lib/enum';
+import { ContentType, Fonts } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
 import { Input, Number } from '../../components';
 import { Link, Colors, Align, LineHeight,BorderRadius, Color, Space } from '../sidebar/Property/items';
@@ -138,11 +138,14 @@ class Text extends Extension {
             plugins: [
             'link',
             'textcolor',
+            'colorpicker',
             'lists',
             'autolink'],
             toolbar: ['undo redo | bold italic underline | fontselect fontsizeselect',
             'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent | link unlink'],
             inline: true,
+            font_formats: (() => Object.keys(Fonts).map(i => `${i}=${Fonts[i]}`).join(';'))(),
+            fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 20pt 24pt 26pt 28pt 30pt 36pt 40pt 44pt 48pt 60pt 72pt'
           }}
           onChange={this.handleEditorChange}
         />
