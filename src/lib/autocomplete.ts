@@ -22,7 +22,8 @@ export default class AutoComplete {
     const offset = this.editor.selection.getRng().endOffset;
 		const text = this.editor.selection.getSel().anchorNode.data;
 		const match = text.slice(0, offset)
-					.match(this.matchReg);
+          .match(this.matchReg);
+          debugger;
 		if (match) {
 			const rect = this.editor.selection.getBoundingClientRect();
 			this.callback({

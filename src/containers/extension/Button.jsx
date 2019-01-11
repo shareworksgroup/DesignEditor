@@ -40,7 +40,6 @@ class Button extends Extension {
   }
 
   componentDidMount() {
-    console.log('didmout')
     this.autoComplete = new AutoComplete();
   }
 
@@ -105,7 +104,6 @@ class Button extends Extension {
       this.editor = editor.editor;
       this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
         if (result.match) {
-          console.log('button list show')
           this.setState({
             showDynamic: true,
             position: result.position,
@@ -129,7 +127,7 @@ class Button extends Extension {
       Array(this.state.query.length + 1).fill().forEach(i => {
         this.editor.execCommand('delete');
       });
-      this.editor.insertContent(' [['+value.key + ']] ', {merge :true});
+      this.editor.insertContent('[['+value.key + ']]', {merge :true});
       this.setState({ showDynamic: false, query: '' });
     }
   }

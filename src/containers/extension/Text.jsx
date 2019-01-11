@@ -106,7 +106,7 @@ class Text extends Extension {
       Array(this.state.query.length + 1).fill().forEach(i => {
         this.editor.execCommand('delete');
       });
-      this.editor.insertContent(' [['+value.key + ']] ', {merge :true});
+      this.editor.insertContent('[['+value.key + ']]', {merge :true});
       this.setState({ showDynamic: false, query: '' });
     }
   }
