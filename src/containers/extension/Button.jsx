@@ -119,7 +119,10 @@ class Button extends Extension {
 
   handleEditorChange = (value) => {
     const { onUpdate } = this.props;
-    onUpdate('text', value.target.getContent({format: 'raw'}));
+    let content = value.target.getContent({format: 'raw'});
+    var regex = /(<([^>]+)>)/ig;
+    content = content.replace(regex, "");
+    onUpdate('text', content || this.getInitialAttribute().text);
   }
 
   insertDynamic = (value) => {
@@ -142,13 +145,12 @@ class Button extends Extension {
       if (!body) {
         return;
       }
-      body.style.color = color;
-      body.style.padding = padding;
-      body.style.backgroundColor = backgroundColor;
-      body.style.textAlign = textAlign;
-      body.style.borderRadius = borderRadius + 'px';
-      body.style.lineHeight = lineHeight+'%';
-      body.style.textAlign = textAlign;
+      // body.style.color = color;
+      // body.style.padding = padding;
+      // body.style.textAlign = textAlign;
+      // body.style.borderRadius = borderRadius + 'px';
+      // body.style.lineHeight = lineHeight+'%';
+      // body.style.textAlign = textAlign;
     }
   }
 
@@ -160,8 +162,16 @@ class Button extends Extension {
         padding: containerPadding,
       }}>
         { focus ? 
-        <Editor
-          tagName="a"
+        <a className="mce-content-wrapper"
+          style={{
+            color,
+            backgroundColor,
+            padding,
+            lineHeight: lineHeight+'%',
+            borderRadius: borderRadius+'px'
+          }}
+        ><Editor
+          tagName="div"
           ref={this.onRef}
           initialValue={text}
           init={{
@@ -170,7 +180,7 @@ class Button extends Extension {
             inline: true,
           }}
           onChange={this.handleEditorChange}
-        />
+        /></a>
         : <a className="editable" style={{
           color,
           backgroundColor,
@@ -178,7 +188,7 @@ class Button extends Extension {
           lineHeight: lineHeight+'%',
           borderRadius: borderRadius+'px'
         }}>
-          {text}
+          <p  dangerouslySetInnerHTML={{__html: text }}></p>
         </a>}
       </div>
       <AutoCompletePanel

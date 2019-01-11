@@ -21,7 +21,10 @@ export default class AutoComplete {
   
   private onInput = () => {
     const offset = this.editor.selection.getRng().endOffset;
-		const text = this.editor.selection.getSel().anchorNode.data;
+    const text = this.editor.selection.getSel().anchorNode.data;
+    if (!text) {
+      return;
+    }
 		const match = text.slice(0, offset)
           .match(this.matchReg);
           debugger;
@@ -43,6 +46,8 @@ export default class AutoComplete {
   }
 
   public off () {
+    if (!this.editor)
+      return;
     console.log('off')
 		this.editor.off('Input');
 		this.editor = null;
