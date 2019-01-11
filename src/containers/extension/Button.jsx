@@ -133,7 +133,7 @@ class Button extends Extension {
   }
 
   //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-  componentWillReceiveProps({ color, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
+  componentWillReceiveProps({ color, focus, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
     if (this.editor) {
       if (!focus) {
         this.autoComplete.off();
