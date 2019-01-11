@@ -51,7 +51,7 @@ class Image extends React.Component {
         headers:{'Content-Type':'multipart/form-data'}
     };
     this.setState({ uploading: true, progress: 50 });
-    axios.post('http://localhost:3001/NewUserFeedback/upload',formData,config).then(response => {
+    axios.post('http://192.168.23.120:3001/NewUserFeedback/upload',formData,config).then(response => {
       this.setState({ progress: 100 });
       setTimeout(() => {
         this.setState({ uploading: false, progress: 0 });

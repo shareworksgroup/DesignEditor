@@ -12,11 +12,21 @@ import { Editor } from '@tinymce/tinymce-react';
 import classnames from 'classnames';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
+import { dynamicList } from '../../lib/util';
+import AutoComplete from '../../lib/autocomplete';
 import Group from '../sidebar/Property/Group';
-import { Input, Number } from '../../components';
+import { Input, Number, AutoCompletePanel } from '../../components';
 import { Link, Colors, Align, LineHeight,BorderRadius, Color, Space } from '../sidebar/Property/items';
 
 class Button extends Extension {
+
+  state={
+    showDynamic: false,
+    query:'',
+    data: dynamicList,
+    position: { x: 0, y:0 },
+  }
+
   getIconClass() {
     return 'mdi-image-crop-7-5';
   }
@@ -27,6 +37,11 @@ class Button extends Extension {
 
   getLabel() {
     return 'Button';
+  }
+
+  componentDidMount() {
+    console.log('didmout')
+    this.autoComplete = new AutoComplete();
   }
 
   toHtml(data){
@@ -86,21 +101,21 @@ class Button extends Extension {
 
   
   onRef = (editor) => {
-    if (editor) {
+    if (editor && this.autoComplete) {
       this.editor = editor.editor;
-        this.editor.on('Input', () => {
-          if (this.editor) {
-            const position = this.editor.selection.getRng().endOffset;
-            if (position > 0) {
-              const text = this.editor.selection.getSel().anchorNode.data;
-              if(text.substr(position-1, 1) === '#') {
-                const rect = this.editor.selection.getBoundingClientRect();
-                this.setState({ showDynamic: true, x: rect.left, y: rect.top });
-              }
-            }
-          }
-        });
-      window.editor = editor.editor;
+      this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
+        if (result.match) {
+          console.log('button list show')
+          this.setState({
+            showDynamic: true,
+            position: result.position,
+            query: result.query,
+            data: dynamicList.filter(item => item.key.indexOf(result.query) !== -1)
+          });
+        } else {
+          this.setState({ showDynamic: false, query: '' });
+        }
+      });
     }
   }
 
@@ -109,9 +124,22 @@ class Button extends Extension {
     onUpdate('text', value.target.getContent({format: 'raw'}));
   }
 
+  insertDynamic = (value) => {
+    if (this.editor) {
+      Array(this.state.query.length + 1).fill().forEach(i => {
+        this.editor.execCommand('delete');
+      });
+      this.editor.insertContent(' [['+value.key + ']] ', {merge :true});
+      this.setState({ showDynamic: false, query: '' });
+    }
+  }
+
   //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
   componentWillReceiveProps({ color, padding, backgroundColor, textAlign, lineHeight, borderRadius  }) {
     if (this.editor) {
+      if (!focus) {
+        this.autoComplete.off();
+      }
       const body = this.editor.getBody();
       if (!body) {
         return;
@@ -127,7 +155,7 @@ class Button extends Extension {
   }
 
   render() {
-    const { text, color, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
+    const { focus, text, color, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
     return <div className="ds_content_button">
       <div style={{
         textAlign: textAlign,
@@ -155,6 +183,13 @@ class Button extends Extension {
           {text}
         </a>}
       </div>
+      <AutoCompletePanel
+        data={this.state.data}
+        show={this.state.showDynamic}
+        position={this.state.position}
+        onClick={(item) => { this.insertDynamic(item); }}
+        onClose={() => {this.setState({ showDynamic: false, query: '' })}}
+      />
     </div>;
   }
 }
