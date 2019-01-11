@@ -76,7 +76,8 @@ class Text extends Extension {
 
   handleEditorChange = (value) => {
     const { onUpdate } = this.props;
-    onUpdate('text', value.target.getContent({format: 'raw'}));
+    const content = value.target.getContent({format: 'raw'});
+    onUpdate('text', content);
   }
 
   componentDidMount() {
