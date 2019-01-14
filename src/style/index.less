@@ -240,8 +240,13 @@ body{
             }
           }
         }
+        .collapse{
+          overflow: hidden;
+          transition: .4s height ease;
+          padding: 5px 0;
+        }
         .card-body {
-          padding: 15px 20px !important;
+          padding: 15px 20px;
         }
       }
     }
@@ -452,6 +457,11 @@ body{
           text-decoration: none;
           padding: 10px 20px;
         }
+        .mce-content-wrapper{
+          * {
+              display: inline;
+          }
+        }
       }
       .ds_content_divider {
         padding: 10px;
@@ -485,28 +495,7 @@ body{
         font-size: 16px;
         &>div>p{
         }
-        .dynamic{
-          position: fixed;
-          left:0;
-          top:0;
-          z-index: 999999;
-          background: #fff;
-          border:1px solid #ccc;
-          box-shadow: 3px 3px 5px rgba(0, 0 , 0 , .2);
-          ul{
-            min-width: 50px;
-            li {
-             padding: 2px 10px;
-             line-height: 22px; 
-             font-size: 14px;
-             color: #505659;
-             cursor: pointer;
-             &:hover {
-               background: #ccc;
-             }
-            }
-          }
-        }
+        
       }
 
       .ds_content_video{

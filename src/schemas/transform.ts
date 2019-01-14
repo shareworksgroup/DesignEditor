@@ -1,17 +1,17 @@
-import { ContentType, DesignType, RowType } from './enum';
+import { ContentType, DesignType, RowType } from '../lib/enum';
 
-export interface HtmlBlock {
+export interface IHtmlBlock {
   prefix: string,
   content: string,
   suffix: string,
 }
 
-export interface Data {
-  body: Body
+export interface IData {
+  body: IBody
 }
 
-export interface Body {
-  rows: Array<Row>,
+export interface IBody {
+  rows: Array<IRow>,
   values: {
     backgroundColor: string,
     width: number,
@@ -24,15 +24,17 @@ export interface Body {
   }
 }
 
-export interface Row {
+export interface IRow {
   cells: Array<number>,
-  columns: Array<Column>,
+  columns: Array<IColumn>,
   values: {
     backgroundColor: string,
     columnsBackgroundColor: string,
     noStackMobile: boolean,
     padding: string,
-    selectable: string,
+    deletable?: boolean,
+    draggable?: boolean,
+    selectable: boolean,
     _meta: {
       guid: string,
       type: DesignType,
@@ -41,8 +43,15 @@ export interface Row {
   }
 }
 
-export interface Column {
-  contents: Array<Content>,
+export interface IRowType {
+  cells: Array<number>,
+  type: RowType,
+  guid?: string
+}
+
+
+export interface IColumn {
+  contents: Array<IContent>,
   values: {
     _meta: {
       guid: string,
@@ -51,21 +60,26 @@ export interface Column {
   }
 }
 
-export interface Content {
-  values: TextValue | ButtonValue | HtmlValue | VideoValue | DividerValue | ImageValue
+export interface IContent {
+  values: ITextValue | IButtonValue | IHtmlValue | IVideoValue | IDividerValue | IImageValue
 }
 
-export interface TextValue {
+export interface IContentType {
+  type: ContentType,
+  guid?: string,
+}
+
+export interface ITextValue {
   color: string,
   text: string,
   textAlign: string,
   lineHeight: number,
   padding: string,
   containerPadding: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface ButtonValue {
+export interface IButtonValue {
   linkType: string,
   text: string,
   link: string,
@@ -77,20 +91,20 @@ export interface ButtonValue {
   lineHeight: number,
   borderRadius: number,
   containerPadding: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface DividerValue {
+export interface IDividerValue {
   width: number,
   lineStyle: string,
   lineWidth: number,
   lineColor: string,
   textAlign: string,
   containerPadding: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface ImageValue {
+export interface IImageValue {
   link: string,
   linkType: string,
   containerPadding: string,
@@ -98,24 +112,24 @@ export interface ImageValue {
   fullWidth: boolean,
   alter: string,
   url: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface VideoValue {
+export interface IVideoValue {
   containerPadding: string,
   textAlign: string,
   fullWidth: boolean,
   url: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface HtmlValue {
+export interface IHtmlValue {
   html: string,
   containerPadding: string,
-  _meta: ContentMeta
+  _meta: IContentMeta
 }
 
-export interface ContentMeta {
+export interface IContentMeta {
   guid: string,
   subtype: ContentType,
   type: DesignType
@@ -123,7 +137,7 @@ export interface ContentMeta {
 
 
 
-export interface Extension {
+export interface IExtension {
   new(),
   type: ContentType
 }

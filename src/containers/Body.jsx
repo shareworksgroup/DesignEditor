@@ -1,24 +1,21 @@
- import React from 'react';
+import React from 'react';
 import { inject, observer } from 'mobx-react';
-import rootStore from '@store/store';
+import rootStore from '../store/store';
 import { DragType, OperationMode } from '../lib/enum';
 import { DropTarget } from 'react-dnd';
 import PlaceHolder from './common/PlaceHolder';
-import RowList from './sidebar/RowItems';
 import Row from './editor/Row';
 
 const target = {
   drop(props, monitor, component) {
-
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
       rootStore.DesignState.addRow(item);
     } else if (item.mode === OperationMode.MOVE) {
       rootStore.DesignState.moveRow(item);
     }
-    
   },
-  canDrop(props, monitor, component){
+  canDrop(props, monitor) {
     return monitor.isOver({ shallow: true });
   }
 };
@@ -29,6 +26,9 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
+@DropTarget([DragType.ROW], target, collect)
+@inject('rootStore')
+@observer
 class Body extends React.Component {
 
   onBodyClick = () => {
@@ -36,7 +36,7 @@ class Body extends React.Component {
     DesignState.setSelected(null);
   }
 
-  render(){
+  render() {
     const { connectDropTarget, isOver, canDrop, rootStore: { DesignState } } = this.props;
     const data = DesignState.data;
     const { width, backgroundColor, fontFamily, containerPadding } = data.body.values;
@@ -47,16 +47,16 @@ class Body extends React.Component {
         fontFamily,
         padding: containerPadding
       }}>
-      {
-        data.body.rows.map(row => {
-          const meta = row.values._meta;
-          return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+        {
+          data.body.rows.map(row => {
+            const meta = row.values._meta;
+            return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
           })
         }
-        { (isOver && canDrop) && <PlaceHolder />}
+        {(isOver && canDrop) && <PlaceHolder />}
       </div>
     </div>);
   }
 }
 
-export default DropTarget([DragType.ROW], target, collect)(inject('rootStore')(observer(Body)));
+export default Body;

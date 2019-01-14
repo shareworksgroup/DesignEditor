@@ -9,7 +9,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, "dist"),
-    host: 'localhost',
+    host: '192.168.23.120',
     compress: true,
     port: 8095
   },

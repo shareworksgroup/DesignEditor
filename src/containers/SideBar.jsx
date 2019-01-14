@@ -7,6 +7,9 @@ import { Tabs } from '../components';
 import Property from './sidebar/Property/Property';
 import BodyProperty from './sidebar/Property/BodyProperty';
 
+
+@inject('rootStore')
+@observer
 class SideBar extends React.Component {
   state={
     active: 0
@@ -40,4 +43,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(SideBar));
+export default SideBar;

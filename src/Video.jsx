@@ -2,7 +2,7 @@ import React from 'react';
 import { Extension, PropertyWidget, PropertyGroup } from './containers/Container';
 
 
-const { Space, Link, Align, Input, Switch } = PropertyWidget;
+const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
   getIconClass() {
     return 'mdi-maps-local-movies';
@@ -26,7 +26,7 @@ class Video extends Extension {
     </div>`;
   }
 
-  getInitialAttribute(){
+  getInitialAttribute() {
     return {
       containerPadding: '10px',
       textAlign: 'center',
@@ -39,14 +39,14 @@ class Video extends Extension {
     const { url, textAlign, containerPadding, fullWidth } = values;
     return <React.Fragment>
       <PropertyGroup title="LINK">
-        <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update}/>
+        <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />
       </PropertyGroup>
       <PropertyGroup title="SPACING">
-        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update}/>
+        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
         <Align title="Align" align={textAlign} onUpdate={update} />
       </PropertyGroup>
       <PropertyGroup title="GENERAL">
-        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </PropertyGroup>
     </React.Fragment>
   }
@@ -63,7 +63,7 @@ class Video extends Extension {
       <div style={{
         textAlign
       }}>
-        { url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p> }
+        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
       </div>
     </div>;
   }

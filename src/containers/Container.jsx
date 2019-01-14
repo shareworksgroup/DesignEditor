@@ -9,13 +9,22 @@ import Extension from './extension/Extension';
 import * as ProperWidget from './sidebar/Property/items';
 import styles from '../style/index.less';
 import { Button, Divider, Html, Image, Text } from './extension';
-import Transfer from '../lib/transfer';
+import Transform from '../lib/transform';
+import { Config } from '../lib/util';
 import Group from './sidebar/Property/Group';
+
 
 window.rootStore = rootStore;
 class Container extends React.Component {
   componentDidMount() {
-    const { children } = this.props;
+    this.initConfig();
+  }
+
+  initConfig(){
+    const { children, imageUploadUrl, onUpload, onUploadError } = this.props;
+    Config.set('imageUploadUrl', imageUploadUrl);
+    onUpload && Config.set('onUpload', onUpload);
+    onUploadError && Config.set('onUploadError', onUploadError);
     [Button, Divider, Html, Image, Text].forEach(Content => {
       const content = new Content();
       Content.type = content.getContentType();
@@ -34,8 +43,8 @@ class Container extends React.Component {
 
   export(){
     const rawData = this.getData();
-    const transfer = new Transfer(rawData, rootStore.DesignState.getExtensions());
-    return transfer.toHtml();
+    const transform = new Transform(rawData, rootStore.DesignState.getExtensions());
+    return transform.toHtml();
   }
 
   getData(){
