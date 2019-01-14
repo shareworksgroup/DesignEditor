@@ -46,7 +46,7 @@ class Image extends React.Component {
     const target = e.target;
     const { attribute = 'url', onUpdate = () => { } } = this.props;
     const file = e.target.files[0];
-    if (!imgCheck(file.name)) {
+    if (!file || !imgCheck(file.name)) {
       return;
     }
     var formData = new FormData();
