@@ -14,5 +14,9 @@ export interface IDndProps {
   canDrop: boolean
 }
 
+export interface IRGBA {
+  rgb: string,
+  alpha: number,
+}
 
 
