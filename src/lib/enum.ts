@@ -53,3 +53,12 @@ export const Fonts = {
   'ZCOOL XiaoWei': "'ZCOOL XiaoWei', serif",
   'ZCOOL QingKe HuangYou': "'ZCOOL QingKe HuangYou', cursive"
 };
+
+export const Types = {
+  Number: 'Number',
+  String: 'String',
+  Boolean: 'Boolean',
+  Object: 'Object',
+  Array: 'Array',
+  Function: 'Function'
+};

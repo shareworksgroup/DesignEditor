@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Line } from 'rc-progress';
+import { Config, generateIncressTimer, imgCheck } from '../../../../lib/util';
 
 class Image extends React.Component {
 
@@ -10,13 +11,13 @@ class Image extends React.Component {
   }
 
   componentDidMount() {
+    this.timerGenerate = generateIncressTimer(0, 100);
     if (this.dropzone) {
       this.dropzone.addEventListener('drop', this.onDrop);
       this.dropzone.addEventListener('dragenter', this.onPrevent);
       this.dropzone.addEventListener('dragover', this.onPrevent);
     }
   }
-
 
   componentWillUnmount() {
     if (this.dropzone) {
@@ -38,25 +39,38 @@ class Image extends React.Component {
     }
   }
 
-
   onChange = (e) => {
     if (this.state.uploading) {
       return;
     }
+    const target = e.target;
     const { attribute = 'url', onUpdate = () => { } } = this.props;
     const file = e.target.files[0];
+    if (!imgCheck(file.name)) {
+      return;
+    }
     var formData = new FormData();
     formData.append('img', file, file.name);
     let config = {
       headers: { 'Content-Type': 'multipart/form-data' }
     };
-    this.setState({ uploading: true, progress: 50 });
-    axios.post('http://192.168.23.120:3001/NewUserFeedback/upload', formData, config).then(response => {
+    this.setState({ uploading: true });
+    const timer = this.timerGenerate(5, (progress) => {
+      this.setState({ progress });
+    });
+    axios.post(Config.get('imageUploadUrl'), formData, config).then(response => {
       this.setState({ progress: 100 });
+      timer.stop();
       setTimeout(() => {
         this.setState({ uploading: false, progress: 0 });
       }, 200);
-      onUpdate(attribute, response.data.fileUrl);
+      onUpdate(attribute, Config.get('onUpload')(response.data));
+    }).catch(error => { 
+      console.log(error);
+      timer.stop();
+      target.value = null;
+      Config.get('onUploadError')(error);
+      this.setState({ progress: 0, uploading: false });
     });
   }
 

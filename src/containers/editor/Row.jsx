@@ -29,6 +29,15 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
+
+@DropTarget([DragType.ROW], target, collect)
+@DragSource(
+  DragType.ROW, 
+  Util.getSource({ mode: OperationMode.MOVE }, (props) => ({ guid: props.guid, type: props.subtype })), 
+  Util.getCollect()
+)
+@inject('rootStore')
+@observer
 class Row extends React.Component {
 
   constructor(props) {
@@ -89,10 +98,5 @@ class Row extends React.Component {
   }
 }
 
-const Dragger = DragSource(
-  DragType.ROW, 
-  Util.getSource({ mode: OperationMode.MOVE }, (props) => ({ guid: props.guid, type: props.subtype })), 
-  Util.getCollect()
-)(inject('rootStore')(observer(Row)));
 
-export default DropTarget([DragType.ROW], target, collect)(Dragger);
+export default Row;

@@ -14,7 +14,11 @@ const onPreview = () => {
 }
 
 ReactDom.render(<div>
-  <Container ref={(obj) => { instance = obj; window.instance = obj; }}>
+  <Container
+    imageUploadUrl="http://192.168.23.120:3001/NewUserFeedback/upload"
+    onUpload={ data => data.fileUrl }
+    onUploadError={ error => console.log(error.message) }
+    ref={(obj) => { instance = obj; window.instance = obj; }}>
     <Video />
   </Container>
 

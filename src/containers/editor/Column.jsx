@@ -26,6 +26,9 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
+@DropTarget([DragType.CONTENT], target, collect)
+@inject('rootStore')
+@observer
 class Column extends React.Component {
 
 
@@ -55,4 +58,4 @@ class Column extends React.Component {
   }
 }
 
-export default DropTarget([DragType.CONTENT], target, collect)(inject('rootStore')(observer(Column)));
+export default Column;
