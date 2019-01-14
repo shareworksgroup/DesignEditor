@@ -124,7 +124,7 @@ export default Video;
 
   ### 属性编辑组件列表
   内置一些属性编辑组件如下：
-  
+
 |   组件        |     功能    |   使用示例    |
 |   --------   |    -----:    |   ------    |
 |   Link     |     配置链接  |    ```<Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />```    |
@@ -139,7 +139,8 @@ export default Video;
 |   Line     |     边框效果配置，包括边框样式颜色与粗细  |   ```<Line title="Line" lineWidth={lineWidth} lineStyle={lineStyle} lineColor={lineColor} onUpdate={update} />```     |
 |   HtmlEditor     |     Html源码编辑  |    ```<HtmlEditor style={{ margin: '-15px -20px' }} value={html} onChange={(value) => { update('html', value) }} />```    |
 |   Input     |     普通输入框，参见Image的Url  |     ```<Input addOn="URL" onChange={(e) => { onUpdate('link', e.target.value) }} value={link} /> <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />```   |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
+|   ImageEditor     |     图片上传组件  |    ```<ImageEditor key={values._meta.guid} attribute="url" onUpdate={update} />```    |
+|   NumberItem     |     左右加减操作数字  |   ```<NumberItem title="Content Width" value={width} attribute="width" onUpdate={onUpdate} />```     |
+|   Font     |     字体选择  |   ```<Font title="Font Family" fontFamily={fontFamily} onUpdate={onUpdate} />```     |
+
+  若有其它需求，需要另外开发。
