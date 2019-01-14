@@ -14,7 +14,7 @@ class Extension extends React.Component {
 
   getInitialAttribute(){}
 
-  getProperties(){}
+  getProperties(values, update){}
 }
 
 export default Extension;

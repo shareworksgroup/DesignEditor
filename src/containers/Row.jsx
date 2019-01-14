@@ -2,6 +2,8 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import Items from './sidebar/RowItems';
 
+@inject('rootStore')
+@observer
 class Row extends React.Component {
   render(){
     return <ul className="ds_row">
@@ -10,4 +12,4 @@ class Row extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(Row));
+export default Row;

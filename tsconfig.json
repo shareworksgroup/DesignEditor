@@ -15,6 +15,12 @@
       "node_modules/@types",
       "typings"
     ],
+    "baseUrl":".",
+    "paths":{
+      "@store": ["./src/store"],
+      "components": ["./src/components"],
+      "containers": ["./src/containers"]
+    },
     "lib": [
       "es7",
       "es6",

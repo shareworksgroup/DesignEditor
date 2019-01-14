@@ -5,15 +5,15 @@ import Group from '../sidebar/Property/Group';
 import { HtmlEditor, Space } from '../sidebar/Property/items';
 
 class Html extends Extension {
-  getIconClass(){
+  getIconClass() {
     return 'mdi-action-settings-ethernet';
   }
 
-  getContentType(){
+  getContentType() {
     return ContentType.HTML;
   }
 
-  getLabel(){
+  getLabel() {
     return 'Html';
   }
 
@@ -26,7 +26,7 @@ class Html extends Extension {
     </div>`;
   }
 
-  getInitialAttribute(){
+  getInitialAttribute() {
     return {
       html: '<p>Html Sample</p>',
       containerPadding: '10px'
@@ -37,21 +37,21 @@ class Html extends Extension {
     const { html, containerPadding } = values;
     return <React.Fragment>
       <Group title="LINE">
-        <HtmlEditor style={{margin:'-15px -20px'}} value={html} onChange={(value)=>{update('html', value)}} />
+        <HtmlEditor style={{ margin: '-15px -20px' }} value={html} onChange={(value) => { update('html', value) }} />
       </Group>
       <Group title="GENERAL">
-        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
     </React.Fragment>
   }
 
-  render(){
+  render() {
     const { html, containerPadding } = this.props;
     return <div className="ds_content_html">
       <div style={{
         padding: containerPadding
       }}>
-        <div dangerouslySetInnerHTML={{__html: html}}></div>
+        <div dangerouslySetInnerHTML={{ __html: html }}></div>
       </div>
     </div>
   }

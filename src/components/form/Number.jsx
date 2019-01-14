@@ -13,6 +13,10 @@ class Number extends React.Component {
   onChange = (e, type) => {
     const { value, step = 1, min = 0, max = 100, onChange = () => {}, formatter = _formatter, parser = _parser } = this.props;
     let val = e ? parseInt(parser(e.target.value), 10) : value;
+    if (isNaN(val)) {
+      onChange(0);
+      return;
+    }
     switch(type) {
       case Operate.Minus:
         val = (val - step) < min ? min : (val - step);

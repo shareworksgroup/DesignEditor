@@ -3,6 +3,9 @@ import { inject, observer } from 'mobx-react';
 import Items from './sidebar/ContentItems';
 import ContentFactory from './sidebar/ContentItems/ContentFactory';
 
+
+@inject('rootStore')
+@observer
 class Content extends React.Component {
   render(){
     const { rootStore } = this.props;
@@ -16,4 +19,4 @@ class Content extends React.Component {
   }
 }
 
-export default inject('rootStore')(observer(Content));
+export default Content;

@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
-import rootStore from '@store/store';
+import rootStore from '../../store/store';
 import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
@@ -30,6 +30,10 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
+@DropTarget([DragType.CONTENT], target, collect)
+@DragSource(DragType.CONTENT, Util.getSource({ mode: OperationMode.MOVE }, (props) => ({ guid: props.guid, type: props.type })), Util.getCollect())
+@inject('rootStore')
+@observer
 class Content extends React.Component {
   constructor(props) {
     super(props);
@@ -71,11 +75,6 @@ class Content extends React.Component {
   }
 }
 
-const Dragger = DragSource(
-  DragType.CONTENT, 
-  Util.getSource({ mode: OperationMode.MOVE }, (props) => {
-    return { guid: props.guid, type: props.type }}), 
-  Util.getCollect()
-)(inject('rootStore')(observer(Content)));
+const Dragger = (Content);
 
-export default DropTarget([DragType.CONTENT], target, collect)(Dragger);
+export default (Dragger);

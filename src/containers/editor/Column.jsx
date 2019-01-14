@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaceHolder from '../common/PlaceHolder';
 import { inject, observer } from 'mobx-react';
-import rootStore from '@store/store';
+import rootStore from '../../store/store';
 import { DragType, OperationMode } from '../../lib/enum';
 import { DropTarget, DargSource } from 'react-dnd';
 import Content from './Content';
@@ -26,6 +26,9 @@ const collect = (connect, monitor) => ({
   canDrop: monitor.canDrop(),
 });
 
+@DropTarget([DragType.CONTENT], target, collect)
+@inject('rootStore')
+@observer
 class Column extends React.Component {
 
 
@@ -55,4 +58,4 @@ class Column extends React.Component {
   }
 }
 
-export default DropTarget([DragType.CONTENT], target, collect)(inject('rootStore')(observer(Column)));
+export default Column;

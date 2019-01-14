@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Container, { Extension } from './containers/Container';
+import Container, { Extension } from './index.js';
 import Video from './Video';
 import ConfigButton from './ConfigButton';
 
@@ -14,9 +14,13 @@ const onPreview = () => {
 }
 
 ReactDom.render(<div>
-  <Container ref={(obj)=>{ instance = obj; window.instance = obj; }}>
+  <Container
+    imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
+    onUpload={ data => data.fileUrl }
+    onUploadError={ error => console.log(error.message) }
+    ref={(obj) => { instance = obj; window.instance = obj; }}>
     <Video />
   </Container>
-  
+
   <ConfigButton onPreview={onPreview} />
 </div>, document.getElementById('root'));

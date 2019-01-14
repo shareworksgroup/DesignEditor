@@ -40,3 +40,31 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+
+/*滑块*/
+::-webkit-scrollbar-thumb {
+	background-color: #D3D3D3;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #B1B1B1;
+}
+
+
+/*滑道*/
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.rtf--mb__c{
+	pointer-events: none;
+}
+.rtf--mb__c *{
+	pointer-events: auto;			
+}
