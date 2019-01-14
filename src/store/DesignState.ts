@@ -1,6 +1,6 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import * as Util from '../lib/util';
-import _ from 'lodash';
+import { findIndex, each } from 'lodash';
 import { DesignType, OperationMode } from '../lib/enum';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
@@ -111,7 +111,7 @@ class DesignState {
 
   @action
   insertRow(row: IRowType, guid: string) {
-    const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
+    const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     this.data.body.rows.splice(index, 0, {
       cells: row.cells,
       columns: row.cells.map(i => ({
@@ -144,10 +144,10 @@ class DesignState {
   moveRow(row: IRowType, offsetGuid: string) {
     const moveGuid = row.guid;
     const rows = this.data.body.rows;
-    const index = _.findIndex(rows, row => row.values._meta.guid === moveGuid);
+    const index = findIndex(rows, row => row.values._meta.guid === moveGuid);
     const rowData = rows.splice(index, 1)[0];
     if (offsetGuid) {
-      const offsetIndex = _.findIndex(rows, row => row.values._meta.guid === offsetGuid);
+      const offsetIndex = findIndex(rows, row => row.values._meta.guid === offsetGuid);
       rows.splice(offsetIndex, 0, rowData);
     } else {
       rows.push(rowData);
@@ -178,7 +178,7 @@ class DesignState {
     this.data.body.rows.forEach((row, index) => {
       const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
       if (column) {
-        const index = _.findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
+        const index = findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
         column.contents.splice(index, 0, {
           values: {
             ...this.attribute[content.type],
@@ -203,7 +203,7 @@ class DesignState {
         const contents = column.contents;
 
         if (offsetGuid) {
-          const offsetIndex = _.findIndex(contents, content => content.values._meta.guid === offsetGuid);
+          const offsetIndex = findIndex(contents, content => content.values._meta.guid === offsetGuid);
           contents.splice(offsetIndex, 0, contentData);
         } else {
           contents.push(contentData);
@@ -221,7 +221,7 @@ class DesignState {
       row.columns.some((column) => {
         content = column.contents.filter(content => content.values._meta.guid === guid)[0];
         if (content && operation) {
-          const index = _.findIndex(column.contents, content => content.values._meta.guid === guid);
+          const index = findIndex(column.contents, content => content.values._meta.guid === guid);
           if (operation === OperationMode.REMOVE) {
             column.contents.splice(index, 1);
           } else if (operation === OperationMode.COPY) {
@@ -245,7 +245,7 @@ class DesignState {
 
   @action
   deleteRow(guid: string) {
-    const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
+    const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     this.data.body.rows.splice(index, 1);
     this.setSelected(null);
   }
@@ -258,12 +258,12 @@ class DesignState {
   @action
   copyRow(guid: string) {
     const row = this.getRow(guid);
-    const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
+    const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     const copy = JSON.parse(JSON.stringify(row));
     copy.values._meta.guid = this.guid();
-    _.each(copy.columns, column => {
+    each(copy.columns, column => {
       column.values._meta.guid = this.guid();
-      _.each(column.contents, content => {
+      each(column.contents, content => {
         content.values._meta.guid = this.guid();
       });
     });

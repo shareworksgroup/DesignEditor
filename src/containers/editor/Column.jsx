@@ -1,7 +1,7 @@
 import React from 'react';
 import PlaceHolder from '../common/PlaceHolder';
 import { inject, observer } from 'mobx-react';
-import rootStore from '@store/store';
+import rootStore from '../../store/store';
 import { DragType, OperationMode } from '../../lib/enum';
 import { DropTarget, DargSource } from 'react-dnd';
 import Content from './Content';

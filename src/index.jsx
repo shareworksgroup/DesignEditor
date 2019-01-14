@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import Container, { Extension } from './containers/Container';
+import Container, { Extension } from './index.js';
 import Video from './Video';
 import ConfigButton from './ConfigButton';
 

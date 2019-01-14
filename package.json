@@ -1,7 +1,7 @@
 {
-  "name": "Design",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "design-editor",
+  "version": "1.0.2",
+  "main": "./src/index.js",
   "author": "xj",
   "license": "MIT",
   "devDependencies": {
@@ -66,7 +66,6 @@
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
     "codemirror": "^5.42.2",
-    "dropzone": "^5.5.1",
     "guid": "0.0.12",
     "lodash": "^4.17.11",
     "lodash-decorators": "^6.0.0",
@@ -74,7 +73,6 @@
     "mobx-react": "^5.1.2",
     "rc-animate": "^2.5.4",
     "rc-color-picker": "^1.2.6",
-    "rc-dialog": "^7.1.7",
     "rc-progress": "^2.2.6",
     "rc-slider": "^8.6.4",
     "rc-tooltip": "^3.7.3",

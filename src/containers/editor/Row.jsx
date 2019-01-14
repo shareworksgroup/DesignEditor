@@ -2,7 +2,7 @@ import React from 'react';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
 import classnames from 'classnames';
-import rootStore from '@store/store';
+import rootStore from '../../store/store';
 import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
