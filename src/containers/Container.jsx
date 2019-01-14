@@ -9,8 +9,9 @@ import Extension from './extension/Extension';
 import * as ProperWidget from './sidebar/Property/items';
 import styles from '../style/index.less';
 import { Button, Divider, Html, Image, Text } from './extension';
-import Transfer from '../lib/transfer';
+import Transform from '../lib/transform';
 import Group from './sidebar/Property/Group';
+
 
 window.rootStore = rootStore;
 class Container extends React.Component {
@@ -34,8 +35,8 @@ class Container extends React.Component {
 
   export(){
     const rawData = this.getData();
-    const transfer = new Transfer(rawData, rootStore.DesignState.getExtensions());
-    return transfer.toHtml();
+    const transform = new Transform(rawData, rootStore.DesignState.getExtensions());
+    return transform.toHtml();
   }
 
   getData(){

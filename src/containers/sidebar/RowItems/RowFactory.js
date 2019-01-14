@@ -8,15 +8,15 @@ function RowFactory(rowType, segmentations = [1]) {
   class RowElement extends React.Component {
     static type = rowType;
     render() {
-      const { connectDragSource, isDragging, key } = this.props;
-      const total = segmentations.reduce((i, total) => i+total, 0);
+      const { connectDragSource } = this.props;
+      const total = segmentations.reduce((i, total) => i + total, 0);
       return connectDragSource(<li>
-          {
-            segmentations.map((i, index) =>
-            (<div key={index} className={`ds-row-column col-${12*i/total}`}>
+        {
+          segmentations.map((i, index) =>
+            (<div key={index} className={`ds-row-column col-${12 * i / total}`}>
               <div className="ds-row-content"></div>
             </div>))
-          }
+        }
       </li>);
     }
   }

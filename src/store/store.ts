@@ -1,12 +1,15 @@
 
 import { configure } from 'mobx';
-import stateInjector from './stateInjector';
+import { IRootStore } from '../schemas/common';
+import DesignState from './DesignState';
 configure({ enforceActions: 'observed' });
 
-class RootStore {
-  axiosInstance: any;
+class RootStore implements IRootStore {
+
+  DesignState: DesignState;
+
   constructor() {
-    stateInjector(this);
+    this['DesignState'] = new DesignState({ rootStore: this });
   }
 }
 

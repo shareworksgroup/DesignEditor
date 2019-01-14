@@ -2,7 +2,7 @@ import Guid from 'guid';
 
 export const guid = (): string => Guid.create().value;
 
-export const rgb2rgba = (rgb, alpha) => {
+export const rgb2rgba = (rgb: string, alpha: number): string => {
 	var r = parseInt("0x" + rgb.substr(1, 2));
 	var g = parseInt("0x" + rgb.substr(3, 2));
 	var b = parseInt("0x" + rgb.substr(5, 2));

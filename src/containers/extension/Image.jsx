@@ -5,20 +5,20 @@ import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 
 class Image extends Extension {
-  getIconClass(){
+  getIconClass() {
     return 'mdi-maps-satellite';
   }
 
-  getContentType(){
+  getContentType() {
     return ContentType.IMAGE;
   }
 
-  getLabel(){
+  getLabel() {
     return 'Image';
   }
 
   toHtml(data) {
-    const { url, containerPadding, link, linkType, textAlign, alter, fullWidth  } = data;
+    const { url, containerPadding, link, linkType, textAlign, alter, fullWidth } = data;
     const imgStyle = fullWidth ? ` width: 100% ` : ` max-width: 100% `;
     return `<div 
     style="padding:${containerPadding}">
@@ -28,7 +28,7 @@ class Image extends Extension {
     </div>`;
   }
 
-  getInitialAttribute(){
+  getInitialAttribute() {
     return {
       link: '',
       linkType: '_self',
@@ -44,32 +44,32 @@ class Image extends Extension {
     const { link, linkType, alter, fullWidth, textAlign, url, containerPadding } = values;
     return <React.Fragment>
       <Group title="IMAGE">
-        <ImageEditor attribute="url" onUpdate={update}/>
-        <Input title="Image URL" value={url} attribute="url" onUpdate={update}/>
-        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update}/>
+        <ImageEditor attribute="url" onUpdate={update} />
+        <Input title="Image URL" value={url} attribute="url" onUpdate={update} />
+        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
         <Align title="Align" align={textAlign} onUpdate={update} />
-        <Input title="Alternate Text" value={alter} attribute="alter" onUpdate={update}/>
+        <Input title="Alternate Text" value={alter} attribute="alter" onUpdate={update} />
       </Group>
       <Group title="ACTION">
-        <Link link={link} linkType={linkType} title="Image Link" onUpdate={update}/>
+        <Link link={link} linkType={linkType} title="Image Link" onUpdate={update} />
       </Group>
       <Group title="GENERAL">
-        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
     </React.Fragment>
   }
 
-  render(){
-    const { url, containerPadding, textAlign, alter, fullWidth  } = this.props;
+  render() {
+    const { url, containerPadding, textAlign, alter, fullWidth } = this.props;
     const imgStyle = fullWidth ? { width: '100%' } : { maxWidth: '100%' };
-    return <div className="ds_content_image" 
-    style={{
-      padding: containerPadding,
-    }}>
+    return <div className="ds_content_image"
+      style={{
+        padding: containerPadding,
+      }}>
       <div style={{
         textAlign,
       }}>
-        { url ? <img alt={alter} src={url} style={imgStyle} /> : <p>IMAGE</p> }
+        {url ? <img alt={alter} src={url} style={imgStyle} /> : <p>IMAGE</p>}
       </div>
     </div>
   }

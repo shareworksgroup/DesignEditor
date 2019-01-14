@@ -1,12 +1,14 @@
-import { observable, action, toJS, runInAction, set, remove } from 'mobx';
+import { observable, action, toJS, runInAction } from 'mobx';
 import * as Util from '../lib/util';
 import _ from 'lodash';
 import { DesignType, OperationMode } from '../lib/enum';
+import { IRootStore } from '../schemas/common';
+import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
 
 const NoColor = 'rgba(255, 255, 255, 0)';
 
 class DesignState {
-  transparent: any
+  transparent: IRootStore;
 
 
   constructor(transparent) {
@@ -14,7 +16,7 @@ class DesignState {
   }
 
   @observable
-  data = {
+  data: IData = {
     body: {
       rows: [],
       values: {
@@ -22,7 +24,7 @@ class DesignState {
         width: 800,
         fontFamily: 'MicroSoft Yahei',
         containerPadding: '0px',
-        _meta:{
+        _meta: {
           guid: this.guid(),
           type: DesignType.BODY
         }
@@ -31,10 +33,10 @@ class DesignState {
   };
 
   @observable
-  selected = null;
+  selected: string = null;
 
   @action
-  setSelected(guid) {
+  setSelected(guid: string) {
     if (guid === this.selected) {
       return;
     }
@@ -47,46 +49,44 @@ class DesignState {
   }
 
   @observable
-  extensions = [];
-
- 
+  extensions: Array<IExtension> = [];
 
   @action
-  addExtension(extension){
+  addExtension(extension: IExtension) {
     this.extensions.push(extension);
   }
 
-  getExtension(type){
+  getExtension(type: string): IExtension {
     return this.extensions.find(i => i.type === type);
   }
 
-  getExtensions(){
+  getExtensions(): Array<IExtension> {
     return toJS(this.extensions);
   }
 
-  attribute = {};
+  attribute: Object = {};
 
-  setAttribute(type, attribute) {
+  setAttribute(type: string, attribute: Object) {
     this.attribute[type] = attribute;
   }
 
-  getData(){
+  getData(): IData  {
     return toJS(this.data);
   }
 
   @action
-  setData(json){
+  setData(json: IData) {
     this.data = json;
   }
 
   @action
-  addRow(row){
+  addRow(row: IRowType) {
     this.data.body.rows.push({
       cells: row.cells,
       columns: row.cells.map(i => ({
         contents: [],
         values: {
-          _meta:{
+          _meta: {
             guid: this.guid(),
             type: DesignType.COLUMN
           }
@@ -110,14 +110,14 @@ class DesignState {
   }
 
   @action
-  insertRow(row, guid) {
+  insertRow(row: IRowType, guid: string) {
     const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     this.data.body.rows.splice(index, 0, {
       cells: row.cells,
       columns: row.cells.map(i => ({
         contents: [],
         values: {
-          _meta:{
+          _meta: {
             guid: this.guid(),
             type: DesignType.COLUMN
           }
@@ -141,7 +141,7 @@ class DesignState {
   }
 
   @action
-  moveRow(row, offsetGuid) {
+  moveRow(row: IRowType, offsetGuid: string) {
     const moveGuid = row.guid;
     const rows = this.data.body.rows;
     const index = _.findIndex(rows, row => row.values._meta.guid === moveGuid);
@@ -155,12 +155,12 @@ class DesignState {
   }
 
   @action
-  addContent(content, meta){
+  addContent(content: IContentType, meta: IContentMeta) {
     this.data.body.rows.forEach((row, index) => {
       const column = row.columns.filter((column) => column.values._meta.guid === meta.guid)[0];
       if (column) {
         column.contents.push({
-          values:{
+          values: {
             ...this.attribute[content.type],
             _meta: {
               guid: this.guid(),
@@ -174,13 +174,13 @@ class DesignState {
   }
 
   @action
-  insertContent(content, offsetGuid, columnGuid){
+  insertContent(content: IContentType, offsetGuid: string, columnGuid: string) {
     this.data.body.rows.forEach((row, index) => {
       const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
       if (column) {
         const index = _.findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
         column.contents.splice(index, 0, {
-          values:{
+          values: {
             ...this.attribute[content.type],
             _meta: {
               guid: this.guid(),
@@ -194,7 +194,7 @@ class DesignState {
   }
 
   @action
-  moveContent(content, offsetGuid, columnGuid){
+  moveContent(content: IContentType, offsetGuid: string, columnGuid: string) {
     // get and remove content from old position
     const contentData = this.getContent(content.guid, OperationMode.REMOVE);
     this.data.body.rows.some((row) => {
@@ -215,7 +215,7 @@ class DesignState {
   }
 
   @action
-  getContent(guid, operation?: OperationMode) {
+  getContent(guid: string, operation?: OperationMode): IContent {
     let content = null;
     this.data.body.rows.some((row) => {
       row.columns.some((column) => {
@@ -227,7 +227,7 @@ class DesignState {
           } else if (operation === OperationMode.COPY) {
             const copy = JSON.parse(JSON.stringify(content));
             copy.values._meta.guid = this.guid();
-            column.contents.splice(index+1, 0, copy);
+            column.contents.splice(index + 1, 0, copy);
           }
         }
         return !!content;
@@ -238,25 +238,25 @@ class DesignState {
   }
 
   @action
-  deleteContent(guid){
+  deleteContent(guid: string) {
     this.getContent(guid, OperationMode.REMOVE);
     this.setSelected(null);
   }
 
   @action
-  deleteRow(guid) {
+  deleteRow(guid: string) {
     const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     this.data.body.rows.splice(index, 1);
     this.setSelected(null);
   }
 
   @action
-  copyContent(guid) {
+  copyContent(guid: string) {
     this.getContent(guid, OperationMode.COPY);
   }
 
   @action
-  copyRow(guid) {
+  copyRow(guid: string) {
     const row = this.getRow(guid);
     const index = _.findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     const copy = JSON.parse(JSON.stringify(row));
@@ -270,11 +270,11 @@ class DesignState {
     this.data.body.rows.splice(index + 1, 0, copy);
   }
 
-  getRow(guid) {
+  getRow(guid: string): IRow {
     return this.data.body.rows.filter(row => row.values._meta.guid === guid)[0];
   }
 
-  getColumn(guid) {
+  getColumn(guid: string): IColumn {
     let column = null;
     this.data.body.rows.some((row) => {
       column = row.columns.filter((column) => column.values._meta.guid === guid)[0];
@@ -284,26 +284,26 @@ class DesignState {
   }
 
   @action
-  updateAttribute(guid, key, value){
+  updateAttribute(guid: string, key: string, value: Object) {
     const data = this.getRow(guid) || this.getContent(guid);
     if (data) {
-      data.values = {...data.values, ...{ [key]: value }};
+      data.values = { ...data.values, ...{ [key]: value } };
     }
   }
 
   @action
-  updateBodyAttribute(key, value){
+  updateBodyAttribute(key: string, value: Object) {
     const data = this.data.body
     if (data) {
-      data.values = {...data.values, ...{ [key]: value }};
+      data.values = { ...data.values, ...{ [key]: value } };
     }
   }
 
-  getDataByGuid(guid){
+  getDataByGuid(guid: string): IRow | IContent {
     return this.getRow(guid) || this.getContent(guid);
   }
 
-  guid(){
+  guid(): string {
     return Util.guid();
   }
 

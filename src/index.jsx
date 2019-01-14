@@ -14,9 +14,9 @@ const onPreview = () => {
 }
 
 ReactDom.render(<div>
-  <Container ref={(obj)=>{ instance = obj; window.instance = obj; }}>
+  <Container ref={(obj) => { instance = obj; window.instance = obj; }}>
     <Video />
   </Container>
-  
+
   <ConfigButton onPreview={onPreview} />
 </div>, document.getElementById('root'));

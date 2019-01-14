@@ -1,11 +1,11 @@
 
 export default class AutoComplete {
 
-  private editor = null;
-	private matchReg = null;
-  private callback = null;
+  private editor: any = null;
+	private matchReg: RegExp = null;
+  private callback: Function = null;
   
-  public on(editor, matchReg, callback = () => {} ) {
+  public on(editor: any, matchReg: RegExp, callback: Function = () => {} ) {
 		if (!editor || !matchReg) {
 			throw new Error('please provide editor or match RegExp argument');
 		}
@@ -27,7 +27,6 @@ export default class AutoComplete {
     }
 		const match = text.slice(0, offset)
           .match(this.matchReg);
-          debugger;
 		if (match) {
 			const rect = this.editor.selection.getBoundingClientRect();
 			this.callback({

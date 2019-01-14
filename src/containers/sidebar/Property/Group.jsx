@@ -2,7 +2,7 @@ import React from 'react';
 
 class Group extends React.Component {
 
-  state={
+  state = {
     height: -1,
     expand: true,
   }
@@ -22,7 +22,7 @@ class Group extends React.Component {
     }
   }
 
-  render(){
+  render() {
     const { title, children } = this.props;
     const bodyStyle = this.state.height >= 0 ? { height: this.state.height } : {};
     return <div className="card">

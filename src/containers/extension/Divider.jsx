@@ -2,18 +2,18 @@ import React from 'react';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
-import { Link, Colors, Align, LineHeight,BorderRadius, Slide, Space, Line } from '../sidebar/Property/items';
+import { Align, Slide, Space, Line } from '../sidebar/Property/items';
 
 class Divider extends Extension {
-  getIconClass(){
+  getIconClass() {
     return 'mdi-content-remove';
   }
 
-  getContentType(){
+  getContentType() {
     return ContentType.DIVIDER;
   }
 
-  getLabel(){
+  getLabel() {
     return 'Divider';
   }
 
@@ -26,7 +26,7 @@ class Divider extends Extension {
     </div>`;
   }
 
-  getInitialAttribute(){
+  getInitialAttribute() {
     return {
       width: 100,
       lineStyle: 'solid',
@@ -46,12 +46,12 @@ class Divider extends Extension {
         <Align align={textAlign} onUpdate={update} />
       </Group>
       <Group title="GENERAL">
-        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update}/>
+        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
     </React.Fragment>
   }
 
-  render(){
+  render() {
     const { width, lineStyle, lineWidth, lineColor, textAlign, containerPadding } = this.props;
     return <div className="ds_content_divider">
       <div className="ds_content_divider_container" style={{
