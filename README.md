@@ -126,7 +126,7 @@ export default Video;
   内置一些属性编辑组件如下：
 
 |   组件        |     功能    |   使用示例    |
-|   --------   |    -----:    |   ------    |
+|   --------   |    -----    |   ------    |
 |   Link     |     配置链接  |    ```<Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />```    |
 |   Colors     |     配置三项颜色，color+backgroundColor+hoverColor（可选）  |   ```<Colors title="Colors" colors={{ color, backgroundColor, hoverColor }} onUpdate={update} />```    |
 |   Align     |     对齐  |   ```<Align align={textAlign} onUpdate={update} />```     |
