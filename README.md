@@ -126,4 +126,3 @@ export default Video;
   内置一些属性编辑组件如下：
 |   组件        |     功能    |   使用示例    |
 |   --------   |    -----:    |   ------    |
-|   Link     |     配置链接  |    ```<Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />```    |
