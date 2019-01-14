@@ -11,6 +11,13 @@
   [2]: https://unlayer.com/
 
   ## 使用说明
+ 
+  1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能
+  执行`npm run build`可构建输出，项目引用方式可以通过`npm install 项目路径` 安装
+  2. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了。
+  3. 图片上传功能需要自己提供后端上传功能，此项目提供了一个代理程序可以预览，
+    使用`cd mocks`然后`node app [username] [password]`即可代理smsone系统dev环境的上传接口
+
   ### 属性
 |   属性名        |     功能    |
 |   --------   |    -----:    |
