@@ -12,7 +12,7 @@ import { Config } from '../lib/util';
 
 
 window.rootStore = rootStore;
-class Container extends React.Component {
+class DesignEditor extends React.Component {
   componentDidMount() {
     this.initConfig();
   }
@@ -65,4 +65,4 @@ class Container extends React.Component {
   }
 }
 
-export default Container;
+export default DesignEditor;
