@@ -127,18 +127,3 @@ export default Video;
 |   组件        |     功能    |   使用示例    |
 |   --------   |    -----:    |   ------    |
 |   Link     |     配置链接  |    ```<Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />```    |
-|   Colors     |     配置三项颜色，color+backgroundColor+hoverColor（可选）  |   ```<Colors title="Colors" colors={{ color, backgroundColor, hoverColor }} onUpdate={update} />```    |
-|   Align     |     对齐  |   ```<Align align={textAlign} onUpdate={update} />```     |
-|   LineHeight     |     行高  |   ```<LineHeight lineHeight={lineHeight} onUpdate={update} />```     |
-|   BorderRadius     |     圆角  |    ```<BorderRadius borderRadius={borderRadius} onUpdate={update} />```    |
-|   Color     |     颜色  |   ```<Color title="Color" value={color} attribute="color" onUpdate={update} />```     |
-|   Switch     |     toggle开关  |    ```<Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />```    |
-|   Space     |     四周空间配置，用于margin padding等  |    ```<Space title="Padding" value={padding} attribute="padding" onUpdate={update} />```    |
-|   Slide     |     滑块  |    ```<Slide title="Width" attribute="width" value={width} onUpdate={update} />```    |
-|   Line     |     边框效果配置，包括边框样式颜色与粗细  |   ```<Line title="Line" lineWidth={lineWidth} lineStyle={lineStyle} lineColor={lineColor} onUpdate={update} />```     |
-|   HtmlEditor     |     Html源码编辑  |    ```<HtmlEditor style={{ margin: '-15px -20px' }} value={html} onChange={(value) => { update('html', value) }} />```    |
-|   Input     |     普通输入框，参见Image的Url  |     ```<Input addOn="URL" onChange={(e) => { onUpdate('link', e.target.value) }} value={link} /> <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />```   |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
-|   Slide     |     滑块  |        |
