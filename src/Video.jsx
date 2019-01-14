@@ -1,5 +1,5 @@
 import React from 'react';
-import { Extension, PropertyWidget, PropertyGroup } from './containers/Container';
+import { Extension, PropertyWidget, PropertyGroup } from './index.js';
 
 
 const { Space, Align, Input, Switch } = PropertyWidget;

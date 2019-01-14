@@ -40,7 +40,7 @@ export const dynamicList = [
 ];
 
 export const Config = {
-  imageUploadUrl: 'http://192.168.23.120:3001/NewUserFeedback/upload',
+  imageUploadUrl: 'http://localhost:3001/NewUserFeedback/upload',
   onUpload: data => data.fileUrl,
   onUploadError: () => {},
   set: (key, value) => {

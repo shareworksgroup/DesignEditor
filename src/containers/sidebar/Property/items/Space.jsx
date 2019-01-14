@@ -99,7 +99,7 @@ class Space extends React.Component {
           </div>
         </div>
       </div>
-      {this.state.more && <div className="row more-options" style={{ marginTop: 10 }}>
+      {this.state.more && <div className="row more-options" style={{ marginTop: 10, height: 140 }}>
         <div className="col-6">
           <div className="blockbuilder-widget-label"><label><span>Top</span></label></div>
           <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.top} onChange={(val) => { this.onChange(Operate.TOP, val) }} /></div>
