@@ -123,7 +123,7 @@ export default Video;
 |   --------   |    -----:    |   -----   |   -----     |
 |   getIconClass     |     提供扩展图标样式  |     无    |   iconClass    |
 |   getLabel     |     提供扩展标题  |    无    |   label    |
-|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text外）  |   contentType  |   无  |
+|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text外）  |  无   |   contentType  |
 |   toHtml     |     提供toHtml转换功能  |    扩展的所有属性    |   根据属性生成扩展html片段    |
 |   getInitialAttribute     |     提供初始属性对象  |    无    |   Object    |
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
