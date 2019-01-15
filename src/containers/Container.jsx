@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 import rootStore from '../store/store';
-import { DragDropContextProvider } from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import SideBar from './SideBar';
 import Main from './Main';
@@ -12,16 +12,25 @@ import { Config } from '../lib/util';
 
 
 window.rootStore = rootStore;
+@DragDropContext(HTML5Backend)
 class DesignEditor extends React.Component {
+
   componentDidMount() {
     this.initConfig();
   }
 
+  componentWillReceiveProps({ mentions }, nextState){
+    if (mentions && JSON.stringify(Config.get('mentions')) !== JSON.stringify(mentions)) {
+      Config.set('mentions', mentions);
+    }
+  }
+  
   initConfig(){
-    const { children, imageUploadUrl, onUpload, onUploadError } = this.props;
+    const { children, imageUploadUrl, onUpload, onUploadError, mentions } = this.props;
     Config.set('imageUploadUrl', imageUploadUrl);
     onUpload && Config.set('onUpload', onUpload);
     onUploadError && Config.set('onUploadError', onUploadError);
+    mentions && Config.set('mentions', mentions);
     [Button, Divider, Html, Image, Text].forEach(Content => {
       const content = new Content();
       Content.type = content.getContentType();
@@ -55,12 +64,10 @@ class DesignEditor extends React.Component {
   render(){
     const { onSave = () => {} } = this.props;
     return <Provider rootStore={rootStore}>
-    <DragDropContextProvider backend={HTML5Backend}>
       <div className="ds_container">
         <Main></Main>
         <SideBar></SideBar>
       </div>
-    </DragDropContextProvider>
   </Provider>;
   }
 }
