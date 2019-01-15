@@ -28,89 +28,90 @@
 |   --------   |    -----:    |   -----   |   -----     |
 |   ref     |     用于获取编辑器instance  |     编辑器instance    |   无    |
 |   onUpload     |     图片上传完成处理数据格式  |    服务端返回的数据    |   实际图片地址    |
-|   onUploadError     |     捕获图片上传失败异常信息  |   error: { message, errorStack }  |   无  |
+|   onUploadError     |     捕获图片上传失败异常信息  |   error: { message: string, errorStack: string }  |   无  |
 
   ### instance方法
 |   方法名        |     功能    |   参数    |   返回值    |
 |   --------   |    -----:    |   -----   |   -----     |
-|   export     |     将当前内容转换成html导出  |     无    |   html内容    |
-|   getData     |     获取当前内容的原始数据rawData  |    无    |   rawData    |
-|   setData     |     将原始数据设置回编辑器  |   rawData  |   无  |
+|   export     |     将当前内容转换成html导出  |     无    |   html:string    |
+|   getData     |     获取当前内容的原始数据rawData  |    无    |   rawData:Object    |
+|   setData     |     将原始数据设置回编辑器  |   rawData:Object  |   无  |
 
   ### 关于Content组件扩展
 
   在编码前的设计阶段，我就构想了Content扩展，包括Content图标，标题，编辑区如何展示，如何提供属性编辑器列表等等。<br>
   扩展方式如下（以Video为例）：
-  ```
+  
+```javascript
 
 import React from 'react';
 import DesignEditor, { Extension, PropertyWidget, PropertyGroup } from 'design-editor';
 
 const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
-  getIconClass() {
-    return 'mdi-maps-local-movies';
-  }
+    getIconClass() {
+      return 'mdi-maps-local-movies';
+    }
 
-  getContentType() {
-    return 'video';
-  }
+    getContentType() {
+      return 'video';
+    }
 
-  getLabel() {
-    return 'Video';
-  }
+    getLabel() {
+      return 'Video';
+    }
 
-  toHtml(data) {
-    const { url, containerPadding, textAlign, fullWidth } = data;
-    const videoStyle = fullWidth ? ` width: 100% ` : ` maxWidth: 100% `;
-    return `<div style="padding:${containerPadding}">
-      <div style="text-align:${textAlign}">
-        <video controls src="${url}" style="${videoStyle}" />
-      </div>
-    </div>`;
-  }
+    toHtml(data) {
+      const { url, containerPadding, textAlign, fullWidth } = data;
+      const videoStyle = fullWidth ? ` width: 100% ` : ` maxWidth: 100% `;
+      return `<div style="padding:${containerPadding}">
+        <div style="text-align:${textAlign}">
+          <video controls src="${url}" style="${videoStyle}" />
+        </div>
+      </div>`;
+    }
 
-  getInitialAttribute() {
-    return {
-      containerPadding: '10px',
-      textAlign: 'center',
-      fullWidth: false,
-      url: ''
-    };
-  }
+    getInitialAttribute() {
+      return {
+        containerPadding: '10px',
+        textAlign: 'center',
+        fullWidth: false,
+        url: ''
+      };
+    }
 
-  getProperties(values, update) {
-    const { url, textAlign, containerPadding, fullWidth } = values;
-    return <React.Fragment>
-      <PropertyGroup title="LINK">
-        <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />
-      </PropertyGroup>
-      <PropertyGroup title="SPACING">
-        <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
-        <Align title="Align" align={textAlign} onUpdate={update} />
-      </PropertyGroup>
-      <PropertyGroup title="GENERAL">
-        <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
-      </PropertyGroup>
-    </React.Fragment>
-  }
+    getProperties(values, update) {
+      const { url, textAlign, containerPadding, fullWidth } = values;
+      return <React.Fragment>
+        <PropertyGroup title="LINK">
+          <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />
+        </PropertyGroup>
+        <PropertyGroup title="SPACING">
+          <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
+          <Align title="Align" align={textAlign} onUpdate={update} />
+        </PropertyGroup>
+        <PropertyGroup title="GENERAL">
+          <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
+        </PropertyGroup>
+      </React.Fragment>
+    }
 
 
-  render() {
-    const { url, containerPadding, textAlign, fullWidth } = this.props;
-    const videoStyle = fullWidth ? { width: '100%' } : { maxWidth: '100%' };
-    return <div className="ds_content_video"
-      style={{
-        padding: containerPadding,
-      }}
-    >
-      <div style={{
-        textAlign
-      }}>
-        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
-      </div>
-    </div>;
-  }
+    render() {
+      const { url, containerPadding, textAlign, fullWidth } = this.props;
+      const videoStyle = fullWidth ? { width: '100%' } : { maxWidth: '100%' };
+      return <div className="ds_content_video"
+        style={{
+          padding: containerPadding,
+        }}
+      >
+        <div style={{
+          textAlign
+        }}>
+          {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
+        </div>
+      </div>;
+    }
 }
 
 export default Video;
@@ -119,7 +120,7 @@ export default Video;
 
 然后，直接将Video组件放置于DesignEditor组件内部即可，如有多个扩展，显示时会按照放置顺序进行输出：
 
-```
+```javascript
 <DesignEditor
   imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
   onUpload={ data => data.fileUrl }
@@ -136,11 +137,11 @@ export default Video;
   ### Extension方法
 |   方法名        |     功能    |   参数    |   返回值    |
 |   --------   |    -----:    |   -----   |   -----     |
-|   getIconClass     |     提供扩展图标样式  |     无    |   iconClass    |
-|   getLabel     |     提供扩展标题  |    无    |   label    |
-|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text外）  |  无   |   contentType  |
+|   getIconClass     |     提供扩展图标样式  |     无    |   iconClass:string    |
+|   getLabel     |     提供扩展标题  |    无    |   label:string    |
+|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text外）  |  无   |   contentType:string  |
 |   toHtml     |     提供toHtml转换功能  |    扩展的所有属性    |   根据属性生成扩展html片段    |
-|   getInitialAttribute     |     提供初始属性对象  |    无    |   Object    |
+|   getInitialAttribute     |     提供初始属性对象  |    无    |   Attribute:Object    |
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
 |   render     |     提供渲染片段  |    props: { values: Object 属性对象, focus: boolean 编辑区域中是否选中当前扩展 }    |   ReactNode    |
 
