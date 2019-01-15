@@ -120,8 +120,8 @@ class Button extends Extension {
     const { onUpdate } = this.props;
     let content = value.target.getContent({ format: 'raw' });
     var regex = /(<([^>]+)>)/ig;
-    content = content.replace(regex, "");
-    onUpdate('text', content || this.getInitialAttribute().text);
+    const pureContent = content.replace(regex, "");
+    onUpdate('text', pureContent ? content : this.getInitialAttribute().text);
   }
 
   insertDynamic = (value) => {
