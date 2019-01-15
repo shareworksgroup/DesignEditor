@@ -12,7 +12,6 @@ export default class AutoComplete {
 		if (this.editor) {
 			return;
     }
-    console.log('on')
 		this.editor = editor;
 		this.matchReg = matchReg;
 		this.callback = callback;
@@ -47,7 +46,6 @@ export default class AutoComplete {
   public off () {
     if (!this.editor)
       return;
-    console.log('off')
 		this.editor.off('Input');
 		this.editor = null;
 		this.matchReg = null;
