@@ -5,7 +5,7 @@
  基于此，我萌生出想用React实现一个邮件模板编辑器的想法，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
  
  该项目完成后，能应用于多个有此需求场景的公司项目中。
-### 由于开源，还可以直接拉分支开发新需求！
+
 
   [1]: https://grapesjs.com/
   [2]: https://unlayer.com/
@@ -41,7 +41,7 @@
 
   在编码前的设计阶段，我就构想了Content扩展，包括Content图标，标题，编辑区如何展示，如何提供属性编辑器列表等等。<br>
   扩展方式如下（以Video为例）：
-  
+
 ```javascript
 
 import React from 'react';
