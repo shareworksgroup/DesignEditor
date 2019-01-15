@@ -41,7 +41,8 @@
 
   在编码前的设计阶段，我就构想了Content扩展，包括Content图标，标题，编辑区如何展示，如何提供属性编辑器列表等等。<br>
   扩展方式如下（以Video为例）：
-  ```
+  
+```javascript
 
 import React from 'react';
 import DesignEditor, { Extension, PropertyWidget, PropertyGroup } from 'design-editor';
@@ -119,7 +120,7 @@ export default Video;
 
 然后，直接将Video组件放置于DesignEditor组件内部即可，如有多个扩展，显示时会按照放置顺序进行输出：
 
-```
+```javascript
 <DesignEditor
   imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
   onUpload={ data => data.fileUrl }
