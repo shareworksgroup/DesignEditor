@@ -11,12 +11,11 @@ import 'tinymce/plugins/colorpicker';
 import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
 import { ContentType, Fonts } from '../../lib/enum';
-import { dynamicList } from '../../lib/util';
+import { Config } from '../../lib/util';
 import AutoComplete from '../../lib/autocomplete';
 import Group from '../sidebar/Property/Group';
 import { AutoCompletePanel } from '../../components';
 import { Align, LineHeight, BorderRadius, Color, Space } from '../sidebar/Property/items';
-
 
 
 class Text extends Extension {
@@ -24,7 +23,7 @@ class Text extends Extension {
   state = {
     showDynamic: false,
     query: '',
-    data: dynamicList,
+    data: [],
     position: { x: 0, y: 0 },
   }
 
@@ -93,7 +92,7 @@ class Text extends Extension {
             showDynamic: true,
             position: result.position,
             query: result.query,
-            data: dynamicList.filter(item => item.key.indexOf(result.query) !== -1)
+            data: Config.get('mentions').filter(item => item.key.indexOf(result.query) !== -1)
           });
         } else {
           this.setState({ showDynamic: false, query: '' });
