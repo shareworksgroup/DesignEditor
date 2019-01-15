@@ -147,7 +147,7 @@ export default Video;
 |   toHtml     |     提供toHtml转换功能  |    扩展的所有属性    |   根据属性生成扩展html片段    |
 |   getInitialAttribute     |     提供初始属性对象  |    无    |   Attribute:Object    |
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
-|   render     |     提供渲染片段  |    props: { values: Object 属性对象, focus: boolean 编辑区域中是否选中当前扩展 }    |   ReactNode    |
+|   render     |     提供渲染片段  |    props: { ...所有扩展的属性, focus: boolean 编辑区域中是否选中当前扩展 }    |   ReactNode    |
 
   ### 属性编辑组件列表
   内置一些属性编辑组件如下：
