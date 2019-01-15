@@ -1,18 +1,15 @@
 import React from 'react';
 import { Provider } from 'mobx-react';
 import rootStore from '../store/store';
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import SideBar from './SideBar';
-import Main from './Main';
 import styles from '../style/index.less';
 import { Button, Divider, Html, Image, Text } from './extension';
 import Transform from '../lib/transform';
 import { Config } from '../lib/util';
+import Wrapper from './Wrapper';
 
 
 window.rootStore = rootStore;
-@DragDropContext(HTML5Backend)
+
 class DesignEditor extends React.Component {
 
   componentDidMount() {
@@ -64,11 +61,8 @@ class DesignEditor extends React.Component {
   render(){
     const { onSave = () => {} } = this.props;
     return <Provider rootStore={rootStore}>
-      <div className="ds_container">
-        <Main></Main>
-        <SideBar></SideBar>
-      </div>
-  </Provider>;
+        <Wrapper />
+    </Provider>;
   }
 }
 
