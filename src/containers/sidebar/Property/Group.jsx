@@ -1,30 +1,29 @@
 import React from 'react';
-
+import AnimateHeight from 'react-animate-height';
 class Group extends React.Component {
 
   state = {
-    height: -1,
+    height: 'auto',
     expand: true,
   }
 
   componentDidMount() {
-    if (this.contentDom) {
-      this.bodyHeight = this.contentDom.getBoundingClientRect().height;
-      this.setState({ height: this.bodyHeight });
-    }
+  }
+
+  getContentHeight(){
   }
 
   toggle = () => {
     if (this.state.expand) {
       this.setState({ height: 0, expand: false });
     } else {
-      this.setState({ height: this.bodyHeight, expand: true });
+      this.setState({ height: 'auto', expand: true });
     }
   }
 
   render() {
     const { title, children } = this.props;
-    const bodyStyle = this.state.height >= 0 ? { height: this.state.height } : {};
+    const bodyStyle = this.state.maxHeight !== null ? { maxHeight: this.state.maxHeight } : {};
     return <div className="card">
       <div className="card-header" onClick={this.toggle}>
         <div className="row">
@@ -34,11 +33,15 @@ class Group extends React.Component {
           </div>
         </div>
       </div>
-      <div className="collapse show" style={bodyStyle} ref={dom => { this.contentDom = dom; }}>
+      <AnimateHeight
+        className="collapse show"
+        height={ this.state.height } // see props documentation bellow
+      >
         <div className="card-body">
           {children}
         </div>
-      </div>
+      </AnimateHeight>
+      
     </div>
   }
 }
