@@ -51,7 +51,7 @@ class Button extends Extension {
           background-color:${hoverColor} !important;
         }
       </style>
-      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${text}</a>
+      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${text}</a>
       </div>
     </div>`;
   }
