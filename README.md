@@ -12,10 +12,10 @@
 
   ## 使用说明
  
-  1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能
-  执行`npm run build`可构建输出，项目引用方式可以通过`npm install 项目路径` 安装
+  1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
+  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装
   2. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了。
-  3. 图片上传功能需要自己提供后端上传功能，此项目提供了一个代理程序可以预览，
+  3. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
     使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口
 
   ### 属性
@@ -39,7 +39,7 @@
 
   ### 关于Content组件扩展
 
-  在编码之前的设计阶段，我就构想了Content扩展，包括Content图标，标题，编辑区如何展示，如何提供属性编辑器列表等等。<br>
+  在编码前的设计阶段，我就构想了Content扩展，包括Content图标，标题，编辑区如何展示，如何提供属性编辑器列表等等。<br>
   扩展方式如下（以Video为例）：
   ```
 
@@ -117,7 +117,22 @@ export default Video;
 
 ```
 
-之所以继承自Extension，是因为需要规范几个方法，如下所示：
+然后，直接将Video组件放置于DesignEditor组件内部即可，如有多个扩展，显示时会按照放置顺序进行输出：
+
+```
+<DesignEditor
+  imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
+  onUpload={ data => data.fileUrl }
+  onUploadError={ error => console.log('5555', error.message) }
+  ref={(obj) => { instance = obj; window.instance = obj; }}>
+  <Video />
+  <!-- <Audio /> -->
+  <!-- <Social /> -->
+</DesignEditor>
+
+```
+
+之所以继承自Extension类，是因为需要规范几个方法，如下所示：
   ### Extension方法
 |   方法名        |     功能    |   参数    |   返回值    |
 |   --------   |    -----:    |   -----   |   -----     |
