@@ -13,15 +13,23 @@ import { Config } from '../lib/util';
 
 window.rootStore = rootStore;
 class DesignEditor extends React.Component {
+
   componentDidMount() {
     this.initConfig();
   }
-
+  
+  componentWillReceiveProps({ mentions }, nextState){
+    if (mentions && JSON.stringify(Config.get('mentions')) !== JSON.stringify(mentions)) {
+      Config.set('mentions', mentions);
+    }
+  }
+  
   initConfig(){
-    const { children, imageUploadUrl, onUpload, onUploadError } = this.props;
+    const { children, imageUploadUrl, onUpload, onUploadError, mentions } = this.props;
     Config.set('imageUploadUrl', imageUploadUrl);
     onUpload && Config.set('onUpload', onUpload);
     onUploadError && Config.set('onUploadError', onUploadError);
+    mentions && Config.set('mentions', mentions);
     [Button, Divider, Html, Image, Text].forEach(Content => {
       const content = new Content();
       Content.type = content.getContentType();

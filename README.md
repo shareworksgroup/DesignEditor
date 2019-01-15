@@ -26,6 +26,7 @@
 |   属性名        |     功能    |
 |   --------   |    -----:    |
 |   imageUploadUrl     |     提供图片上传地址  |
+|   mentions     |     提供动态字段提示列表 [{key,title}] （填充key值）  |
 
   ### 回调方法
 |   方法名        |     功能    |   参数    |   返回值    |
@@ -127,12 +128,13 @@ export default Video;
 ```javascript
 <DesignEditor
   imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
-  onUpload={ data => data.fileUrl }
-  onUploadError={ error => console.log('5555', error.message) }
+  mentions={[
+    { key: 'key', title: 'title' },
+  ]}
+  onUpload={data => data.fileUrl}
+  onUploadError={error => console.log('5555', error.message)}
   ref={(obj) => { instance = obj; window.instance = obj; }}>
   <Video />
-  <!-- <Audio /> -->
-  <!-- <Social /> -->
 </DesignEditor>
 
 ```
