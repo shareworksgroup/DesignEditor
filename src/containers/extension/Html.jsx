@@ -37,7 +37,7 @@ class Html extends Extension {
     const { html, containerPadding } = values;
     return <React.Fragment>
       <Group title="LINE">
-        <HtmlEditor style={{ margin: '-15px -20px' }} value={html} onChange={(value) => { update('html', value) }} />
+        <HtmlEditor style={{ margin: '-20px' }} value={html} onChange={(value) => { update('html', value) }} />
       </Group>
       <Group title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
