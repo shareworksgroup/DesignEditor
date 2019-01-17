@@ -28,7 +28,7 @@ class Button extends Extension {
   }
 
   getIconClass() {
-    return 'mdi-image-crop-7-5';
+    return 'icon icon-button';
   }
 
   getContentType() {
@@ -45,6 +45,11 @@ class Button extends Extension {
 
   toHtml(data) {
     const { text, color, link, linkType, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius, _meta } = data;
+    
+    const node = document.createElement('div');
+    node.innerHTML = text;
+    [].slice.call(node.querySelectorAll('p')).forEach( element => (element.style.display = 'inline'));
+    const html = node.innerHTML;
     return `<div>
       <div style="text-align:${textAlign};padding:${containerPadding}">
       <style>
@@ -52,7 +57,7 @@ class Button extends Extension {
           background-color:${hoverColor} !important;
         }
       </style>
-      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${text}</a>
+      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${html}</a>
       </div>
     </div>`;
   }

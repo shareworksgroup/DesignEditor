@@ -10,7 +10,7 @@ class ConfigButton extends React.Component {
     return <Fab
       mainButtonStyles={{ backgroundColor: '#84D945' }}
       position={{ bottom: 20, right: 20 }}
-      icon={<i className="mdi-content-add"></i>}
+      icon={<i className="icon icon-plus"></i>}
       event="click"
     >
       <Action
@@ -18,7 +18,7 @@ class ConfigButton extends React.Component {
         onClick={onPreview}
         style={{ backgroundColor: '#539225' }}
       >
-        <i className="mdi-image-remove-red-eye"></i>
+        <i className="icon icon-preview config-button"></i>
       </Action>
     </Fab>
   }
