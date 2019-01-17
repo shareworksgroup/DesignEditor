@@ -6,7 +6,7 @@ import { Align, Slide, Space, Line } from '../sidebar/Property/items';
 
 class Divider extends Extension {
   getIconClass() {
-    return 'mdi-content-remove';
+    return 'icon icon-divider';
   }
 
   getContentType() {

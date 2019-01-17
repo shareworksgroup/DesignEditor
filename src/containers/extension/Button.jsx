@@ -28,7 +28,7 @@ class Button extends Extension {
   }
 
   getIconClass() {
-    return 'mdi-image-crop-7-5';
+    return 'icon icon-button';
   }
 
   getContentType() {

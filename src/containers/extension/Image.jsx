@@ -6,7 +6,7 @@ import { ContentType } from '../../lib/enum';
 
 class Image extends Extension {
   getIconClass() {
-    return 'mdi-maps-satellite';
+    return 'icon icon-image';
   }
 
   getContentType() {

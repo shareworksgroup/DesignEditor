@@ -5,7 +5,7 @@ import { Extension, PropertyWidget, PropertyGroup } from './index.js';
 const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
   getIconClass() {
-    return 'mdi-maps-local-movies';
+    return 'icon icon-video';
   }
 
   getContentType() {

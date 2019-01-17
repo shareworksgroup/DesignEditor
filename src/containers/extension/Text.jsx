@@ -28,7 +28,7 @@ class Text extends Extension {
   }
 
   getIconClass() {
-    return 'mdi-content-text-format';
+    return 'icon icon-text';
   }
 
   getContentType() {

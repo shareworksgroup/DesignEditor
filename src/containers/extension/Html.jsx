@@ -6,7 +6,7 @@ import { HtmlEditor, Space } from '../sidebar/Property/items';
 
 class Html extends Extension {
   getIconClass() {
-    return 'mdi-action-settings-ethernet';
+    return 'icon icon-html';
   }
 
   getContentType() {
