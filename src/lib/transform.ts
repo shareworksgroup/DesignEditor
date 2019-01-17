@@ -57,7 +57,7 @@ class Transform {
 
   private transferColumn(column: IColumn, rowspan: number): IHtmlBlock {
     return {
-      prefix: `<td colspan="${rowspan}" style="vertical-align:top;">`,
+      prefix: `<td colspan="${rowspan}" style="vertical-align:top;overflow:hidden">`,
       content: '',
       suffix: `</td>`,
     }

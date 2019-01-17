@@ -1,6 +1,7 @@
 export { default as Icon } from './icon';
 export { default as LazyRenderBox } from './dialog/LazyRenderBox';
 export { default as Tabs } from './tabs';
+export { default as Button } from './button';
 export { default as Input } from './form/Input';
 export { default as Align } from './form/Align';
 export { default as Number } from './form/Number';

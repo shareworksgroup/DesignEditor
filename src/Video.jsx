@@ -63,7 +63,7 @@ class Video extends Extension {
       <div style={{
         textAlign
       }}>
-        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
+        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="icon icon-play-button"></i></p>}
       </div>
     </div>;
   }

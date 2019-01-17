@@ -17,6 +17,7 @@ webfontsGenerator({
   cssFontsUrl: './fonts',
   types: ['eot', 'woff', 'ttf', 'svg'],
   cssTemplate: './build/font/css-template.hbs',
+  htmlTemplate: './build/font/html-template.hbs',
   fontHeight: 32,
   fixedWidth: true,
   fontWeight: '12px',
