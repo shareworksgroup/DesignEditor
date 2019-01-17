@@ -29,7 +29,7 @@ class Group extends React.Component {
         <div className="row">
           <div className="col-10"><span>{title}</span></div>
           <div className="col-2 header-expand-icon">
-            <i className={this.state.expand ? "mdi-navigation-expand-less" : "mdi-navigation-expand-more"}></i>
+            <i className={this.state.expand ? "icon icon-up" : "icon icon-down"}></i>
           </div>
         </div>
       </div>

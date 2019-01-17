@@ -11,6 +11,7 @@ export enum ContentType {
   HTML = 'html',
   IMAGE = 'image',
   TEXT = 'text',
+  SOCIAL = 'social',
 };
 
 export enum RowType {
@@ -22,6 +23,7 @@ export enum RowType {
   TWOONE = 'twoone',
   ONETWOONETWO = 'onetwoonetwo',
   TWOONETWOONE = 'twoonetwoone',
+  ONEFOURONE = 'onefourone',
 };
 
 export enum OperationMode {

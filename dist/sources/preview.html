@@ -37,10 +37,10 @@
  */
 @font-face {
   font-family: "icons";
-  src: url("./fonts/icons.eot?5c23515434867e11b2325c18baef0ee3?#iefix") format("embedded-opentype"),
-url("./fonts/icons.woff?5c23515434867e11b2325c18baef0ee3") format("woff"),
-url("./fonts/icons.ttf?5c23515434867e11b2325c18baef0ee3") format("truetype"),
-url("./fonts/icons.svg?5c23515434867e11b2325c18baef0ee3#icons") format("svg");
+  src: url("./fonts/icons.eot?772fcef2fb6f15ee64cb629c4141a49b?#iefix") format("embedded-opentype"),
+url("./fonts/icons.woff?772fcef2fb6f15ee64cb629c4141a49b") format("woff"),
+url("./fonts/icons.ttf?772fcef2fb6f15ee64cb629c4141a49b") format("truetype"),
+url("./fonts/icons.svg?772fcef2fb6f15ee64cb629c4141a49b#icons") format("svg");
 }
 
 i.icon {
@@ -60,50 +60,86 @@ i.icon {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-block:before {
+.icon-align-to-left:before {
   content: "\f101";
 }
-.icon-body:before {
+.icon-align-to-right:before {
   content: "\f102";
 }
-.icon-button:before {
+.icon-block:before {
   content: "\f103";
 }
-.icon-copy:before {
+.icon-body:before {
   content: "\f104";
 }
-.icon-divider:before {
+.icon-button:before {
   content: "\f105";
 }
-.icon-down:before {
+.icon-center-text-alignment:before {
   content: "\f106";
 }
-.icon-html:before {
+.icon-copy:before {
   content: "\f107";
 }
-.icon-image:before {
+.icon-divider:before {
   content: "\f108";
 }
-.icon-menu:before {
+.icon-down:before {
   content: "\f109";
 }
-.icon-move:before {
+.icon-email:before {
   content: "\f10a";
 }
-.icon-plus:before {
+.icon-facebook:before {
   content: "\f10b";
 }
-.icon-preview:before {
+.icon-google-plus:before {
   content: "\f10c";
 }
-.icon-text:before {
+.icon-html:before {
   content: "\f10d";
 }
-.icon-trash:before {
+.icon-image:before {
   content: "\f10e";
 }
-.icon-video:before {
+.icon-linkedin:before {
   content: "\f10f";
+}
+.icon-menu:before {
+  content: "\f110";
+}
+.icon-move:before {
+  content: "\f111";
+}
+.icon-play-button:before {
+  content: "\f112";
+}
+.icon-plus:before {
+  content: "\f113";
+}
+.icon-preview:before {
+  content: "\f114";
+}
+.icon-text:before {
+  content: "\f115";
+}
+.icon-trash:before {
+  content: "\f116";
+}
+.icon-twitter:before {
+  content: "\f117";
+}
+.icon-up:before {
+  content: "\f118";
+}
+.icon-video:before {
+  content: "\f119";
+}
+.icon-youtube1:before {
+  content: "\f11a";
+}
+.icon-youtube2:before {
+  content: "\f11b";
 }
 
 	</style>
@@ -112,93 +148,165 @@ i.icon {
 	<h1>icons</h1>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-block"></span>
+			<i class="icon icon-align-to-left"></i>
+		</span>
+		<span>align-to-left</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-align-to-right"></i>
+		</span>
+		<span>align-to-right</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-block"></i>
 		</span>
 		<span>block</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-body"></span>
+			<i class="icon icon-body"></i>
 		</span>
 		<span>body</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-button"></span>
+			<i class="icon icon-button"></i>
 		</span>
 		<span>button</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-copy"></span>
+			<i class="icon icon-center-text-alignment"></i>
+		</span>
+		<span>center-text-alignment</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-copy"></i>
 		</span>
 		<span>copy</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-divider"></span>
+			<i class="icon icon-divider"></i>
 		</span>
 		<span>divider</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-down"></span>
+			<i class="icon icon-down"></i>
 		</span>
 		<span>down</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-html"></span>
+			<i class="icon icon-email"></i>
+		</span>
+		<span>email</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-facebook"></i>
+		</span>
+		<span>facebook</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-google-plus"></i>
+		</span>
+		<span>google-plus</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-html"></i>
 		</span>
 		<span>html</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-image"></span>
+			<i class="icon icon-image"></i>
 		</span>
 		<span>image</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-menu"></span>
+			<i class="icon icon-linkedin"></i>
+		</span>
+		<span>linkedin</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-menu"></i>
 		</span>
 		<span>menu</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-move"></span>
+			<i class="icon icon-move"></i>
 		</span>
 		<span>move</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-plus"></span>
+			<i class="icon icon-play-button"></i>
+		</span>
+		<span>play-button</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-plus"></i>
 		</span>
 		<span>plus</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-preview"></span>
+			<i class="icon icon-preview"></i>
 		</span>
 		<span>preview</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-text"></span>
+			<i class="icon icon-text"></i>
 		</span>
 		<span>text</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-trash"></span>
+			<i class="icon icon-trash"></i>
 		</span>
 		<span>trash</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
-			<span class="icon icon-video"></span>
+			<i class="icon icon-twitter"></i>
+		</span>
+		<span>twitter</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-up"></i>
+		</span>
+		<span>up</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-video"></i>
 		</span>
 		<span>video</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-youtube1"></i>
+		</span>
+		<span>youtube1</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-youtube2"></i>
+		</span>
+		<span>youtube2</span>
 	</div>
 </body>
 </html>
