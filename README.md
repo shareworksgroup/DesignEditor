@@ -17,10 +17,11 @@
   ## 使用说明
  
   1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
-  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装
-  2. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了。
-  3. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
-    使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口
+  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装；
+  2. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
+  3. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了；
+  4. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
+    使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
 
   ### 属性
 |   属性名        |     功能    |
@@ -55,7 +56,7 @@ import DesignEditor, { Extension, PropertyWidget, PropertyGroup } from 'design-e
 const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
     getIconClass() {
-      return 'mdi-maps-local-movies';
+      return 'icon icon-video';
     }
 
     getContentType() {
@@ -113,7 +114,7 @@ class Video extends Extension {
         <div style={{
           textAlign
         }}>
-          {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
+          {url ? <video controls src={url} style={videoStyle} /> : <p><i className="icon icon-play-button"></i></p>}
         </div>
       </div>;
     }
@@ -172,4 +173,4 @@ export default Video;
 |   NumberItem     |     左右加减操作数字  |   ```<NumberItem title="Content Width" value={width} attribute="width" onUpdate={onUpdate} />```     |
 |   Font     |     字体选择  |   ```<Font title="Font Family" fontFamily={fontFamily} onUpdate={onUpdate} />```     |
 
-  若有其它需求，需要另外开发。
+  若有其它需求，需要另行开发。
