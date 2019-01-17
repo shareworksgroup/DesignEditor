@@ -80,7 +80,6 @@ class Social extends Extension {
 
   render() {
     const { items, width, height, textAlign, containerPadding } = this.props;
-    console.log(items);
     return <div className="ds_content_social">
       <div className="ds_content_social_container" style={{
         padding: containerPadding,
