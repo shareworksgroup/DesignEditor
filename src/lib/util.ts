@@ -99,3 +99,10 @@ export const checkFileExtension = (extensions: string | Array<string>) =>
 export const imageTypes: Array<string> = ['.jpg', '.bmp', '.gif', '.jpeg', '.png'];
 
 export const imgCheck: Function = checkFileExtension(imageTypes);
+
+export const reOrder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+  return result;
+};
