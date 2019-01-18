@@ -11,7 +11,6 @@ class Line extends React.Component {
   render() {
     const { lineWidth, lineStyle, lineColor, onUpdate } = this.props;
     const rgba = rgba2rgb(lineColor);
-    console.log(lineColor, rgba.rgb, rgba.alpha);
     return <React.Fragment>
       <select className="form-control" value={lineStyle} onChange={(e)=>{onUpdate('lineStyle', e.target.value)}}>
         <option value="solid">Solid</option>

@@ -14,3 +14,4 @@ export { default as Input } from './Input';
 export { default as ImageEditor } from './Image';
 export { default as NumberItem } from './Number';
 export { default as Font } from './Font';
+export { default as SocialItem } from './SocialItem';

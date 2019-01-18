@@ -1,0 +1,116 @@
+/*
+ * Please do not modify this CSS manually.
+ *
+ * + If you need to modify CSS attributes, please change `~/build/font/css-template.hbs`
+ * + If you want to add/remove icons, please change svg files under `./icons`
+ *
+ * [NOTICE]: Don't forget to run compilation again after change.
+ *
+ * [TIP]: Use `preview.html` to preview icons provided and corresponding css class name
+ */
+@font-face {
+  font-family: "icons";
+  src: url("./fonts/icons.eot?25426b490951038d2e8030f7c1bd2a51?#iefix") format("embedded-opentype"),
+url("./fonts/icons.woff?25426b490951038d2e8030f7c1bd2a51") format("woff"),
+url("./fonts/icons.ttf?25426b490951038d2e8030f7c1bd2a51") format("truetype"),
+url("./fonts/icons.svg?25426b490951038d2e8030f7c1bd2a51#icons") format("svg");
+}
+
+i.icon {
+  font-family: 'icons' !important;
+  font-style: normal;
+  font-weight: normal !important;
+  display: inline-block;
+  vertical-align: baseline;
+  text-align: center;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1;
+  /*transition: all .3s;*/
+  text-rendering: optimizeLegibility;
+  /* ----- Better Font Rendering ----- */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-align-to-left:before {
+  content: "\f101";
+}
+.icon-align-to-right:before {
+  content: "\f102";
+}
+.icon-block:before {
+  content: "\f103";
+}
+.icon-body:before {
+  content: "\f104";
+}
+.icon-button:before {
+  content: "\f105";
+}
+.icon-center-text-alignment:before {
+  content: "\f106";
+}
+.icon-copy:before {
+  content: "\f107";
+}
+.icon-divider:before {
+  content: "\f108";
+}
+.icon-down:before {
+  content: "\f109";
+}
+.icon-email:before {
+  content: "\f10a";
+}
+.icon-facebook:before {
+  content: "\f10b";
+}
+.icon-google-plus:before {
+  content: "\f10c";
+}
+.icon-html:before {
+  content: "\f10d";
+}
+.icon-image:before {
+  content: "\f10e";
+}
+.icon-linkedin:before {
+  content: "\f10f";
+}
+.icon-menu:before {
+  content: "\f110";
+}
+.icon-move:before {
+  content: "\f111";
+}
+.icon-play-button:before {
+  content: "\f112";
+}
+.icon-plus:before {
+  content: "\f113";
+}
+.icon-preview:before {
+  content: "\f114";
+}
+.icon-text:before {
+  content: "\f115";
+}
+.icon-trash:before {
+  content: "\f116";
+}
+.icon-twitter:before {
+  content: "\f117";
+}
+.icon-up:before {
+  content: "\f118";
+}
+.icon-video:before {
+  content: "\f119";
+}
+.icon-youtube1:before {
+  content: "\f11a";
+}
+.icon-youtube2:before {
+  content: "\f11b";
+}

@@ -70,13 +70,27 @@ class DesignState {
     this.attribute[type] = attribute;
   }
 
-  getData(): IData  {
+  getData(): IData {
     return toJS(this.data);
   }
 
   @action
   setData(json: IData) {
     this.data = json;
+    this.compatibleWithOldData();
+  }
+
+  @action
+  compatibleWithOldData() {
+    this.data.body.rows.forEach((row) => {
+      row.columns.forEach((column) => {
+        column.contents.forEach(content => {
+          const Extension = this.getExtension(content.values._meta.subtype);
+          const initAttributes = new Extension().getInitialAttribute();
+          content.values = { ...initAttributes, ...content.values };
+        });
+      });
+    });
   }
 
   @action

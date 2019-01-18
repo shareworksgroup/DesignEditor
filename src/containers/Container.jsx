@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'mobx-react';
 import rootStore from '../store/store';
 import styles from '../style/index.less';
-import { Button, Divider, Html, Image, Text } from './extension';
+import { Button, Divider, Html, Image, Text, Social } from './extension';
 import Transform from '../lib/transform';
 import { Config } from '../lib/util';
 import Wrapper from './Wrapper';
@@ -28,7 +28,7 @@ class DesignEditor extends React.Component {
     onUpload && Config.set('onUpload', onUpload);
     onUploadError && Config.set('onUploadError', onUploadError);
     mentions && Config.set('mentions', mentions);
-    [Button, Divider, Html, Image, Text].forEach(Content => {
+    [Button, Divider, Html, Image, Text, Social].forEach(Content => {
       const content = new Content();
       Content.type = content.getContentType();
       rootStore.DesignState.addExtension(Content)

@@ -5,7 +5,7 @@ import { Extension, PropertyWidget, PropertyGroup } from './index.js';
 const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
   getIconClass() {
-    return 'mdi-maps-local-movies';
+    return 'icon icon-video';
   }
 
   getContentType() {
@@ -63,7 +63,7 @@ class Video extends Extension {
       <div style={{
         textAlign
       }}>
-        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
+        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="icon icon-play-button"></i></p>}
       </div>
     </div>;
   }

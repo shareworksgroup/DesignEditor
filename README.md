@@ -1,8 +1,8 @@
 # Design Editor
 ## 主要目的是用React实现一个邮件模板编辑器
- 灵感（或者说需求）来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板。它是替换普通所见即所得编辑器的完美解决方案，这些编辑器适合于内容编辑，但不适用于创建HTML结构。但是其功能太过复杂，需要进行定制的内容太多，所有使用体验不是很好（过于复杂且专业）。
+ 想法（或者说需求）来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板，它是替换普通所见即所得编辑器的完美解决方案，适合于内容编辑，但不适用于创建HTML结构，其功能太过复杂，需要进行定制的内容太多，所以使用体验不是很好（过于复杂且专业）。
  
- 基于此，我萌生出想用React实现一个邮件模板编辑器的想法，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
+ 基于此，我萌生出用React实现一个邮件模板编辑器的想法，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
  
  该项目完成后，能应用于多个有此需求场景的公司项目中。
 
@@ -17,10 +17,11 @@
   ## 使用说明
  
   1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
-  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装
-  2. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了。
-  3. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
-    使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口
+  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装；
+  2. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
+  3. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了；
+  4. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
+    使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
 
   ### 属性
 |   属性名        |     功能    |
@@ -55,7 +56,7 @@ import DesignEditor, { Extension, PropertyWidget, PropertyGroup } from 'design-e
 const { Space, Align, Input, Switch } = PropertyWidget;
 class Video extends Extension {
     getIconClass() {
-      return 'mdi-maps-local-movies';
+      return 'icon icon-video';
     }
 
     getContentType() {
@@ -113,7 +114,7 @@ class Video extends Extension {
         <div style={{
           textAlign
         }}>
-          {url ? <video controls src={url} style={videoStyle} /> : <p><i className="mdi-av-play-arrow"></i></p>}
+          {url ? <video controls src={url} style={videoStyle} /> : <p><i className="icon icon-play-button"></i></p>}
         </div>
       </div>;
     }
@@ -145,7 +146,7 @@ export default Video;
 |   --------   |    -----:    |   -----   |   -----     |
 |   getIconClass     |     提供扩展图标样式  |     无    |   iconClass:string    |
 |   getLabel     |     提供扩展标题  |    无    |   label:string    |
-|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text外）  |  无   |   contentType:string  |
+|   getContentType     |     提供扩展类型名称（需要保证唯一，除button divider html image text social外）  |  无   |   contentType:string  |
 |   toHtml     |     提供toHtml转换功能  |    扩展的所有属性    |   根据属性生成扩展html片段    |
 |   getInitialAttribute     |     提供初始属性对象  |    无    |   Attribute:Object    |
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
@@ -172,4 +173,4 @@ export default Video;
 |   NumberItem     |     左右加减操作数字  |   ```<NumberItem title="Content Width" value={width} attribute="width" onUpdate={onUpdate} />```     |
 |   Font     |     字体选择  |   ```<Font title="Font Family" fontFamily={fontFamily} onUpdate={onUpdate} />```     |
 
-  若有其它需求，需要另外开发。
+  若有其它需求，需要另行开发。
