@@ -122,6 +122,7 @@ class DesignState {
 
   @action
   setData(json: IData) {
+    this.setSelected(null);
     this.data = json;
     this.compatibleWithOldData();
   }

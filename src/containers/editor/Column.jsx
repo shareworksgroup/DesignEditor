@@ -1,6 +1,7 @@
 import React from 'react';
 import PlaceHolder from '../common/PlaceHolder';
 import { inject, observer } from 'mobx-react';
+import { ErrorBoundary } from '../../components';
 import rootStore from '../../store/store';
 import { DragType, OperationMode } from '../../lib/enum';
 import { DropTarget, DargSource } from 'react-dnd';
@@ -48,7 +49,7 @@ class Column extends React.Component {
         column.contents.map(i => {
           const Extension = DesignState.getExtension(i.values._meta.subtype);
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
-            <Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/>
+            <ErrorBoundary><Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/></ErrorBoundary>
           </Content>;
         })
       }

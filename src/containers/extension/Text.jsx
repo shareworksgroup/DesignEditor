@@ -127,6 +127,13 @@ class Text extends Extension {
 
   }
 
+  componentWillUnmount(){
+    super.componentWillUnmount();
+    if (this.autoComplete) {
+      this.autoComplete.off();
+    }
+  }
+
   render() {
     const { focus = false, text, textAlign, lineHeight, containerPadding, color } = this.props;
     return <div className="ds_content_text">

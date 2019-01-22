@@ -8,3 +8,4 @@ export { default as Number } from './form/Number';
 export { default as Line } from './form/Line';
 export { default as Html } from './form/Html';
 export { default as AutoCompletePanel } from './form/AutoCompletePanel';
+export { default as ErrorBoundary } from './error/ErrorBoundary';
