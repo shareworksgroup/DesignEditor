@@ -1,6 +1,6 @@
 import Guid from 'guid';
 import { IRGBA } from '../schemas/common';
-import { Types } from './enum';
+import { Types, ContentType } from './enum';
 
 export const guid = (): string => Guid.create().value;
 
@@ -37,6 +37,7 @@ export const dynamicList = [ { key: 'test', title: 'test' } ];
 export const Config = {
   imageUploadUrl: 'http://localhost:3001/NewUserFeedback/upload',
   mentions: dynamicList,
+  contents: [ContentType.BUTTON, ContentType.DIVIDER, ContentType.HTML, ContentType.IMAGE, ContentType.SOCIAL, ContentType.TEXT],
   onUpload: data => data.fileUrl,
   onUploadError: () => {},
   set: (key, value) => {

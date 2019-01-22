@@ -23,16 +23,19 @@ class DesignEditor extends React.Component {
   }
   
   initConfig(){
-    const { children, imageUploadUrl, onUpload, onUploadError, mentions } = this.props;
+    const { children, imageUploadUrl, onUpload, onUploadError, mentions, contents } = this.props;
     Config.set('imageUploadUrl', imageUploadUrl);
     onUpload && Config.set('onUpload', onUpload);
     onUploadError && Config.set('onUploadError', onUploadError);
     mentions && Config.set('mentions', mentions);
+    contents && Config.set('contents', contents);
     [Button, Divider, Html, Image, Text, Social].forEach(Content => {
       const content = new Content();
       Content.type = content.getContentType();
-      rootStore.DesignState.addExtension(Content)
-      rootStore.DesignState.setAttribute(Content.type, content.getInitialAttribute());
+      if (Config.get('contents').some(type => type === Content.type)) {
+        rootStore.DesignState.addExtension(Content)
+        rootStore.DesignState.setAttribute(Content.type, content.getInitialAttribute());
+      }
     });
     React.Children.forEach(children, Child => {
       if (Child) {

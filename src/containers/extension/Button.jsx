@@ -60,10 +60,7 @@ class Button extends Extension {
         }
       </style>
       <a target="${linkType}" href="${link}" id="button_${_meta.guid}"
-        style="display:inline-block;text-decoration: none;cursor:pointer;
-          color:${color};background-color:${backgroundColor};padding:${padding};
-          line-height:${lineHeight}%;border-radius:${borderRadius}px;
-          border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
+        style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
       </div>
     </div>`;
   }

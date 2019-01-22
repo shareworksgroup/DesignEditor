@@ -29,6 +29,7 @@
 |   --------   |    -----:    |
 |   imageUploadUrl     |     提供图片上传地址  |
 |   mentions     |     提供动态字段提示列表 [{key,title}] （填充key值）  |
+|   contents     |     默认值为['button','divider','html','image','text','social']，可以通过此参数定制需要的内置默认组件  |
 
   ### 回调方法
 |   方法名        |     功能    |   参数    |   返回值    |
@@ -152,6 +153,8 @@ export default Video;
 |   getInitialAttribute     |     提供初始属性对象  |    无    |   Attribute:Object    |
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
 |   render     |     提供渲染片段  |    props: { ...所有扩展的属性, focus: boolean 编辑区域中是否选中当前扩展 }    |   ReactNode    |
+
+ **如果觉得默认组件内置的toHtml片段满足不了需求或是需要更多属性编辑，可以在继承自原有组件的基础上加入自己个性化的东西**
 
   ### 属性编辑组件列表
   内置一些属性编辑组件如下：
