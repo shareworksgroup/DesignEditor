@@ -21,7 +21,7 @@ ReactDom.render(<div>
     ]}
     onUpload={ data => data.fileUrl }
     onUploadError={ error => console.log(error.message) }
-    ref={(obj) => { instance = obj; window.instance = obj; }}>
+    onRef={(obj) => { instance = obj; window.instance = obj; }}>
     <Video />
   </Container>
 

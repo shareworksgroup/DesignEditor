@@ -34,7 +34,7 @@
   ### 回调方法
 |   方法名        |     功能    |   参数    |   返回值    |
 |   --------   |    -----:    |   -----   |   -----     |
-|   ref     |     用于获取编辑器instance  |     编辑器instance    |   无    |
+|   onRef     |     用于获取编辑器instance  |     编辑器instance    |   无    |
 |   onUpload     |     图片上传完成处理数据格式  |    服务端返回的数据    |   实际图片地址    |
 |   onUploadError     |     捕获图片上传失败异常信息  |   error: { message: string, errorStack: string }  |   无  |
 
@@ -136,7 +136,7 @@ export default Video;
   ]}
   onUpload={data => data.fileUrl}
   onUploadError={error => console.log('5555', error.message)}
-  ref={(obj) => { instance = obj; window.instance = obj; }}>
+  onRef={(obj) => { instance = obj; window.instance = obj; }}>
   <Video />
 </DesignEditor>
 
