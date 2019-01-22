@@ -10,10 +10,10 @@
  */
 @font-face {
   font-family: "icons";
-  src: url("./fonts/icons.eot?d3cb8ffa223423bf14570225d141f3af?#iefix") format("embedded-opentype"),
-url("./fonts/icons.woff?d3cb8ffa223423bf14570225d141f3af") format("woff"),
-url("./fonts/icons.ttf?d3cb8ffa223423bf14570225d141f3af") format("truetype"),
-url("./fonts/icons.svg?d3cb8ffa223423bf14570225d141f3af#icons") format("svg");
+  src: url("./fonts/icons.eot?f2be510c6f5e98fa562f5a99819be2d2?#iefix") format("embedded-opentype"),
+url("./fonts/icons.woff?f2be510c6f5e98fa562f5a99819be2d2") format("woff"),
+url("./fonts/icons.ttf?f2be510c6f5e98fa562f5a99819be2d2") format("truetype"),
+url("./fonts/icons.svg?f2be510c6f5e98fa562f5a99819be2d2#icons") format("svg");
 }
 
 i.icon {
