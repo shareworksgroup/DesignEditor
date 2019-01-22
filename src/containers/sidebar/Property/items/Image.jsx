@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import Switch from "react-switch";
 import { Line } from 'rc-progress';
+import { Input } from '../../../../components';
 import { Config, generateIncressTimer, imgCheck } from '../../../../lib/util';
 
 class Image extends React.Component {
@@ -75,7 +77,7 @@ class Image extends React.Component {
   }
 
   render() {
-    const { title = 'Image', desc } = this.props;
+    const { title = 'Image', desc, url, attribute = 'url', options = false, fullWidth, repeat, center, onUpdate = () => {} } = this.props;
     return (<div className="blockbuilder-widget blockbuilder-link-widget">
       <div className="row">
         <div className="blockbuilder-widget-label col-6">
@@ -102,8 +104,57 @@ class Image extends React.Component {
           {desc && <div className="blockbuilder-widget-hint">
             {desc}
           </div>}
+        </div>        
+      </div>
+      <div className="row" style={{ marginTop: 10 }}>
+        <div className="blockbuilder-widget-label col-12">
+          <label className="blockbuilder-label-primary"><span>Image URL</span></label>
         </div>
       </div>
+      <div className="row" style={{ marginTop: 10 }}>
+        <div className="col-12">
+          <Input onChange={(e) => { onUpdate(attribute, e.target.value) }} value={url} />
+        </div>
+      </div>
+      {
+        options && <React.Fragment>
+          <div className="row" style={{ marginTop: 10 }}>
+            <div className="blockbuilder-widget-label col-12">
+              <label className="blockbuilder-label-primary"><span>Image Options</span></label>
+            </div>
+          </div>
+          <div className="row" style={{ marginTop: 10 }}>
+            <div className="col-6">
+              <div className="blockbuilder-widget-label">
+                <label>
+                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('fullWidth', !fullWidth); }}>Full Width</span>
+                  <Switch checked={fullWidth} onChange={(checked) => {onUpdate('fullWidth', checked); }} height={17} width={34} />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="row" style={{ marginTop: 5 }}>
+            <div className="col-6">
+              <div className="blockbuilder-widget-label">
+                <label>
+                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('repeat', !repeat); }}>Repeat</span>
+                  <Switch checked={repeat} onChange={(checked) => {onUpdate('repeat', checked); }} height={17} width={34} />
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="row" style={{ marginTop: 5 }}>
+            <div className="col-6">
+              <div className="blockbuilder-widget-label">
+                <label>
+                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('fullWidth', !center); }}>Center</span>
+                  <Switch checked={center} onChange={(checked) => {onUpdate('center', checked); }} height={17} width={34} />
+                </label>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      }
     </div>);
   }
 }

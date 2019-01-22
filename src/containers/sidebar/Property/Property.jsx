@@ -50,7 +50,7 @@ class Property extends React.Component {
     let title = 'Row';
     let extension = null;
     if (meta.type === DesignType.CONTENT) {
-      title = 'Content';
+      title = `Content / ${meta.subtype}`;
       extension = DesignState.getExtension(meta.subtype);
     }
     return <div className="blockbuilder-options-panel">
