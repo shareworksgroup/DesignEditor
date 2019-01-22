@@ -15,7 +15,7 @@ import { Config } from '../../lib/util';
 import AutoComplete from '../../lib/autocomplete';
 import Group from '../sidebar/Property/Group';
 import { AutoCompletePanel } from '../../components';
-import { Link, Colors, Align, LineHeight, BorderRadius, Color, Space } from '../sidebar/Property/items';
+import { Link, Colors, Align, LineHeight, BorderRadius, Color, Space, Line } from '../sidebar/Property/items';
 
 
 class Button extends Extension {
@@ -44,7 +44,9 @@ class Button extends Extension {
   }
 
   toHtml(data) {
-    const { text, color, link, linkType, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius, _meta } = data;
+    const { text, color, link, linkType, padding, backgroundColor,
+      containerPadding, hoverColor, textAlign, lineHeight, borderRadius,
+      lineColor, lineWidth, lineStyle, _meta } = data;
     
     const node = document.createElement('div');
     node.innerHTML = text;
@@ -57,7 +59,11 @@ class Button extends Extension {
           background-color:${hoverColor} !important;
         }
       </style>
-      <a target="${linkType}" href="${link}" id="button_${_meta.guid}" style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;">${html}</a>
+      <a target="${linkType}" href="${link}" id="button_${_meta.guid}"
+        style="display:inline-block;text-decoration: none;cursor:pointer;
+          color:${color};background-color:${backgroundColor};padding:${padding};
+          line-height:${lineHeight}%;border-radius:${borderRadius}px;
+          border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
       </div>
     </div>`;
   }
@@ -75,11 +81,16 @@ class Button extends Extension {
       lineHeight: 120,
       borderRadius: 4,
       containerPadding: '10px',
+      lineStyle: 'solid',
+      lineWidth: 0,
+      lineColor: '#3aaee0',
     };
   }
 
   getProperties(values, update) {
-    const { color, linkType, link, backgroundColor, hoverColor, containerPadding, padding, textAlign, lineHeight, borderRadius } = values;
+    const { color, linkType, link, backgroundColor, hoverColor,
+        containerPadding, padding, textAlign, lineHeight, borderRadius,
+        lineStyle, lineWidth, lineColor } = values;
     return <React.Fragment>
       <Group title="LINK">
         <Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />
@@ -94,6 +105,7 @@ class Button extends Extension {
       <Group title="SPACING">
         <Align align={textAlign} onUpdate={update} />
         <LineHeight lineHeight={lineHeight} onUpdate={update} />
+        <Line title="Border" lineWidth={lineWidth} lineStyle={lineStyle} lineColor={lineColor} onUpdate={update} />
         <BorderRadius borderRadius={borderRadius} onUpdate={update} />
         <Space title="Padding" value={padding} attribute="padding" onUpdate={update} />
       </Group>
@@ -160,7 +172,9 @@ class Button extends Extension {
   }
 
   render() {
-    const { focus, text, color, padding, backgroundColor, containerPadding, hoverColor, textAlign, lineHeight, borderRadius } = this.props;
+    const { focus, text, color, padding, backgroundColor, containerPadding,
+      hoverColor, textAlign, lineHeight, borderRadius,
+      lineStyle, lineWidth, lineColor } = this.props;
     return <div className="ds_content_button">
       <div style={{
         textAlign: textAlign,
@@ -173,7 +187,8 @@ class Button extends Extension {
               backgroundColor,
               padding,
               lineHeight: lineHeight + '%',
-              borderRadius: borderRadius + 'px'
+              borderRadius: borderRadius + 'px',
+              border: `${lineWidth}px ${lineStyle} ${lineColor}`
             }}
           ><Editor
               tagName="div"
@@ -191,7 +206,8 @@ class Button extends Extension {
             backgroundColor,
             padding,
             lineHeight: lineHeight + '%',
-            borderRadius: borderRadius + 'px'
+            borderRadius: borderRadius + 'px',
+            border: `${lineWidth}px ${lineStyle} ${lineColor}`
           }}>
             <p dangerouslySetInnerHTML={{ __html: text }}></p>
           </a>}
