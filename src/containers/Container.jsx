@@ -13,7 +13,13 @@ window.rootStore = rootStore;
 class DesignEditor extends React.Component {
 
   componentDidMount() {
+    const { onRef = () => {} } = this.props;
     this.initConfig();
+    onRef({
+      export: this.export,
+      getData: this.getData,
+      setData: this.setData,
+    });
   }
 
   componentWillReceiveProps({ mentions }, nextState){
@@ -47,17 +53,17 @@ class DesignEditor extends React.Component {
     });
   }
 
-  export(){
+  export = () => {
     const rawData = this.getData();
     const transform = new Transform(rawData, rootStore.DesignState.getExtensions());
     return transform.toHtml();
   }
 
-  getData(){
+  getData = () => {
     return rootStore.DesignState.getData();
   }
 
-  setData(json){
+  setData = (json) => {
     rootStore.DesignState.setData(json);
   }
 
