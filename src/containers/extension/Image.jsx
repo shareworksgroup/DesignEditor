@@ -48,7 +48,7 @@ class Image extends Extension {
     const { link, linkType, alter, fullWidth, textAlign, url, containerPadding, width, height } = values;
     return <React.Fragment>
       <Group title="IMAGE">
-        <ImageEditor key={values._meta.guid} attribute="url" onUpdate={update} />
+        <ImageEditor key={values._meta.guid} url={url} attribute="url" onUpdate={update} />
         <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
         { !fullWidth && <React.Fragment>
           <NumberItem title="Width(-1 is auto)" attribute="width" value={width} onUpdate={update} step={1} max={800} min={-1} />
