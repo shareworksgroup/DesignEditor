@@ -20,7 +20,7 @@ class Divider extends Extension {
   toHtml(data) {
     const { width, lineStyle, lineWidth, lineColor, textAlign, containerPadding } = data;
     return `<div>
-      <div style="padding:${containerPadding};text-align:${textAlign}">
+      <div style="padding:${containerPadding};text-align:${textAlign};font-size:0">
         <div style="border-top:${lineWidth}px ${lineStyle} ${lineColor};width: ${width}%;display:inline-block;"></div>
       </div>
     </div>`;
