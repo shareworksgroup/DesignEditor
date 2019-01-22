@@ -35,6 +35,10 @@ export interface IRow {
     deletable?: boolean,
     draggable?: boolean,
     selectable: boolean,
+    fullWidth: boolean,
+    repeat: boolean,
+    center: boolean,
+    backgroundImage: string,
     _meta: {
       guid: string,
       type: DesignType,

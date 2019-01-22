@@ -51,7 +51,6 @@ class DesignState {
     trailing: false,
   })
   recordHistory(){
-    console.log('record')
     const data = toJS(this.data);
     history = history.push(data);
   }
@@ -161,6 +160,10 @@ class DesignState {
         noStackMobile: false,
         padding: "10px",
         selectable: true,
+        fullWidth: false,
+        repeat: false,
+        center: true,
+        backgroundImage: '',
         _meta: {
           guid: this.guid(),
           type: DesignType.ROW,
@@ -192,6 +195,10 @@ class DesignState {
         noStackMobile: false,
         padding: "10px",
         selectable: true,
+        fullWidth: false,
+        repeat: false,
+        center: true,
+        backgroundImage: '',
         _meta: {
           guid: this.guid(),
           type: DesignType.ROW,

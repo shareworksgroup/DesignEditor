@@ -45,10 +45,13 @@ class Transform {
   }
 
   private transferRow(row: IRow): IHtmlBlock {
-    const { backgroundColor, columnsBackgroundColor, padding } = row.values;
+    const { backgroundColor, columnsBackgroundColor, padding, fullWidth, repeat, center, backgroundImage } = row.values;
+    const bgStyle = `background-image:url(${backgroundImage});background-repeat:${repeat?'repeat':'no-repeat'};background-position:${center?'center top':'left top'}`;
+    const wrapperStyle = fullWidth ? bgStyle : '';
+    const contentStyle = fullWidth ? '' : bgStyle;
     return {
-      prefix: `<div style="background-color:${backgroundColor};padding:${padding}">
-      <table style="background-color:${columnsBackgroundColor};width:100%;table-layout: fixed;">
+      prefix: `<div style="background-color:${backgroundColor};padding:${padding};${wrapperStyle}">
+      <table style="background-color:${columnsBackgroundColor};width:100%;table-layout: fixed;${contentStyle}">
       <tr>`,
       content: '',
       suffix: `</tr></table></div>`

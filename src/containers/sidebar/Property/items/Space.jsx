@@ -92,10 +92,11 @@ class Space extends React.Component {
           <label className="blockbuilder-label-primary"><span>{title}</span></label>
         </div>
         <div className="col-6 text-right">
-          <div className="blockbuilder-widget-label"><label>
-            <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { this.onMore(!this.state.more) }}>More Options</span>
-            <Switch checked={this.state.more} onChange={this.onMore} height={17} width={34} />
-          </label>
+          <div className="blockbuilder-widget-label">
+            <label>
+              <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { this.onMore(!this.state.more) }}>More Options</span>
+              <Switch checked={this.state.more} onChange={this.onMore} height={17} width={34} />
+            </label>
           </div>
         </div>
       </div>

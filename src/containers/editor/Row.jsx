@@ -65,7 +65,17 @@ class Row extends React.Component {
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
-    const { backgroundColor, columnsBackgroundColor, padding } = row.values;
+    if (!row) {
+      return null;
+    }
+    const { backgroundColor, columnsBackgroundColor, padding, backgroundImage, fullWidth, repeat, center } = row.values;
+    const bgStyle = {
+      backgroundImage:`url(${backgroundImage})`,
+      backgroundRepeat: `${repeat?'repeat':'no-repeat'}`,
+      backgroundPosition: `${center?'center top':'left top'}`,
+    };
+    const wrapperStyle = fullWidth ? bgStyle : {};
+    const contentStyle = fullWidth ? {} : bgStyle;
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
@@ -78,10 +88,12 @@ class Row extends React.Component {
           <div className="u_row" style={{
             backgroundColor,
             padding,
+            ...wrapperStyle
           }}>
             <div className="container" style={{
               maxWidth: 600,
-              backgroundColor: columnsBackgroundColor
+              backgroundColor: columnsBackgroundColor,
+              ...contentStyle
               }}>
               <div className="row">
                 {
