@@ -10,9 +10,9 @@ const target = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT ) {
-      rootStore.DesignState.addContent(item, props.column.values._meta);
+      rootStore.DesignState.execCommand('addContent', item, props.column.values._meta);
     } else {
-      rootStore.DesignState.moveContent(item, null, props.guid);
+      rootStore.DesignState.execCommand('moveContent', item, null, props.guid);
     }
   },
   canDrop(props, monitor, component){
@@ -34,7 +34,7 @@ class Column extends React.Component {
 
   onUpdate = (guid, key, value) => {
     const { rootStore: { DesignState }} = this.props;
-    DesignState.updateAttribute(guid, key, value);
+    DesignState.execCommand('updateAttribute', guid, key, value);
   }
 
   render() {

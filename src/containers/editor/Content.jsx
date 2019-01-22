@@ -14,9 +14,9 @@ const target = {
 
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
-      rootStore.DesignState.insertContent(monitor.getItem(), props.guid, props.columnGuid);
+      rootStore.DesignState.execCommand('insertContent', monitor.getItem(), props.guid, props.columnGuid);
     } else if (item.mode === OperationMode.MOVE) {
-      rootStore.DesignState.moveContent(item, props.guid, props.columnGuid);
+      rootStore.DesignState.execCommand('moveContent', item, props.guid, props.columnGuid);
     }
   },
   canDrop(props){
@@ -49,12 +49,12 @@ class Content extends React.Component {
 
   onDelete = () => {
     const { guid, rootStore: { DesignState } } = this.props;
-    DesignState.deleteContent(guid);
+    DesignState.execCommand('deleteContent', guid);
   }
 
   onCopy = () => {
     const { guid, rootStore: { DesignState } } = this.props;
-    DesignState.copyContent(guid);
+    DesignState.execCommand('copyContent', guid);
   }
 
   render() {

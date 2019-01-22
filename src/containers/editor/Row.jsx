@@ -13,9 +13,9 @@ const target = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
-      rootStore.DesignState.insertRow(monitor.getItem(), props.guid);
+      rootStore.DesignState.execCommand('insertRow', monitor.getItem(), props.guid);
     } else if (item.mode === OperationMode.MOVE) {
-      rootStore.DesignState.moveRow(item, props.guid);
+      rootStore.DesignState.execCommand('moveRow', item, props.guid);
     }
   },
   canDrop(props){
@@ -54,12 +54,12 @@ class Row extends React.Component {
 
   onDelete = () => {
     const { guid, rootStore: { DesignState } } = this.props;
-    DesignState.deleteRow(guid);
+    DesignState.execCommand('deleteRow', guid);
   }
 
   onCopy = () => {
     const { guid, rootStore: { DesignState } } = this.props;
-    DesignState.copyRow(guid);
+    DesignState.execCommand('copyRow', guid);
   }
 
   render() {

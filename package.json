@@ -69,6 +69,8 @@
     "classnames": "^2.2.6",
     "codemirror": "^5.42.2",
     "guid": "0.0.12",
+    "immutable": "^3.8.1",
+    "immutable-undo": "^2.0.0",
     "lodash": "^4.17.11",
     "lodash-decorators": "^6.0.0",
     "mobx": "^4.2.1",

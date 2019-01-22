@@ -19,24 +19,24 @@ class Property extends React.Component {
 
   onUpdate = (key, value) => {
     const { propertyId, rootStore: { DesignState } } = this.props;
-    DesignState.updateAttribute(propertyId, key, value);
+    DesignState.execCommand('updateAttribute', propertyId, key, value);
   }
 
   onDelete = (guid, type) => {
     const { rootStore: { DesignState } } = this.props;
     if (type === DesignType.CONTENT) {
-      DesignState.deleteContent(guid);
+      DesignState.execCommand('deleteContent', guid);
     } else {
-      DesignState.deleteRow(guid);
+      DesignState.execCommand('deleteRow', guid);
     }
   }
 
   onCopy = (guid, type) => {
     const { rootStore: { DesignState } } = this.props;
     if (type === DesignType.CONTENT) {
-      DesignState.copyContent(guid);
+      DesignState.execCommand('copyContent', guid);
     } else {
-      DesignState.copyRow(guid);
+      DesignState.execCommand('copyRow', guid);
     }
   }
 

@@ -10,9 +10,9 @@ const target = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
-      rootStore.DesignState.addRow(item);
+      rootStore.DesignState.execCommand('addRow', item);
     } else if (item.mode === OperationMode.MOVE) {
-      rootStore.DesignState.moveRow(item);
+      rootStore.DesignState.execCommand('moveRow', item);
     }
   },
   canDrop(props, monitor) {
