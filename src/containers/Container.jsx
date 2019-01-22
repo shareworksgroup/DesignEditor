@@ -20,12 +20,17 @@ class DesignEditor extends React.Component {
       getData: this.getData,
       setData: this.setData,
     });
+    this.handler = window.rootStore.DesignState.registerUndoRedo();
   }
 
   componentWillReceiveProps({ mentions }, nextState){
     if (mentions && JSON.stringify(Config.get('mentions')) !== JSON.stringify(mentions)) {
       Config.set('mentions', mentions);
     }
+  }
+
+  componentWillUnmount(){
+    this.handler && this.handler.dispose();
   }
   
   initConfig(){
@@ -64,7 +69,7 @@ class DesignEditor extends React.Component {
   }
 
   setData = (json) => {
-    rootStore.DesignState.setData(json);
+    rootStore.DesignState.execCommand('setData', json);
   }
 
   render(){

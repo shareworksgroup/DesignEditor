@@ -18,7 +18,7 @@ class SideBar extends React.Component {
   
   onUpdate = (key, value) => {
     const { rootStore: { DesignState }} = this.props;
-    DesignState.updateBodyAttribute(key, value);
+    DesignState.execCommand('updateBodyAttribute', key, value);
   }
 
   onTabClick = () => {
