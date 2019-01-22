@@ -3,10 +3,11 @@ import ColorPicker from 'rc-color-picker';
 import ColorPickerStyle from 'rc-color-picker/assets/index.css';
 import { rgb2rgba, rgba2rgb } from '../../../../lib/util';
 
-const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor }, onUpdate = () => { } }) => {
+const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor, hoverBackgroundColor }, onUpdate = () => { } }) => {
   const colorRgba = rgba2rgb(color);
   const backgroundColorRgba = rgba2rgb(backgroundColor);
   const hoverColorRgba = rgba2rgb(hoverColor);
+  const hoverBackgroundColorRgba = rgba2rgb(hoverBackgroundColor);
   return <div className="blockbuilder-widget blockbuilder-link-widget">
   <div className="row">
     <div className="blockbuilder-widget-label col-6">
@@ -25,6 +26,10 @@ const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor
     {hoverColor && <div className="col-6">
       <div className="blockbuilder-widget-label"><label><span>Hover Color</span></label></div>
       <div className="blockbuilder-color-picker"><ColorPicker color={hoverColorRgba.rgb} alpha={hoverColorRgba.alpha} onChange={(e) => { onUpdate('hoverColor', rgb2rgba(e.color, e.alpha)) }} /></div>
+    </div>}
+    {hoverBackgroundColor && <div className="col-6">
+      <div className="blockbuilder-widget-label"><label><span>Hover Background Color</span></label></div>
+      <div className="blockbuilder-color-picker"><ColorPicker color={hoverBackgroundColorRgba.rgb} alpha={hoverBackgroundColorRgba.alpha} onChange={(e) => { onUpdate('hoverBackgroundColor', rgb2rgba(e.color, e.alpha)) }} /></div>
     </div>}
   </div>
 </div>;

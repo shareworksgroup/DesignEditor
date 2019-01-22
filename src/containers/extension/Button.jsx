@@ -45,7 +45,7 @@ class Button extends Extension {
 
   toHtml(data) {
     const { text, color, link, linkType, padding, backgroundColor,
-      containerPadding, hoverColor, textAlign, lineHeight, borderRadius,
+      containerPadding, hoverColor, hoverBackgroundColor, textAlign, lineHeight, borderRadius,
       lineColor, lineWidth, lineStyle, _meta } = data;
     
     const node = document.createElement('div');
@@ -56,7 +56,8 @@ class Button extends Extension {
       <div style="text-align:${textAlign};padding:${containerPadding}">
       <style>
         #button_${_meta.guid}:hover{
-          background-color:${hoverColor} !important;
+          color:${hoverColor} !important;
+          background-color:${hoverBackgroundColor} !important;
         }
       </style>
       <a target="${linkType}" href="${link}" id="button_${_meta.guid}"
@@ -73,7 +74,8 @@ class Button extends Extension {
       color: '#fff',
       padding: '10px 20px 10px 20px',
       backgroundColor: '#3aaee0',
-      hoverColor: '#2a92bf',
+      hoverColor: '#FFF',
+      hoverBackgroundColor: '#2a92bf',
       textAlign: 'center',
       lineHeight: 120,
       borderRadius: 4,
@@ -85,7 +87,7 @@ class Button extends Extension {
   }
 
   getProperties(values, update) {
-    const { color, linkType, link, backgroundColor, hoverColor,
+    const { color, linkType, link, backgroundColor, hoverColor, hoverBackgroundColor,
         containerPadding, padding, textAlign, lineHeight, borderRadius,
         lineStyle, lineWidth, lineColor } = values;
     return <React.Fragment>
@@ -96,7 +98,8 @@ class Button extends Extension {
         <Colors title="Colors" colors={{
           color,
           backgroundColor,
-          hoverColor
+          hoverColor,
+          hoverBackgroundColor
         }} onUpdate={update} />
       </Group>
       <Group title="SPACING">
