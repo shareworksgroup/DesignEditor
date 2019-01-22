@@ -23,6 +23,7 @@
   4. mentions动态字段提示功能支持Button与Text组件，通过输入#触发，输入之后替换成[[keyword]]，目前尚未实现键盘操作；
   5. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
     使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
+  6. 支持撤销重做( Ctrl+z Ctrl+y )
 
   ### 属性
 |   属性名        |     功能    |
