@@ -171,6 +171,15 @@ class Button extends Extension {
     }
   }
 
+  
+  componentWillUnmount(){
+    super.componentWillUnmount();
+    if (this.autoComplete) {
+      this.autoComplete.off();
+    }
+  }
+  
+
   render() {
     const { focus, text, color, padding, backgroundColor, containerPadding,
       hoverColor, textAlign, lineHeight, borderRadius,
