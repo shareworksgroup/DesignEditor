@@ -47,10 +47,10 @@ class Button extends Extension {
     const { text, color, link, linkType, padding, backgroundColor,
       containerPadding, hoverColor, hoverBackgroundColor, textAlign, lineHeight, borderRadius,
       lineColor, lineWidth, lineStyle, _meta } = data;
-    
+
     const node = document.createElement('div');
     node.innerHTML = text;
-    [].slice.call(node.querySelectorAll('p')).forEach( element => (element.style.display = 'inline'));
+    [].slice.call(node.querySelectorAll('p')).forEach(element => (element.style.display = 'inline'));
     const html = node.innerHTML;
     return `<div>
       <div style="text-align:${textAlign};padding:${containerPadding}">
@@ -88,8 +88,8 @@ class Button extends Extension {
 
   getProperties(values, update) {
     const { color, linkType, link, backgroundColor, hoverColor, hoverBackgroundColor,
-        containerPadding, padding, textAlign, lineHeight, borderRadius,
-        lineStyle, lineWidth, lineColor } = values;
+      containerPadding, padding, textAlign, lineHeight, borderRadius,
+      lineStyle, lineWidth, lineColor } = values;
     return <React.Fragment>
       <Group title="LINK">
         <Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />
@@ -171,14 +171,14 @@ class Button extends Extension {
     }
   }
 
-  
-  componentWillUnmount(){
+
+  componentWillUnmount() {
     super.componentWillUnmount();
     if (this.autoComplete) {
       this.autoComplete.off();
     }
   }
-  
+
 
   render() {
     const { focus, text, color, padding, backgroundColor, containerPadding,
@@ -189,18 +189,19 @@ class Button extends Extension {
         textAlign: textAlign,
         padding: containerPadding,
       }}>
-        {focus ?
-          <a className="mce-content-wrapper"
-            style={{
-              color,
-              backgroundColor,
-              padding,
-              lineHeight: lineHeight + '%',
-              borderRadius: borderRadius + 'px',
-              border: `${lineWidth}px ${lineStyle} ${lineColor}`
-            }}
-          ><Editor
-              tagName="div"
+        <a className="mce-content-wrapper"
+          style={{
+            color,
+            backgroundColor,
+            padding,
+            lineHeight: lineHeight + '%',
+            borderRadius: borderRadius + 'px',
+            border: `${lineWidth}px ${lineStyle} ${lineColor}`
+          }}
+        >
+          {focus ?
+            <Editor
+              tagName="p"
               ref={this.onRef}
               initialValue={text}
               init={{
@@ -209,17 +210,10 @@ class Button extends Extension {
                 inline: true,
               }}
               onChange={this.handleEditorChange}
-            /></a>
-          : <a className="editable" style={{
-            color,
-            backgroundColor,
-            padding,
-            lineHeight: lineHeight + '%',
-            borderRadius: borderRadius + 'px',
-            border: `${lineWidth}px ${lineStyle} ${lineColor}`
-          }}>
-            <p dangerouslySetInnerHTML={{ __html: text }}></p>
-          </a>}
+            />
+            : <p dangerouslySetInnerHTML={{ __html: text }}></p>
+          }
+        </a>
       </div>
       <AutoCompletePanel
         data={this.state.data}

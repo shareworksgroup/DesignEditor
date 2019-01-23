@@ -107,3 +107,15 @@ export const reOrder = (list, startIndex, endIndex) => {
   result.splice(endIndex, 0, removed);
   return result;
 };
+
+export const findIndex = window['findIndex'] = (array, callback) => {
+  let index = -1;
+  array.some((item, i) => {
+    if (callback(item)){
+      index = i;
+      return true;
+    }
+    return false;
+  });
+  return index;
+}
