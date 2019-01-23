@@ -1,6 +1,5 @@
 import { ContentType, DesignType, RowType } from './enum';
 import { IHtmlBlock, IData, IBody, IRow, IColumn, IContent, IExtension } from '../schemas/transform';
-import { each } from 'lodash';
 
 class Transform {
 
@@ -16,12 +15,12 @@ class Transform {
   public toHtml(): string {
     const body = this.data.body;
     let htmlBlock = this.transferBody(this.data.body);
-    each(body.rows, (row, index) => {
+    body.rows.forEach((row, index) => {
       const rowBlock = this.transferRow(row);
       const cells = row.cells;
-      each(row.columns, (column, index) => {
+      row.columns.forEach((column, index) => {
         const columnBlock = this.transferColumn(column, cells[index]);
-        each(column.contents, (content, index) => {
+        column.contents.forEach((content, index) => {
           const contentBlock = this.transferContent(content);
           columnBlock.content = `${columnBlock.content}${contentBlock}`;
         });

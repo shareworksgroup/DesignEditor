@@ -1,8 +1,7 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import History from 'immutable-undo';
 import Throttle from 'lodash-decorators/throttle';
-import * as Util from '../lib/util';
-import { findIndex, each } from 'lodash';
+import { guid, findIndex } from '../lib/util';
 import { DesignType, OperationMode } from '../lib/enum';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
@@ -330,9 +329,9 @@ class DesignState {
     const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
     const copy = JSON.parse(JSON.stringify(row));
     copy.values._meta.guid = this.guid();
-    each(copy.columns, column => {
+    copy.columns.forEach(column => {
       column.values._meta.guid = this.guid();
-      each(column.contents, content => {
+      column.contents.forEach(content => {
         content.values._meta.guid = this.guid();
       });
     });
@@ -373,7 +372,7 @@ class DesignState {
   }
 
   guid(): string {
-    return Util.guid();
+    return guid();
   }
 
 }
