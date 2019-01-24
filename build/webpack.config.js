@@ -31,12 +31,7 @@ module.exports = (env, options) => {
         path.join(__dirname, '../src'),
         'node_modules'
       ],
-      alias: {
-        '@store': path.join(__dirname, '../src/store'),
-        'components': path.join(__dirname, '../src/components'),
-        'containers': path.join(__dirname, '../src/containers'),
-      },
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.less', '.mess']
+      extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.less']
     },
     entry,
     output,
@@ -62,10 +57,6 @@ module.exports = (env, options) => {
         {
           test: /\.css$/,
           use: ['style-loader', 'css-loader', 'postcss-loader'],
-        },
-        {
-          test: /\.mess$/,
-          use: ['style-loader', 'css-loader?modules&localIdentName=[local]__[hash:base64:5]', 'postcss-loader', 'less-loader']
         },
         {
           test: /\.less$/,
