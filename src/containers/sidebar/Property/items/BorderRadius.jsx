@@ -7,7 +7,7 @@ const BorderRadius = ({ borderRadius = 4, title = "Rounded Border", onUpdate = (
       <label className="blockbuilder-label-primary"><span>{title}</span></label>
     </div>
     <div className="col-6 text-right">
-      <Number max={20} step={1} value={borderRadius} onChange={(val) => { onUpdate('borderRadius', val) }} />
+      <Number max={100} step={1} value={borderRadius} onChange={(val) => { onUpdate('borderRadius', val) }} />
     </div>
   </div>
 </div>);
