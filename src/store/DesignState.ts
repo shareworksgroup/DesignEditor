@@ -45,7 +45,7 @@ class DesignState {
     }
   }
 
-  @Throttle(250, {
+  @Throttle(300, {
     leading: true,
     trailing: false,
   })
