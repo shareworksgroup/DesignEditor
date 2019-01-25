@@ -3,7 +3,6 @@ import Editor from './html/react-simple-code-editor';
 import { highlight, languages } from './html/prism';
 import './html/prism.css';
 
-console.log(highlight);
 
 class Html extends React.Component {
   constructor(props) {

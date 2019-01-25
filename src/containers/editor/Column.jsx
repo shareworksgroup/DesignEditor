@@ -35,7 +35,7 @@ class Column extends React.Component {
 
   onUpdate = (guid, key, value) => {
     const { rootStore: { DesignState }} = this.props;
-    DesignState.execCommand('updateAttribute', guid, key, value);
+    DesignState.updateAttribute(guid, key, value);
   }
 
   render() {
