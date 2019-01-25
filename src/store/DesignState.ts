@@ -10,7 +10,6 @@ const NoColor = 'rgba(255, 255, 255, 0)';
 class DesignState {
   transparent: IRootStore;
 
-
   constructor(transparent) {
     this.transparent = transparent;
   }
