@@ -5,6 +5,7 @@ import * as Util from '../../common/DragUtil';
 
 function RowFactory(rowType, segmentations = [1]) {
 
+  @DragSource(DragType.ROW, Util.getSource({ mode: OperationMode.INSERT, type: rowType, cells: segmentations }), Util.getCollect())
   class RowElement extends React.Component {
     static type = rowType;
     render() {
@@ -20,7 +21,8 @@ function RowFactory(rowType, segmentations = [1]) {
       </li>);
     }
   }
-  return DragSource(DragType.ROW, Util.getSource({ mode: OperationMode.INSERT, type: rowType, cells: segmentations }), Util.getCollect())(RowElement);
+  
+  return RowElement;
 }
 
 export default RowFactory;

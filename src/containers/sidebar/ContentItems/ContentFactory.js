@@ -3,8 +3,10 @@ import { DragType, OperationMode } from '../../../lib/enum';
 import { DragSource } from 'react-dnd';
 import * as Util from '../../common/DragUtil';
 
-function ContentFactory(contentType, label, iconClass) {
 
+function ContentFactory(contentType, label, iconClass) {
+  
+  @DragSource(DragType.CONTENT, Util.getSource({ mode: OperationMode.INSERT, type: contentType }), Util.getCollect())
   class ContentElement extends React.Component {
     static type = contentType;
     render() {
@@ -13,9 +15,7 @@ function ContentFactory(contentType, label, iconClass) {
     }
   }
 
-  const DragElement = DragSource(DragType.CONTENT, Util.getSource({ mode: OperationMode.INSERT, type: contentType }), Util.getCollect())(ContentElement);
-
-  return DragElement;
+  return ContentElement;
 }
 
 export default ContentFactory;
