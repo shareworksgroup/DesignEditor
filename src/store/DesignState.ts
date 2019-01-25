@@ -1,15 +1,11 @@
 import { observable, action, toJS, runInAction } from 'mobx';
-import History from 'immutable-undo';
-import Throttle from 'lodash-decorators/throttle';
 import { guid, findIndex } from '../lib/util';
+import { record } from '../lib/history';
 import { DesignType, OperationMode } from '../lib/enum';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
 
 const NoColor = 'rgba(255, 255, 255, 0)';
-let history = History.create({
-  maxUndos: 2000
-});
 
 class DesignState {
   transparent: IRootStore;
@@ -19,44 +15,9 @@ class DesignState {
     this.transparent = transparent;
   }
 
-  registerUndoRedo() {
-    document.addEventListener('keydown', this.undoRedo);
-    return {
-      dispose: () => document.removeEventListener('keydown', this.undoRedo)
-    };
-  }
-
-  @action
-  undoRedo = (e) => {
-    if (e.which === 89 && e.ctrlKey) {
-      history.redo(toJS(this.data));
-      if (history.canRedo) {
-        const data = history.next;
-        history = history.redo(toJS(this.data));
-        this.data = data;
-      }
-    }
-    else if (e.which === 90 && e.ctrlKey) {
-      if (history.canUndo) {
-        const data = history.previous;
-        history = history.undo(toJS(this.data));
-        this.data = data;
-      }
-    }
-  }
-
-  @Throttle(300, {
-    leading: true,
-    trailing: false,
-  })
-  recordHistory(){
-    const data = toJS(this.data);
-    history = history.push(data);
-  }
-
+  @record()
   @action
   execCommand(method, ...rest) {
-    this.recordHistory();
     this[method] && this[method](...rest);
   }
 
@@ -351,6 +312,7 @@ class DesignState {
     return column;
   }
 
+  @record(400)
   @action
   updateAttribute(guid: string, key: string, value: Object) {
     const data = this.getRow(guid) || this.getContent(guid);
@@ -359,6 +321,7 @@ class DesignState {
     }
   }
 
+  @record(400)
   @action
   updateBodyAttribute(key: string, value: Object) {
     const data = this.data.body

@@ -118,4 +118,4 @@ export const findIndex = window['findIndex'] = (array, callback) => {
     return false;
   });
   return index;
-}
+};

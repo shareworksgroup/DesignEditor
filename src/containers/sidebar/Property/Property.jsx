@@ -19,7 +19,7 @@ class Property extends React.Component {
 
   onUpdate = (key, value) => {
     const { propertyId, rootStore: { DesignState } } = this.props;
-    DesignState.execCommand('updateAttribute', propertyId, key, value);
+    DesignState.updateAttribute(propertyId, key, value);
   }
 
   onDelete = (guid, type) => {
