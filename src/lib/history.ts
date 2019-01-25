@@ -1,12 +1,10 @@
-
-
 import History from 'immutable-undo';
 import debounce from 'lodash/debounce';
 import DesignState from '../store/DesignState';
 
 class UndoRedeo {
-  history: History;
 
+  history: History;
   store: DesignState;
 
   constructor() {
@@ -59,7 +57,6 @@ class UndoRedeo {
 let undoRedo = new UndoRedeo();
 
 export const record = (delay?: number) => (target: Object, key: string, descripter: any): any => {
-  console.log(`method ${key} is record, delay is ${delay}`);
   let recordHistory = null;
   if (delay) {
     recordHistory = debounce(undoRedo.recordHistory.bind(undoRedo), delay, { leading: true, trailing: false });
@@ -72,8 +69,7 @@ export const record = (delay?: number) => (target: Object, key: string, descript
         undoRedo.setStore(this);
       }
       recordHistory();
-      var result = descripter.value.apply(this, args);
-      return result;
+      return descripter.value.apply(this, args);
     }
   };
 }
