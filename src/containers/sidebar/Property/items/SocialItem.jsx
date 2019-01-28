@@ -63,10 +63,10 @@ class SocialItem extends React.Component {
 
   render() {
     const { items, onUpdate = () => { } } = this.props;
-    return (<div className="blockbuilder-widget blockbuilder-link-widget social-panel">
+    return (<div className="ds-widget ds-link-widget social-panel">
       <div className="row">
-        <div className="blockbuilder-widget-label col-6">
-          <label className="blockbuilder-label-primary"><span>Icons</span></label>
+        <div className="ds-widget-label col-6">
+          <label className="ds-label-primary"><span>Icons</span></label>
         </div>
       </div>
       <div className="row" style={{ marginTop: 10 }}>

@@ -86,13 +86,13 @@ class Space extends React.Component {
 
   render() {
     const { title = 'Padding', attribute = "padding", value, onUpdate = () => { } } = this.props;
-    return <div className="blockbuilder-widget blockbuilder-link-widget">
+    return <div className="ds-widget ds-link-widget">
       <div className="row">
-        <div className="blockbuilder-widget-label col-6">
-          <label className="blockbuilder-label-primary"><span>{title}</span></label>
+        <div className="ds-widget-label col-6">
+          <label className="ds-label-primary"><span>{title}</span></label>
         </div>
         <div className="col-6 text-right">
-          <div className="blockbuilder-widget-label">
+          <div className="ds-widget-label">
             <label>
               <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { this.onMore(!this.state.more) }}>More Options</span>
               <Switch checked={this.state.more} onChange={this.onMore} height={17} width={34} />
@@ -102,26 +102,26 @@ class Space extends React.Component {
       </div>
       {this.state.more && <div className="row more-options" style={{ marginTop: 10 }}>
         <div className="col-6">
-          <div className="blockbuilder-widget-label"><label><span>Top</span></label></div>
-          <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.top} onChange={(val) => { this.onChange(Operate.TOP, val) }} /></div>
+          <div className="ds-widget-label"><label><span>Top</span></label></div>
+          <div className="ds-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.top} onChange={(val) => { this.onChange(Operate.TOP, val) }} /></div>
         </div>
         <div className="col-6">
-          <div className="blockbuilder-widget-label"><label><span>Right</span></label></div>
-          <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.right} onChange={(val) => { this.onChange(Operate.RIGHT, val) }} /></div>
+          <div className="ds-widget-label"><label><span>Right</span></label></div>
+          <div className="ds-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.right} onChange={(val) => { this.onChange(Operate.RIGHT, val) }} /></div>
         </div>
         <div className="col-6">
-          <div className="blockbuilder-widget-label"><label><span>Left</span></label></div>
-          <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.left} onChange={(val) => { this.onChange(Operate.LEFT, val) }} /></div>
+          <div className="ds-widget-label"><label><span>Left</span></label></div>
+          <div className="ds-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.left} onChange={(val) => { this.onChange(Operate.LEFT, val) }} /></div>
         </div>
         <div className="col-6">
-          <div className="blockbuilder-widget-label"><label><span>Bottom</span></label></div>
-          <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.bottom} onChange={(val) => { this.onChange(Operate.BOTTOM, val) }} /></div>
+          <div className="ds-widget-label"><label><span>Bottom</span></label></div>
+          <div className="ds-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.bottom} onChange={(val) => { this.onChange(Operate.BOTTOM, val) }} /></div>
         </div>
       </div>}
       {!this.state.more && <div className="row" style={{ marginTop: 10 }}>
         <div className="col-6">
-          <div className="blockbuilder-widget-label"><label><span>All Sides</span></label></div>
-          <div className="blockbuilder-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.all} onChange={(val) => { this.onChange(Operate.ALL, val) }} /></div>
+          <div className="ds-widget-label"><label><span>All Sides</span></label></div>
+          <div className="ds-color-picker"><Number max={500} step={1} formatter={Formatter} value={this.state.all} onChange={(val) => { this.onChange(Operate.ALL, val) }} /></div>
         </div>
       </div>}
     </div>;

@@ -39,10 +39,10 @@ class Number extends React.Component {
   render() {
     const { value, step, min, max, className, onChange = () => {}, formatter = _formatter, parser = _parser } = this.props;
     return <div className={className}>
-      <div className="blockbuilder-counter-control">
-        <a onClick={this.onMinus} className="blockbuilder-counter-control-btn">-</a>
-        <input className="blockbuilder-counter-control-value" value={formatter(value)} onChange={this.onChange} />
-        <a onClick={this.onPlus} className="blockbuilder-counter-control-btn">+</a>
+      <div className="ds-counter-control">
+        <a onClick={this.onMinus} className="ds-counter-control-btn">-</a>
+        <input className="ds-counter-control-value" value={formatter(value)} onChange={this.onChange} />
+        <a onClick={this.onPlus} className="ds-counter-control-btn">+</a>
       </div>
     </div>;
   }

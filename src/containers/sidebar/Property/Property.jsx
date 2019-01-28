@@ -53,10 +53,10 @@ class Property extends React.Component {
       title = `Content / ${meta.subtype}`;
       extension = DesignState.getExtension(meta.subtype);
     }
-    return <div className="blockbuilder-options-panel">
-      <div className="blockbuilder-options-header">
+    return <div className="ds-options-panel">
+      <div className="ds-options-header">
         <div className="row">
-          <div className="col-7 blockbuilder-options-title">
+          <div className="col-7 ds-options-title">
             <span>{title}</span>
           </div>
           <div className="col-5 text-right">
@@ -70,7 +70,7 @@ class Property extends React.Component {
           </div>
         </div>
       </div>
-      <div className="blockbuilder-options-content">
+      <div className="ds-options-content">
         {extension ? new extension().getProperties(data.values, this.onUpdate) : <RowProperty {...data.values} onUpdate={this.onUpdate} />}
       </div>
     </div>;

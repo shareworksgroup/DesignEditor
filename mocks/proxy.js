@@ -30,7 +30,7 @@ const WEB = 'https://smsonedev.sms-assist.com';
 app.use(allowCrossDomain);
 app.use(cors({
   credentials: true, 
-  origin: 'https://design-editor-93157.firebaseapp.com', // web前端服务器地址
+  origin: 'http://localhost:8095'//https://design-editor-93157.firebaseapp.com', // web前端服务器地址
 }));
 // 记住cookie
 var jar = _request.jar();

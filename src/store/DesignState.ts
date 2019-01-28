@@ -1,6 +1,6 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import { guid, findIndex } from '../lib/util';
-import { record } from '../lib/history';
+import { record  } from '../lib/history';
 import { DesignType, OperationMode } from '../lib/enum';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
@@ -8,6 +8,7 @@ import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentTy
 const NoColor = 'rgba(255, 255, 255, 0)';
 
 class DesignState {
+
   transparent: IRootStore;
 
   constructor(transparent) {

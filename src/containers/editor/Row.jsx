@@ -79,7 +79,7 @@ class Row extends React.Component {
     const total = cells.reduce((i, total) => i+total, 0);
     return <React.Fragment>
         { isOver && canDrop && <PlaceHolder /> }
-        {connectDropTarget(<div className={classnames("blockbuilder-layer blockbuilder-layer-selectable", (guid === DesignState.selected) && 'blockbuilder-layer-selected')} onMouseUp={this.onSelect}>
+        {connectDropTarget(<div className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')} onMouseUp={this.onSelect}>
           <Selector
             type="row"
             onDelete={this.onDelete}
