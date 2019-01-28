@@ -13,7 +13,7 @@ class Image extends React.Component {
   }
 
   componentDidMount() {
-    this.timerGenerate = generateIncressTimer(0, 100);
+    this.timerGenerate = generateIncressTimer(0, 80);
     if (this.dropzone) {
       this.dropzone.addEventListener('drop', this.onDrop);
       this.dropzone.addEventListener('dragenter', this.onPrevent);

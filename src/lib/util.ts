@@ -53,12 +53,11 @@ export const Config = {
   }
 };
 
-export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100) =>
+export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100, step:number = 1000) =>
   (duration:number = 5, callback: Function) => {
     let stop = false;
-    const step = 1000;
-    let lastTime = duration * 1000;
-    let value = getRandomInt(minValue, (maxValue - minValue) /2 );
+    let residue = duration * 1000;
+    let value = getRandomInt(minValue, (maxValue - minValue) /4 );
     callback && callback(value);
     const caculate = () => {
       if (stop) {
@@ -66,10 +65,10 @@ export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100)
       }
       value = getRandomInt(value, maxValue);
       callback && callback(value);
-      lastTime = lastTime - step;
-      !stop && lastTime > 0 && setTimeout(caculate, 1000);
+      residue = residue - step;
+      !stop && residue > 0 && setTimeout(caculate, step);
     };
-    !stop && setTimeout(caculate, 1000);
+    !stop && setTimeout(caculate, step);
     return {
       stop: () => {
         stop = true }

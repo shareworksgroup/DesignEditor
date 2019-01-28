@@ -1,6 +1,6 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import { guid, findIndex } from '../lib/util';
-import { record  } from '../lib/history';
+import { record } from '../lib/history';
 import { DesignType, OperationMode } from '../lib/enum';
 import { bodyValues, rowValues } from '../lib/values';
 import { IRootStore } from '../schemas/common';

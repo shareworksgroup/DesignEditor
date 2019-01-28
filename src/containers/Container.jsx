@@ -20,7 +20,6 @@ class DesignEditor extends React.Component {
       getData: this.getData,
       setData: this.setData,
     });
-    // this.handler = window.rootStore.DesignState.registerUndoRedo();
   }
 
   componentWillReceiveProps({ mentions }, nextState){
