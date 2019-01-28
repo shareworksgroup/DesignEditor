@@ -85,7 +85,7 @@ class Text extends Extension {
 
   onRef = (editor) => {
     if (editor && this.autoComplete) {
-      this.editor = editor.editor;
+      this.editor = window.editor = editor.editor;
       this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
         if (result.match) {
           this.setState({
@@ -159,7 +159,14 @@ class Text extends Extension {
                 'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent | link unlink'],
               inline: true,
               font_formats: (() => Object.keys(Fonts).map(i => `${i}=${Fonts[i]}`).join(';'))(),
-              fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 20pt 24pt 26pt 28pt 30pt 36pt 40pt 44pt 48pt 60pt 72pt'
+              fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 20pt 24pt 26pt 28pt 30pt 36pt 40pt 44pt 48pt 60pt 72pt',
+              setup: (ed) => {
+                ed.on('keydown', (e) => {
+                  if (e.keyCode === 13) {
+                    this.state.showDynamic && e.preventDefault();
+                  }
+                })
+              }
             }}
             onChange={this.handleEditorChange}
           />

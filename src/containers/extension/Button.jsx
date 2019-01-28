@@ -162,12 +162,6 @@ class Button extends Extension {
       if (!body) {
         return;
       }
-      // body.style.color = color;
-      // body.style.padding = padding;
-      // body.style.textAlign = textAlign;
-      // body.style.borderRadius = borderRadius + 'px';
-      // body.style.lineHeight = lineHeight+'%';
-      // body.style.textAlign = textAlign;
     }
   }
 
@@ -208,6 +202,13 @@ class Button extends Extension {
                 menubar: false,
                 toolbar: ['fontselect fontsizeselect | bold italic underline'],
                 inline: true,
+                setup: (ed) => {
+                  ed.on('keydown', (e) => {
+                    if (e.keyCode === 13) {
+                      e.preventDefault();
+                    }
+                  });
+                }
               }}
               onChange={this.handleEditorChange}
             />

@@ -32,7 +32,12 @@ export const rgba2rgb = (rgba: string): IRGBA => {
   }
 }
 
-export const dynamicList = [ { key: 'test', title: 'test' } ];
+export const dynamicList = [
+  { key: 'keyword one', title: 'keyword one' },
+  { key: 'keyword two', title: 'keyword two' },
+  { key: 'keyword three', title: 'keyword three' },
+  { key: 'keyword four', title: 'keyword four' }
+];
 
 export const Config = {
   imageUploadUrl: 'http://localhost:3001/NewUserFeedback/upload',
