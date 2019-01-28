@@ -10,19 +10,19 @@ class Selector extends React.Component {
   }
   render() {
     const { placeholder = "Row", type = "row", onDelete = () => {}, onCopy = () => {} } = this.props;
-    return <div className="blockbuilder-layer-selector">
-      <div className="blockbuilder-layer-type">{placeholder}</div>
-      <div ref={(dom) => { this.dragDom = dom; }} className={classnames("blockbuilder-layer-drag", type==='row' ? 'blockbuilder-layer-drag-rows' :  'blockbuilder-layer-drag-contents') }>
+    return <div className="ds-layer-selector">
+      <div className="ds-layer-type">{placeholder}</div>
+      <div ref={(dom) => { this.dragDom = dom; }} className={classnames("ds-layer-drag", type==='row' ? 'ds-layer-drag-rows' :  'ds-layer-drag-contents') }>
         <i className="icon icon-move" />
       </div>
-      <div className="blockbuilder-layer-controls blockbuilder-layer-controls-rows">
+      <div className="ds-layer-controls ds-layer-controls-rows">
         <div style={{display:'inline'}}>
-          <a className="blockbuilder-layer-control blockbuilder-delete" onClick={onDelete}>
+          <a className="ds-layer-control ds-delete" onClick={onDelete}>
             <i className="icon icon-trash" />
           </a>
         </div>
         <div style={{display:'inline'}}>
-          <a className="blockbuilder-layer-control" onClick={onCopy}>
+          <a className="ds-layer-control" onClick={onCopy}>
             <i className="icon icon-copy" />
           </a>
         </div>

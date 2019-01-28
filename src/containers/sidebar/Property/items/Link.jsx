@@ -1,10 +1,10 @@
 import React from 'react';
 import { Input } from '../../../../components';
 
-const Link = ({ title, linkType, link, onUpdate = () => { } }) => (<div className="blockbuilder-widget blockbuilder-link-widget">
+const Link = ({ title, linkType, link, onUpdate = () => { } }) => (<div className="ds-widget ds-link-widget">
   <div className="row">
-    <div className="blockbuilder-widget-label col-6">
-      <label className="blockbuilder-label-primary"><span>{title}</span></label>
+    <div className="ds-widget-label col-6">
+      <label className="ds-label-primary"><span>{title}</span></label>
     </div>
     <div className="col-6">
       <select className="form-control form-control-sm" value={linkType} onChange={(e) => { onUpdate('linkType', e.target.value) }}>

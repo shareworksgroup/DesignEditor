@@ -42,7 +42,7 @@ class Column extends React.Component {
     const { connectDropTarget, isOver, column, canDrop, guid, size, rootStore: { DesignState }  } = this.props;
     const style = column.contents.length === 0 ? {position: 'absolute', top:0, left:0, width: '100%'} : {};
     return connectDropTarget(<div className={`col-${size} u_column`} >
-      { column.contents.length === 0 && <div className="blockbuilder-placeholder-empty">
+      { column.contents.length === 0 && <div className="ds-placeholder-empty">
         <span>No content here. Drag content from right.</span>
       </div>}
       {
