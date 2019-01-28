@@ -2,10 +2,9 @@ import { observable, action, toJS, runInAction } from 'mobx';
 import { guid, findIndex } from '../lib/util';
 import { record  } from '../lib/history';
 import { DesignType, OperationMode } from '../lib/enum';
+import { bodyValues, rowValues } from '../lib/values';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
-
-const NoColor = 'rgba(255, 255, 255, 0)';
 
 class DesignState {
 
@@ -26,10 +25,7 @@ class DesignState {
     body: {
       rows: [],
       values: {
-        backgroundColor: "#ffffff",
-        width: 800,
-        fontFamily: 'MicroSoft Yahei',
-        containerPadding: '0px',
+        ...bodyValues,
         _meta: {
           guid: this.guid(),
           type: DesignType.BODY
@@ -114,17 +110,7 @@ class DesignState {
         }
       })),
       values: {
-        backgroundColor: NoColor,
-        columnsBackgroundColor: NoColor,
-        deletable: true,
-        draggable: true,
-        noStackMobile: false,
-        padding: "10px",
-        selectable: true,
-        fullWidth: false,
-        repeat: false,
-        center: true,
-        backgroundImage: '',
+        ...rowValues,
         _meta: {
           guid: this.guid(),
           type: DesignType.ROW,
@@ -149,17 +135,7 @@ class DesignState {
         }
       })),
       values: {
-        backgroundColor: NoColor,
-        columnsBackgroundColor: NoColor,
-        deletable: true,
-        draggable: true,
-        noStackMobile: false,
-        padding: "10px",
-        selectable: true,
-        fullWidth: false,
-        repeat: false,
-        center: true,
-        backgroundImage: '',
+        ...rowValues,
         _meta: {
           guid: this.guid(),
           type: DesignType.ROW,
