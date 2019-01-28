@@ -9,7 +9,7 @@ class UndoRedeo {
 
   constructor() {
     this.history = History.create({
-      maxUndos: 2000
+      maxUndos: 5000
     });
     this.registerUndoRedo();
   }
