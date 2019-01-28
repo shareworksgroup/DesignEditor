@@ -16,9 +16,6 @@ const onPreview = () => {
 ReactDom.render(<div>
   <Container
     imageUploadUrl="http://localhost:3001/NewUserFeedback/upload"
-    mentions={[
-      { key: 'aaa', title: 'aaa' },
-    ]}
     onUpload={ data => data.fileUrl }
     onUploadError={ error => console.log(error.message) }
     onRef={(obj) => { instance = obj; window.instance = obj; }}>
