@@ -5,6 +5,9 @@
   "author": "xj",
   "license": "MIT",
   "devDependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "classnames": "^2.2.6",
     "@tinymce/tinymce-react": "^2.4.0",
     "@types/react": "^16.7.18",
     "@types/axios": "^0.14.0",
@@ -84,7 +87,6 @@
     "react-dnd": "^6.0.0",
     "react-dnd-html5-backend": "^6.0.0",
     "react-switch": "^3.0.4",
-    "react-tiny-fab": "^2.0.0",
     "react-transition-group": "^1.2.1",
     "tinymce": "^4.9.2"
   },
