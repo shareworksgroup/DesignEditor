@@ -9,7 +9,7 @@ class UndoRedeo {
 
   constructor() {
     this.history = History.create({
-      maxUndos: 2000
+      maxUndos: 5000
     });
     this.registerUndoRedo();
   }
@@ -56,7 +56,11 @@ class UndoRedeo {
 
 let undoRedo = new UndoRedeo();
 
-export const record = (delay?: number) => (target: Object, key: string, descripter: any): any => {
+interface RecordResult {
+  value: Function
+}
+
+export const record = (delay?: number): Function => (target: Object, key: string, descripter: any): RecordResult => {
   let recordHistory = null;
   if (delay) {
     recordHistory = debounce(undoRedo.recordHistory.bind(undoRedo), delay, { leading: true, trailing: false });
@@ -73,5 +77,3 @@ export const record = (delay?: number) => (target: Object, key: string, descript
     }
   };
 }
-
-

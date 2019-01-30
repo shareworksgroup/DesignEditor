@@ -15,7 +15,6 @@ class SideBar extends React.Component {
     active: 0
   }
 
-  
   onUpdate = (key, value) => {
     const { rootStore: { DesignState }} = this.props;
     DesignState.updateBodyAttribute(key, value);
