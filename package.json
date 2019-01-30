@@ -5,6 +5,8 @@
   "author": "xj",
   "license": "MIT",
   "devDependencies": {
+    "@tinymce/tinymce-react": "^2.4.0",
+    "@types/react": "^16.7.18",
     "@types/axios": "^0.14.0",
     "@types/jest": "^23.1.1",
     "axios-mock-adapter": "^1.15.0",
@@ -65,10 +67,7 @@
     "font": "node ./build/font/font-generator.js"
   },
   "dependencies": {
-    "@tinymce/tinymce-react": "^2.4.0",
-    "@types/react": "^16.7.18",
     "axios": "^0.18.0",
-    "classnames": "^2.2.6",
     "guid": "0.0.12",
     "immutable": "^3.8.1",
     "immutable-undo": "^2.0.0",
@@ -80,16 +79,19 @@
     "rc-progress": "^2.2.6",
     "rc-slider": "^8.6.4",
     "rc-tooltip": "^3.7.3",
-    "react": "^16.4.1",
     "react-animate-height": "^2.0.7",
     "react-beautiful-dnd": "^10.0.3",
     "react-dnd": "^6.0.0",
     "react-dnd-html5-backend": "^6.0.0",
-    "react-dom": "^16.4.1",
     "react-switch": "^3.0.4",
     "react-tiny-fab": "^2.0.0",
     "react-transition-group": "^1.2.1",
     "tinymce": "^4.9.2"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "classnames": ">=2.0.0"
   },
   "jest": {
     "moduleDirectories": [
