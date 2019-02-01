@@ -121,9 +121,9 @@ class DesignState {
   }
 
   @action
-  insertRow(row: IRowType, guid: string) {
+  insertRow(row: IRowType, guid: string, position = Position.BEFORE) {
     const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
-    this.data.body.rows.splice(index, 0, {
+    this.data.body.rows.splice(position === Position.BEFORE ? index : index + 1, 0, {
       cells: row.cells,
       columns: row.cells.map(i => ({
         contents: [],
@@ -146,14 +146,14 @@ class DesignState {
   }
 
   @action
-  moveRow(row: IRowType, offsetGuid: string) {
+  moveRow(row: IRowType, offsetGuid: string, position = Position.BEFORE) {
     const moveGuid = row.guid;
     const rows = this.data.body.rows;
     const index = findIndex(rows, row => row.values._meta.guid === moveGuid);
     const rowData = rows.splice(index, 1)[0];
     if (offsetGuid) {
       const offsetIndex = findIndex(rows, row => row.values._meta.guid === offsetGuid);
-      rows.splice(offsetIndex, 0, rowData);
+      rows.splice(position === Position.BEFORE ? offsetIndex : offsetIndex + 1, 0, rowData);
     } else {
       rows.push(rowData);
     }

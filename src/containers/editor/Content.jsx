@@ -1,6 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
+import Throttle from 'lodash-decorators/throttle';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
 import rootStore from '../../store/store';
@@ -24,7 +25,6 @@ const target = {
   },
   hover(props, monitor, component){
     const dom = findDOMNode(component);
-    if (dom.className === 'ds_placeholder') return;
     const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
     const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
     const clientOffset = monitor.getClientOffset();
@@ -69,7 +69,8 @@ class Content extends React.Component {
     e.stopPropagation();
   }
 
-  setPosition = (position) => {
+  @Throttle(150)
+  setPosition(position) {
     this.setState({ position });
   }
 

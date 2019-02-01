@@ -1,22 +1,40 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import { inject, observer } from 'mobx-react';
 import { DropTarget, DragSource } from 'react-dnd';
+import Throttle from 'lodash-decorators/throttle';
 import classnames from 'classnames';
 import rootStore from '../../store/store';
 import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
-import { DragType, OperationMode } from '../../lib/enum';
+import { DragType, OperationMode, Position } from '../../lib/enum';
 import * as Util from '../common/DragUtil';
+
+const defaultPosition = Position.BEFORE;
 
 const target = {
   drop(props, monitor, component) {
     const item = monitor.getItem();
     if (item.mode === OperationMode.INSERT) {
-      rootStore.DesignState.execCommand('insertRow', monitor.getItem(), props.guid);
+      rootStore.DesignState.execCommand('insertRow', item, props.guid, item.position);
     } else if (item.mode === OperationMode.MOVE) {
-      rootStore.DesignState.execCommand('moveRow', item, props.guid);
+      rootStore.DesignState.execCommand('moveRow', item, props.guid, item.position);
     }
+  },
+  hover(props, monitor, component){
+    const dom = findDOMNode(component);
+    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+    const clientOffset = monitor.getClientOffset();
+    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+    
+    let position = defaultPosition;
+    if (hoverClientY > hoverMiddleY) {
+      position = Position.AFTER;
+    }
+    monitor.getItem().position = position;
+    component.getDecoratedComponentInstance().wrappedInstance.setPosition(position);
   },
   canDrop(props){
     return true;
@@ -33,7 +51,7 @@ const collect = (connect, monitor) => ({
 @DropTarget([DragType.ROW], target, collect)
 @DragSource(
   DragType.ROW, 
-  Util.getSource({ mode: OperationMode.MOVE }, (props) => ({ guid: props.guid, type: props.subtype })), 
+  Util.getSource({ mode: OperationMode.MOVE, position: Position.BEFORE }, (props) => ({ guid: props.guid, type: props.subtype })), 
   Util.getCollect()
 )
 @inject('rootStore')
@@ -44,6 +62,15 @@ class Row extends React.Component {
     super(props);
     this.guid = props.guid;
     this.subtype = props.subtype;
+  }
+  
+  state = {
+    position: defaultPosition
+  }
+
+  @Throttle(150)
+  setPosition(position) {
+    this.setState({ position });
   }
 
   onSelect = (e) => {
@@ -77,8 +104,8 @@ class Row extends React.Component {
     const wrapperStyle = fullWidth ? bgStyle : {};
     const contentStyle = fullWidth ? {} : bgStyle;
     const total = cells.reduce((i, total) => i+total, 0);
-    return <React.Fragment>
-        { isOver && canDrop && <PlaceHolder /> }
+    return <div>
+        { isOver && canDrop && this.state.position === Position.BEFORE && <PlaceHolder /> }
         {connectDropTarget(<div className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')} onMouseUp={this.onSelect}>
           <Selector
             type="row"
@@ -87,15 +114,16 @@ class Row extends React.Component {
             onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row" style={{
             backgroundColor,
+            padding,
             ...wrapperStyle
           }}>
             <div className="container" style={{
               maxWidth: width,
-              backgroundColor: columnsBackgroundColor,
               ...contentStyle,
-              padding,
               }}>
-              <div className="row" >
+              <div className="row" style={{
+                backgroundColor: columnsBackgroundColor,
+              }}>
                 {
                   cells.map((i, index) => (<Column
                     guid={row.columns[index].values._meta.guid}
@@ -106,7 +134,8 @@ class Row extends React.Component {
             </div>
           </div>
         </div>)}
-    </React.Fragment>;
+        { isOver && canDrop && this.state.position === Position.AFTER && <PlaceHolder /> }
+    </div>;
   }
 }
 
