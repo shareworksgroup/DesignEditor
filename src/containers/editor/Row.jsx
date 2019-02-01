@@ -63,12 +63,12 @@ class Row extends React.Component {
   }
 
   render() {
-    const { connectDropTarget, connectDragSource, isOver, canDrop, cells = [] , guid, rootStore: { DesignState } } = this.props;
+    const { connectDropTarget, connectDragSource, isOver, canDrop, width, cells = [] , guid, rootStore: { DesignState } } = this.props;
     const row = DesignState.getRow(guid);
     if (!row) {
       return null;
     }
-    const { backgroundColor, columnsBackgroundColor, padding, backgroundImage, fullWidth, repeat, center } = row.values;
+    const { backgroundColor, columnsBackgroundColor, padding, backgroundImage, fullWidth, repeat, center  } = row.values;
     const bgStyle = {
       backgroundImage:`url(${backgroundImage})`,
       backgroundRepeat: `${repeat?'repeat':'no-repeat'}`,
@@ -87,15 +87,15 @@ class Row extends React.Component {
             onRef={(dom) => {connectDragSource(dom);}}/>
           <div className="u_row" style={{
             backgroundColor,
-            padding,
             ...wrapperStyle
           }}>
             <div className="container" style={{
-              maxWidth: 600,
+              maxWidth: width,
               backgroundColor: columnsBackgroundColor,
-              ...contentStyle
+              ...contentStyle,
+              padding,
               }}>
-              <div className="row">
+              <div className="row" >
                 {
                   cells.map((i, index) => (<Column
                     guid={row.columns[index].values._meta.guid}

@@ -42,7 +42,6 @@ class Body extends React.Component {
     const { width, backgroundColor, fontFamily, containerPadding } = data.body.values;
     return connectDropTarget(<div className="ds-body design-web" onMouseUp={this.onBodyClick}>
       <div className="u_body" style={{
-        width,
         backgroundColor,
         fontFamily,
         padding: containerPadding
@@ -50,7 +49,7 @@ class Body extends React.Component {
         {
           data.body.rows.map(row => {
             const meta = row.values._meta;
-            return <Row key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+            return <Row width={width} key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
           })
         }
         {(isOver && canDrop) && <PlaceHolder />}
