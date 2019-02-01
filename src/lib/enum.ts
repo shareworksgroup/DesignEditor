@@ -64,3 +64,8 @@ export const Types = {
   Array: 'Array',
   Function: 'Function'
 };
+
+export const Position = {
+  BEFORE: 1,
+  AFTER: 2
+};
