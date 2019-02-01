@@ -54,8 +54,8 @@ class Transform {
     const contentStyle = fullWidth ? '' : bgStyle;
     return {
       prefix: `<div style="box-sizing: border-box;background-color:${backgroundColor};${wrapperStyle}">
-      <div style="box-sizing: border-box;padding:${padding};width:${this.bodyWidth}px;margin:0 auto;${contentStyle}">
-      <table style="width:100%;table-layout: fixed;border-spacing: 0;background-color:${columnsBackgroundColor};">
+      <div style="box-sizing: border-box;padding:${padding};width:${this.bodyWidth}px;margin:0 auto;">
+      <table style="width:100%;table-layout: fixed;border-spacing: 0;background-color:${columnsBackgroundColor};${contentStyle}">
       <tr>`,
       content: '',
       suffix: `</tr></table></div></div>`
