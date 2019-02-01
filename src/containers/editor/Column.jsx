@@ -53,8 +53,7 @@ class Column extends React.Component {
           </Content>;
         })
       }
-      {isOver && canDrop && <PlaceHolder style={style} />}
-      {column.contents.length > 0 && <div style={{height:'20px'}}></div>}
+     {isOver && canDrop && <PlaceHolder style={style} />}
   </div>);
   }
 }

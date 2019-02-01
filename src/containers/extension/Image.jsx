@@ -78,7 +78,7 @@ class Image extends Extension {
       <div style={{
         textAlign,
       }}>
-        {url ? <img alt={alter} src={url} style={{...imgWidthStyle, ...imgHeightStyle}} /> : <p>IMAGE</p>}
+        {url ? <img alt={alter} src={url} style={{ verticalAlign: 'top', ...imgWidthStyle, ...imgHeightStyle}} /> : <p>IMAGE</p>}
       </div>
     </div>
   }

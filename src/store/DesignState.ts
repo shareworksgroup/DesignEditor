@@ -1,7 +1,7 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import { guid, findIndex } from '../lib/util';
 import { record } from '../lib/history';
-import { DesignType, OperationMode } from '../lib/enum';
+import { DesignType, OperationMode, Position } from '../lib/enum';
 import { bodyValues, rowValues } from '../lib/values';
 import { IRootStore } from '../schemas/common';
 import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
@@ -121,9 +121,9 @@ class DesignState {
   }
 
   @action
-  insertRow(row: IRowType, guid: string) {
+  insertRow(row: IRowType, guid: string, position = Position.BEFORE) {
     const index = findIndex(this.data.body.rows, row => row.values._meta.guid === guid);
-    this.data.body.rows.splice(index, 0, {
+    this.data.body.rows.splice(position === Position.BEFORE ? index : index + 1, 0, {
       cells: row.cells,
       columns: row.cells.map(i => ({
         contents: [],
@@ -146,14 +146,14 @@ class DesignState {
   }
 
   @action
-  moveRow(row: IRowType, offsetGuid: string) {
+  moveRow(row: IRowType, offsetGuid: string, position = Position.BEFORE) {
     const moveGuid = row.guid;
     const rows = this.data.body.rows;
     const index = findIndex(rows, row => row.values._meta.guid === moveGuid);
     const rowData = rows.splice(index, 1)[0];
     if (offsetGuid) {
       const offsetIndex = findIndex(rows, row => row.values._meta.guid === offsetGuid);
-      rows.splice(offsetIndex, 0, rowData);
+      rows.splice(position === Position.BEFORE ? offsetIndex : offsetIndex + 1, 0, rowData);
     } else {
       rows.push(rowData);
     }
@@ -179,12 +179,12 @@ class DesignState {
   }
 
   @action
-  insertContent(content: IContentType, offsetGuid: string, columnGuid: string) {
+  insertContent(content: IContentType, offsetGuid: string, columnGuid: string, position = Position.BEFORE) {
     this.data.body.rows.forEach((row, index) => {
       const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
       if (column) {
         const index = findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
-        column.contents.splice(index, 0, {
+        column.contents.splice(position === Position.BEFORE ? index : index+1, 0, {
           values: {
             ...this.attribute[content.type],
             _meta: {
@@ -199,7 +199,7 @@ class DesignState {
   }
 
   @action
-  moveContent(content: IContentType, offsetGuid: string, columnGuid: string) {
+  moveContent(content: IContentType, offsetGuid: string, columnGuid: string, position = Position.BEFORE) {
     // get and remove content from old position
     const contentData = this.getContent(content.guid, OperationMode.REMOVE);
     this.data.body.rows.some((row) => {
@@ -209,7 +209,7 @@ class DesignState {
 
         if (offsetGuid) {
           const offsetIndex = findIndex(contents, content => content.values._meta.guid === offsetGuid);
-          contents.splice(offsetIndex, 0, contentData);
+          contents.splice(position === Position.BEFORE ? offsetIndex : offsetIndex+1, 0, contentData);
         } else {
           contents.push(contentData);
         }
