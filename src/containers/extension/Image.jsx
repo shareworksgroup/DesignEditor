@@ -25,7 +25,7 @@ class Image extends Extension {
     return `<div 
     style="padding:${containerPadding}">
       <div style="text-align:${textAlign}">
-        <a href="${link}" style="text-decoration: none;" target="${linkType}"><img alt="${alter}" src="${url}" style="${[imgWidthStyle, imgHeightStyle].join(';')}" /></a>
+        <a href="${link || 'javascript:void(0)'}" style="text-decoration: none; cursor: ${link ? 'pointer' : 'default' }" target="${linkType}"><img alt="${alter}" src="${url}" style="${[imgWidthStyle, imgHeightStyle].join(';')}" /></a>
       </div>
     </div>`;
   }
