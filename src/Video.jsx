@@ -21,7 +21,7 @@ class Video extends Extension {
     const videoStyle = fullWidth ? ` width: 100% ` : ` max-width: 100% `;
     return `<div style="padding:${containerPadding}">
       <div style="text-align:${textAlign}">
-        <video controls src="${url}" style="${videoStyle}" />
+        <video controls src="${url}" style="${videoStyle};vertical-align: top;" />
       </div>
     </div>`;
   }
@@ -63,7 +63,7 @@ class Video extends Extension {
       <div style={{
         textAlign
       }}>
-        {url ? <video controls src={url} style={videoStyle} /> : <p><i className="icon icon-play-button"></i></p>}
+        {url ? <video controls src={url} style={{...videoStyle, verticalAlign: 'top'}} /> : <p><i className="icon icon-play-button"></i></p>}
       </div>
     </div>;
   }
