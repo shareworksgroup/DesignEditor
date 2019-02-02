@@ -1,4 +1,5 @@
 import React from 'react';
+import { findDOMNode } from 'react-dom';
 import PlaceHolder from '../common/PlaceHolder';
 import { inject, observer } from 'mobx-react';
 import { ErrorBoundary } from '../../components';
@@ -53,7 +54,7 @@ class Column extends React.Component {
           </Content>;
         })
       }
-     {isOver && canDrop && <PlaceHolder style={style} />}
+     {isOver && canDrop &&  <PlaceHolder style={style} />}
   </div>);
   }
 }
