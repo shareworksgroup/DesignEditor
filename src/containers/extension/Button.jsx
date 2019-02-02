@@ -202,6 +202,7 @@ class Button extends Extension {
                 menubar: false,
                 toolbar: ['fontselect fontsizeselect | bold italic underline'],
                 inline: true,
+                fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
                 setup: (ed) => {
                   ed.on('keydown', (e) => {
                     if (e.keyCode === 13) {
