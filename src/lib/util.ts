@@ -1,6 +1,6 @@
 import Guid from 'guid';
 import { IRGBA } from '../schemas/common';
-import { Types, ContentType } from './enum';
+import { Types, ContentType, Position } from './enum';
 
 export const guid = (): string => Guid.create().value;
 
@@ -122,4 +122,19 @@ export const findIndex = window['findIndex'] = (array, callback) => {
     return false;
   });
   return index;
+};
+
+export const defaultPosition = Position.BEFORE;
+
+export const getPositionByMiddleOffset = (dom, mousePosition) => {
+  const hoverBoundingRect = dom.getBoundingClientRect();
+  const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+  const clientOffset = mousePosition;
+  const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+  
+  let position = defaultPosition;
+  if (hoverClientY > hoverMiddleY) {
+    position = Position.AFTER;
+  }
+  return position;
 };
