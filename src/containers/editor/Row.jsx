@@ -9,9 +9,10 @@ import Column from './Column';
 import PlaceHolder from '../common/PlaceHolder';
 import Selector from '../common/Selector';
 import { DragType, OperationMode, Position } from '../../lib/enum';
+import { getPositionByMiddleOffset, defaultPosition } from '../../lib/util';
 import * as Util from '../common/DragUtil';
 
-const defaultPosition = Position.BEFORE;
+
 
 const target = {
   drop(props, monitor, component) {
@@ -19,24 +20,20 @@ const target = {
     if (item.mode === OperationMode.INSERT) {
       rootStore.DesignState.execCommand('insertRow', item, props.guid, item.position);
     } else if (item.mode === OperationMode.MOVE) {
-      rootStore.DesignState.execCommand('moveRow', item, props.guid, item.position);
+      item.guid !== props.guid && rootStore.DesignState.execCommand('moveRow', item, props.guid, item.position);
     }
   },
   hover(props, monitor, component){
     const dom = findDOMNode(component);
-    const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
-    const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-    const clientOffset = monitor.getClientOffset();
-    const hoverClientY = clientOffset.y - hoverBoundingRect.top;
-    
-    let position = defaultPosition;
-    if (hoverClientY > hoverMiddleY) {
-      position = Position.AFTER;
-    }
+    const position = getPositionByMiddleOffset(dom, monitor.getClientOffset());
     monitor.getItem().position = position;
     component.getDecoratedComponentInstance().wrappedInstance.setPosition(position);
   },
-  canDrop(props){
+  canDrop(props, monitor, component){
+    const item = monitor.getItem();
+    if (props.guid === item.guid) {
+      return false;
+    }
     return true;
   }
 };
