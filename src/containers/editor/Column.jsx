@@ -49,6 +49,10 @@ class Column extends React.Component {
       {
         column.contents.map(i => {
           const Extension = DesignState.getExtension(i.values._meta.subtype);
+          if (!Extension) {
+            console.warn(`can not parse type: ${i.values._meta.subtype}`);
+            return <div key={i.values._meta.guid}>parse {i.values._meta.subtype} failed</div>;
+          }
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
             <ErrorBoundary><Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/></ErrorBoundary>
           </Content>;

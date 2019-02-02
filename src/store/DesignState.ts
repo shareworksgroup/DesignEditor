@@ -89,8 +89,10 @@ class DesignState {
       row.columns.forEach((column) => {
         column.contents.forEach(content => {
           const Extension = this.getExtension(content.values._meta.subtype);
-          const initAttributes = new Extension().getInitialAttribute();
-          content.values = { ...initAttributes, ...content.values };
+          if (Extension) {
+            const initAttributes = new Extension().getInitialAttribute();
+            content.values = { ...initAttributes, ...content.values };
+          }
         });
       });
     });
