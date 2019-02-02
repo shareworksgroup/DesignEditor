@@ -37,8 +37,8 @@ class Number extends React.Component {
   }
 
   render() {
-    const { value, step, min, max, className, onChange = () => {}, formatter = _formatter, parser = _parser } = this.props;
-    return <div className={className}>
+    const { value, step, min, max, className, style= {}, onChange = () => {}, formatter = _formatter, parser = _parser } = this.props;
+    return <div className={className} style={style}>
       <div className="ds-counter-control">
         <a onClick={this.onMinus} className="ds-counter-control-btn">-</a>
         <input className="ds-counter-control-value" value={formatter(value)} onChange={this.onChange} />
