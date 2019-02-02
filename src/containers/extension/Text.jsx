@@ -159,7 +159,7 @@ class Text extends Extension {
                 'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent | link unlink'],
               inline: true,
               font_formats: (() => Object.keys(Fonts).map(i => `${i}=${Fonts[i]}`).join(';'))(),
-              fontsize_formats: '8pt 10pt 12pt 14pt 16pt 18pt 20pt 24pt 26pt 28pt 30pt 36pt 40pt 44pt 48pt 60pt 72pt',
+              fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
               setup: (ed) => {
                 ed.on('keydown', (e) => {
                   if (e.keyCode === 13) {
