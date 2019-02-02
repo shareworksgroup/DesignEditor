@@ -60,8 +60,8 @@ class Button extends Extension {
           background-color:${hoverBackgroundColor} !important;
         }
       </style>
-      <a target="${linkType}" href="${link}" id="button_${_meta.guid}"
-        style="display:inline-block;text-decoration: none;cursor:pointer;color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
+      <a target="${linkType}" href="${link || 'javascript:void(0)'}" id="button_${_meta.guid}"
+        style="display:inline-block;text-decoration: none;cursor: ${link ? 'pointer' : 'default' };color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
       </div>
     </div>`;
   }
