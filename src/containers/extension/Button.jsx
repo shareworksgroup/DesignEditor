@@ -1,14 +1,4 @@
 import React from 'react';
-import tinymce from 'tinymce/tinymce';
-import 'tinymce/themes/modern/theme';
-
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/autolink';
-import 'tinymce/plugins/textcolor';
-import 'tinymce/plugins/lists';
-import 'tinymce/plugins/contextmenu';
-
-import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import { Config } from '../../lib/util';
@@ -115,11 +105,29 @@ class Button extends Extension {
     </React.Fragment>
   }
 
+  
+  initEditor = () => {
+    tinymce.init({
+      target: this.dom,
+      menubar: false,
+      toolbar: ['fontselect fontsizeselect | bold italic underline'],
+      inline: true,
+      setup: (ed) => {
+        this.editor = ed;
+        this.onRef(ed);
+        ed.on('keydown', (e) => {
+          if (e.keyCode === 13) {
+            e.preventDefault();
+          }
+        });
+      }
+    });
+  }
+
 
   onRef = (editor) => {
     if (editor && this.autoComplete) {
-      this.editor = editor.editor;
-      this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
+      this.autoComplete.on(editor, /^.*#([^#]*)$/, (result) => {
         if (result.match) {
           this.setState({
             showDynamic: true,
@@ -139,7 +147,7 @@ class Button extends Extension {
     let content = value.target.getContent({ format: 'raw' });
     var regex = /(<([^>]+)>)/ig;
     const pureContent = content.replace(regex, "");
-    onUpdate('text', pureContent ? content : this.getInitialAttribute().text);
+    onUpdate('text', pureContent ? content : "");
   }
 
   insertDynamic = (value) => {
@@ -153,18 +161,17 @@ class Button extends Extension {
   }
 
   //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-  componentWillReceiveProps({ color, focus, padding, backgroundColor, textAlign, lineHeight, borderRadius }) {
-    if (this.editor) {
-      if (!focus) {
-        this.autoComplete.off();
-      }
-      const body = this.editor.getBody();
-      if (!body) {
-        return;
-      }
+  componentWillReceiveProps({ textAlign, lineHeight, color, focus, _meta }) {
+
+    if (!focus) {
+      this.autoComplete.off();
+      this.editor && this.handleEditorChange({ target: this.editor });
+      this.editor && this.editor.remove(this.dom);
+      this.editor = null;
+    } else {
+      !this.editor && this.initEditor();
     }
   }
-
 
   componentWillUnmount() {
     super.componentWillUnmount();
@@ -173,11 +180,11 @@ class Button extends Extension {
     }
   }
 
-
   render() {
     const { focus, text, color, padding, backgroundColor, containerPadding,
       hoverColor, textAlign, lineHeight, borderRadius,
       lineStyle, lineWidth, lineColor } = this.props;
+      console.log(text);
     return <div className="ds_content_button">
       <div style={{
         textAlign: textAlign,
@@ -193,28 +200,7 @@ class Button extends Extension {
             border: `${lineWidth}px ${lineStyle} ${lineColor}`
           }}
         >
-          {focus ?
-            <Editor
-              tagName="p"
-              ref={this.onRef}
-              initialValue={text}
-              init={{
-                menubar: false,
-                toolbar: ['fontselect fontsizeselect | bold italic underline'],
-                inline: true,
-                fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
-                setup: (ed) => {
-                  ed.on('keydown', (e) => {
-                    if (e.keyCode === 13) {
-                      e.preventDefault();
-                    }
-                  });
-                }
-              }}
-              onChange={this.handleEditorChange}
-            />
-            : <p dangerouslySetInnerHTML={{ __html: text }}></p>
-          }
+          <p ref={(dom) => {this.dom = dom;}} dangerouslySetInnerHTML={{ __html: text }}></p>
         </a>
       </div>
       <AutoCompletePanel

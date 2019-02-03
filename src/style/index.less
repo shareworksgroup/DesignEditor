@@ -471,6 +471,10 @@ body{
           * {
               display: inline;
           }
+          >p {
+            display: inline-block;
+            min-width: 5px;
+          }
         }
       }
       .ds_content_divider {
@@ -483,10 +487,8 @@ body{
         }
       }
       .ds_content_html{
-        padding: 10px;
       }
       .ds_content_image{
-        padding: 10px;
         &>div>p{
           background: #CCCCCC;
           color:#969696;
@@ -497,12 +499,14 @@ body{
         }
       }
       .ds_content_text{
-        padding: 10px;
         color:#6D6D6D;
         font-size: 16px;
+        p{
+          margin-block-start: 1em;
+          margin-block-end: 1em;
+        }
       }
       .ds_content_video{
-        padding: 10px;
         &>div>p{
           background: #CCCCCC;
           color:#969696;

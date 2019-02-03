@@ -1,14 +1,5 @@
 import React from 'react';
-import tinymce from 'tinymce/tinymce';
-import 'tinymce/themes/modern/theme';
 
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/autolink';
-import 'tinymce/plugins/textcolor';
-import 'tinymce/plugins/lists';
-import 'tinymce/plugins/colorpicker';
-
-import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
 import { ContentType, Fonts } from '../../lib/enum';
 import { Config } from '../../lib/util';
@@ -16,6 +7,7 @@ import AutoComplete from '../../lib/autocomplete';
 import Group from '../sidebar/Property/Group';
 import { AutoCompletePanel } from '../../components';
 import { Align, LineHeight, BorderRadius, Color, Space } from '../sidebar/Property/items';
+import './lib/tinymce.min.js';
 
 
 class Text extends Extension {
@@ -32,7 +24,7 @@ class Text extends Extension {
   }
 
   getContentType() {
-    return ContentType.TEXT;
+    return ContentType.TEXT
   }
 
   getLabel() {
@@ -41,6 +33,7 @@ class Text extends Extension {
 
   toHtml(data) {
     const { text, textAlign, lineHeight, containerPadding, color } = data;
+ 
     return `<div>
       <div style="text-align:${textAlign};color:${color};line-height:${lineHeight}%;padding:${containerPadding}">
         <p>${text}</p>
@@ -51,7 +44,7 @@ class Text extends Extension {
   getInitialAttribute() {
     return {
       color: '#000',
-      text: 'Hello World',
+      text: '<p>Hello World</p>',
       textAlign: 'center',
       lineHeight: 120,
       padding: '5px 10px 10px 10px',
@@ -81,12 +74,39 @@ class Text extends Extension {
 
   componentDidMount() {
     this.autoComplete = new AutoComplete();
+    
+  }
+
+  initEditor = () => {
+    tinymce.init({
+      target: this.dom,
+      menubar: false,
+      plugins: [
+        'link',
+        'textcolor',
+        'colorpicker',
+        'lists',
+        'autolink'],
+      toolbar: ['undo redo | bold italic underline | fontselect fontsizeselect',
+        'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent | link unlink'],
+      inline: true,
+      font_formats: (() => Object.keys(Fonts).map(i => `${i}=${Fonts[i]}`).join(';'))(),
+      fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
+      setup: (ed) => {
+        this.editor = ed;
+        this.onRef(ed);
+        ed.on('keydown', (e) => {
+          if (e.keyCode === 13) {
+            this.state.showDynamic && e.preventDefault();
+          }
+        })
+      },
+    });
   }
 
   onRef = (editor) => {
     if (editor && this.autoComplete) {
-      this.editor = window.editor = editor.editor;
-      this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
+      this.autoComplete.on(editor, /^.*#([^#]*)$/, (result) => {
         if (result.match) {
           this.setState({
             showDynamic: true,
@@ -111,20 +131,16 @@ class Text extends Extension {
     }
   }
 
-  componentWillReceiveProps({ textAlign, lineHeight, color, focus }) {
-    if (this.editor) {
-      if (!focus) {
-        this.autoComplete.off();
-      }
-      const body = this.editor.getBody();
-      if (!body) {
-        return;
-      }
-      body.style.color = color;
-      body.style.lineHeight = lineHeight + '%';
-      body.style.textAlign = textAlign;
-    }
+  componentWillReceiveProps({ textAlign, lineHeight, color, focus, _meta }) {
 
+    if (!focus) {
+      this.autoComplete.off();
+      this.editor && this.handleEditorChange({ target: this.editor });
+      this.editor && this.editor.remove(this.dom);
+      this.editor = null;
+    } else {
+      !this.editor && this.initEditor();
+    }
   }
 
   componentWillUnmount(){
@@ -135,42 +151,15 @@ class Text extends Extension {
   }
 
   render() {
-    const { focus = false, text, textAlign, lineHeight, containerPadding, color } = this.props;
+    const { focus = false, text, textAlign, lineHeight, containerPadding, color, _meta } = this.props;
     return <div className="ds_content_text">
-      <div style={{
+      <div id={`id_${_meta.guid}`} style={{
         textAlign,
         color,
         lineHeight: lineHeight + '%',
         padding: containerPadding,
       }}>
-        {focus ?
-          <Editor
-            ref={this.onRef}
-            initialValue={text}
-            init={{
-              menubar: false,
-              plugins: [
-                'link',
-                'textcolor',
-                'colorpicker',
-                'lists',
-                'autolink'],
-              toolbar: ['undo redo | bold italic underline | fontselect fontsizeselect',
-                'forecolor backcolor | alignleft aligncenter alignright alignfull | numlist bullist outdent indent | link unlink'],
-              inline: true,
-              font_formats: (() => Object.keys(Fonts).map(i => `${i}=${Fonts[i]}`).join(';'))(),
-              fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
-              setup: (ed) => {
-                ed.on('keydown', (e) => {
-                  if (e.keyCode === 13) {
-                    this.state.showDynamic && e.preventDefault();
-                  }
-                })
-              }
-            }}
-            onChange={this.handleEditorChange}
-          />
-          : <p dangerouslySetInnerHTML={{ __html: text }}></p>}
+        <div ref={(dom) => {this.dom = dom;}} dangerouslySetInnerHTML={{ __html: text }}></div>
       </div>
       <AutoCompletePanel
         data={this.state.data}
