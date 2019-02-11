@@ -83551,6 +83551,8 @@ var _components = __webpack_require__(/*! ../../components */ "./components/inde
 
 var _items = __webpack_require__(/*! ../sidebar/Property/items */ "./containers/sidebar/Property/items/index.js");
 
+__webpack_require__(/*! ./lib/tinymce.min.js */ "./containers/extension/lib/tinymce.min.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Button = function (_Extension) {
@@ -83604,9 +83606,6 @@ var Button = function (_Extension) {
             _this.setState({ showDynamic: false, query: '' });
           }
         });
-        editor.on('change keyup setcontent', function () {
-          _this.handleEditorChange({ target: editor });
-        });
       }
     }, _this.handleEditorChange = function (value) {
       var onUpdate = _this.props.onUpdate;
@@ -83614,7 +83613,7 @@ var Button = function (_Extension) {
       var content = value.target.getContent({ format: 'raw' });
       var regex = /(<([^>]+)>)/ig;
       var pureContent = content.replace(regex, "");
-      onUpdate('text', pureContent ? content : pureContent);
+      onUpdate('text', pureContent ? content : "");
     }, _this.insertDynamic = function (value) {
       if (_this.editor) {
         Array(_this.state.query.length + 1).fill().forEach(function (i) {
@@ -83763,7 +83762,7 @@ var Button = function (_Extension) {
 
       if (!focus) {
         this.autoComplete.off();
-        //this.editor && this.handleEditorChange({ target: this.editor });
+        this.editor && this.handleEditorChange({ target: this.editor });
         this.editor && this.editor.remove(this.dom);
         this.editor = null;
       } else {

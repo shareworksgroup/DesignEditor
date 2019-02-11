@@ -57,6 +57,14 @@ class Content extends React.Component {
     position: defaultPosition
   }
 
+  componentDidMount(){
+    this._isMounted = true;
+  }
+
+  componentWillUnmount(){
+    this._isMounted = false;
+  }
+
   onSelect = (e) => {
     const { guid, rootStore: { DesignState } } = this.props;
     DesignState.setSelected(guid);
@@ -65,7 +73,7 @@ class Content extends React.Component {
 
   @Throttle(150)
   setPosition(position) {
-    this.setState({ position });
+    this._isMounted && this.setState({ position });
   }
 
   onDelete = () => {
