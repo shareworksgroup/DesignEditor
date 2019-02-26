@@ -7,6 +7,7 @@ export default [
   RowFactor(RowType.DOUBLE, [1, 1]),
   RowFactor(RowType.THREE, [1, 1, 1]),
   RowFactor(RowType.FOUR, [1, 1, 1, 1]),
+  RowFactor(RowType.FIVE, [1, 1, 1, 1, 1]),
   RowFactor(RowType.ONETWO, [1, 2]),
   RowFactor(RowType.TWOONE, [2, 1]),
   RowFactor(RowType.ONETWOONETWO, [1, 2, 1, 2]),

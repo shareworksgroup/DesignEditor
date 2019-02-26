@@ -1,6 +1,5 @@
 import React from 'react';
 import { inject, observer } from 'mobx-react';
-import Items from './sidebar/ContentItems';
 import ContentFactory from './sidebar/ContentItems/ContentFactory';
 
 

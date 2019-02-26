@@ -73,6 +73,7 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
+      //new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
         hash: true,
         inject: true,
