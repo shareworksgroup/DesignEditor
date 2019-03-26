@@ -14,7 +14,7 @@ function RowFactory(rowType, segmentations = [1]) {
       return connectDragSource(<li>
         {
           segmentations.map((i, index) =>
-            (<div key={index} className={`ds-row-column col-${12 * i / total}`}>
+            (<div key={index} className={`ds-row-column col-${(12 * i / total).toString().replace('.','')}`}>
               <div className="ds-row-content"></div>
             </div>))
         }

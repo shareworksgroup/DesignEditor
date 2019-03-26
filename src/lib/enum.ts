@@ -19,6 +19,7 @@ export enum RowType {
   DOUBLE = 'double',
   THREE = 'three',
   FOUR = 'four',
+  FIVE = 'five',
   ONETWO = 'onetwo',
   TWOONE = 'twoone',
   ONETWOONETWO = 'onetwoonetwo',

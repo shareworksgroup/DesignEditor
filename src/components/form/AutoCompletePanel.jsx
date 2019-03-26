@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './index.less';
+import Util from '../utils/util';
 
 const fn = () => {};
 
@@ -48,9 +49,15 @@ class AutoCompletePanel extends React.Component {
     }
   }
 
-  onBodyClick = () => {
+  onBodyClick = (e) => {
     const { onClose = fn } = this.props;
-    setTimeout(onClose, 10);
+    if (!Util.isParent(e.target, this.dom)) {
+      try{
+        onClose();
+      }catch(e){
+        console.log(e)
+      }
+    }
   }
 
   onItemClick = (item) => {
@@ -58,9 +65,17 @@ class AutoCompletePanel extends React.Component {
     onClick(item);
   }
 
+  onRef = (dom) => {
+    this.dom = dom;
+  }
+
   render(){
     const { data = [], show = false, position = { x: 0, y: 0 }, onClick } = this.props;
-    return show && data.length > 0 && <div className="dynamic" style={{ left: position.x + 20, top: position.y + 20 }}>
+    return show && data.length > 0 && <div
+      className="dynamic"
+      style={{ left: position.x + 20, top: position.y + 20 }}
+      ref={this.onRef}
+      >
       <ul onMouseLeave={() => {this.setState({ index: -1 })}}>
         {data.map((i, index) => (<li
           onMouseEnter={(e) => {this.setState({ index })}}

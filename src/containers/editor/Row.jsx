@@ -125,7 +125,7 @@ class Row extends React.Component {
                   cells.map((i, index) => (<Column
                     guid={row.columns[index].values._meta.guid}
                     key={row.columns[index].values._meta.guid}
-                    column={row.columns[index]} size={12*i/total} />))
+                    column={row.columns[index]} size={(12*i/total).toString().replace('.', '')} />))
                 }
               </div>
             </div>

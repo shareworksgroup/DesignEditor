@@ -36,4 +36,7 @@
 .col-12 {
   flex: 0 0 100%;
   max-width: 100%; }
-
+.col-24 {
+  flex: 0 0 20%;
+  max-width: 20%;
+}

@@ -1,31 +1,12 @@
 import React from 'react';
-import tinymce from 'tinymce/tinymce';
-import 'tinymce/themes/modern/theme';
-
-import 'tinymce/plugins/link';
-import 'tinymce/plugins/autolink';
-import 'tinymce/plugins/textcolor';
-import 'tinymce/plugins/lists';
-import 'tinymce/plugins/contextmenu';
-
-import { Editor } from '@tinymce/tinymce-react';
 import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
-import { Config } from '../../lib/util';
-import AutoComplete from '../../lib/autocomplete';
 import Group from '../sidebar/Property/Group';
-import { AutoCompletePanel } from '../../components';
-import { Link, Colors, Align, LineHeight, BorderRadius, Color, Space, Line } from '../sidebar/Property/items';
+import { TinyMce } from '../../components';
+import { Link, Colors, Align, LineHeight, BorderRadius, Space, Line } from '../sidebar/Property/items';
 
 
 class Button extends Extension {
-
-  state = {
-    showDynamic: false,
-    query: '',
-    data: [],
-    position: { x: 0, y: 0 },
-  }
 
   getIconClass() {
     return 'icon icon-button';
@@ -37,10 +18,6 @@ class Button extends Extension {
 
   getLabel() {
     return 'Button';
-  }
-
-  componentDidMount() {
-    this.autoComplete = new AutoComplete();
   }
 
   toHtml(data) {
@@ -115,69 +92,10 @@ class Button extends Extension {
     </React.Fragment>
   }
 
-
-  onRef = (editor) => {
-    if (editor && this.autoComplete) {
-      this.editor = editor.editor;
-      this.autoComplete.on(editor.editor, /^.*#([^#]*)$/, (result) => {
-        if (result.match) {
-          this.setState({
-            showDynamic: true,
-            position: result.position,
-            query: result.query,
-            data: Config.get('mentions').filter(item => item.key.indexOf(result.query) !== -1)
-          });
-        } else {
-          this.setState({ showDynamic: false, query: '' });
-        }
-      });
-    }
-  }
-
-  handleEditorChange = (value) => {
-    const { onUpdate } = this.props;
-    let content = value.target.getContent({ format: 'raw' });
-    var regex = /(<([^>]+)>)/ig;
-    const pureContent = content.replace(regex, "");
-    onUpdate('text', pureContent ? content : this.getInitialAttribute().text);
-  }
-
-  insertDynamic = (value) => {
-    if (this.editor) {
-      Array(this.state.query.length + 1).fill().forEach(i => {
-        this.editor.execCommand('delete');
-      });
-      this.editor.insertContent('[[' + value.key + ']]', { merge: true });
-      this.setState({ showDynamic: false, query: '' });
-    }
-  }
-
-  //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-  componentWillReceiveProps({ color, focus, padding, backgroundColor, textAlign, lineHeight, borderRadius }) {
-    if (this.editor) {
-      if (!focus) {
-        this.autoComplete.off();
-      }
-      const body = this.editor.getBody();
-      if (!body) {
-        return;
-      }
-    }
-  }
-
-
-  componentWillUnmount() {
-    super.componentWillUnmount();
-    if (this.autoComplete) {
-      this.autoComplete.off();
-    }
-  }
-
-
   render() {
     const { focus, text, color, padding, backgroundColor, containerPadding,
-      hoverColor, textAlign, lineHeight, borderRadius,
-      lineStyle, lineWidth, lineColor } = this.props;
+      textAlign, lineHeight, borderRadius,
+      lineStyle, lineWidth, lineColor, onUpdate } = this.props;
     return <div className="ds_content_button">
       <div style={{
         textAlign: textAlign,
@@ -193,37 +111,11 @@ class Button extends Extension {
             border: `${lineWidth}px ${lineStyle} ${lineColor}`
           }}
         >
-          {focus ?
-            <Editor
-              tagName="p"
-              ref={this.onRef}
-              initialValue={text}
-              init={{
-                menubar: false,
-                toolbar: ['fontselect fontsizeselect | bold italic underline'],
-                inline: true,
-                fontsize_formats: '8px 10px 12px 14px 16px 18px 20px 24px 26px 28px 30px 36px 40px 44px 48px 60px 72px',
-                setup: (ed) => {
-                  ed.on('keydown', (e) => {
-                    if (e.keyCode === 13) {
-                      e.preventDefault();
-                    }
-                  });
-                }
-              }}
-              onChange={this.handleEditorChange}
-            />
-            : <p dangerouslySetInnerHTML={{ __html: text }}></p>
-          }
+          <TinyMce value={text} focus={focus} onChange={onUpdate}>
+            <p />
+          </TinyMce>
         </a>
       </div>
-      <AutoCompletePanel
-        data={this.state.data}
-        show={this.state.showDynamic}
-        position={this.state.position}
-        onClick={(item) => { this.insertDynamic(item); }}
-        onClose={() => { this.setState({ showDynamic: false, query: '' }) }}
-      />
     </div>;
   }
 }

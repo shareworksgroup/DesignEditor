@@ -40,7 +40,7 @@ module.exports = (env, options) => {
       rules: [
         {
           test: /(\.js)|(\.jsx)$/,
-          exclude: /node_modules/,
+          exclude: [/node_modules/, /tinymce.min.js/],
           loader: 'babel-loader',
           resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
           options: {
@@ -73,6 +73,7 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
+      //new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
         hash: true,
         inject: true,

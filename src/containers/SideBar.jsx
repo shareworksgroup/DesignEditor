@@ -29,8 +29,8 @@ class SideBar extends React.Component {
     const body = DesignState.data.body.values;
     return <div className="ds_sidebar">
       <Tabs onClick={this.onTabClick}>
-        <Tabs.Tab tab="Content" icon="icon icon-block"><Content /></Tabs.Tab>
-        <Tabs.Tab tab="Row" icon="icon icon-menu"><Row /></Tabs.Tab>
+        <Tabs.Tab tab="Content" icon="icon icon-text"><Content /></Tabs.Tab>
+        <Tabs.Tab tab="Row" icon="icon icon-layout"><Row /></Tabs.Tab>
         <Tabs.Tab tab="Body" icon="icon icon-body">
           <div className="property-panel body-property-panel">
             <BodyProperty {...body} onUpdate={this.onUpdate}/>

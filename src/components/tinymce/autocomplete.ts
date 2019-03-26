@@ -44,9 +44,14 @@ export default class AutoComplete {
   }
 
   public off () {
-    if (!this.editor)
-      return;
-		this.editor.off('Input');
+    if (!this.editor){
+			return;
+		}
+		try{
+			this.editor.off('Input');
+		}catch(e) {
+			
+		}
 		this.editor = null;
 		this.matchReg = null;
 		this.callback = null;

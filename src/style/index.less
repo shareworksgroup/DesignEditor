@@ -48,15 +48,14 @@ body{
       background-color: #D6D9DC;
       border-bottom: 1px solid #dee2e6;
       .nav-item {
-        min-width: 33.3%;
-        max-width: 33.3%;
+        width:33.33%;
         margin-bottom: -1px;
         background-color: #D6D9DC;
         cursor: default;
         .nav-link {
           border: 0px;
           border-radius: 0px;
-          padding: 15px 25px;
+          padding: 15px 20px;
           font-size: 12px;
           font-weight: bold;
           text-transform: uppercase;
@@ -471,6 +470,10 @@ body{
           * {
               display: inline;
           }
+          >p {
+            display: inline-block;
+            min-width: 5px;
+          }
         }
       }
       .ds_content_divider {
@@ -483,10 +486,8 @@ body{
         }
       }
       .ds_content_html{
-        padding: 10px;
       }
       .ds_content_image{
-        padding: 10px;
         &>div>p{
           background: #CCCCCC;
           color:#969696;
@@ -497,12 +498,14 @@ body{
         }
       }
       .ds_content_text{
-        padding: 10px;
         color:#6D6D6D;
         font-size: 16px;
+        p{
+          margin-block-start: 1em;
+          margin-block-end: 1em;
+        }
       }
       .ds_content_video{
-        padding: 10px;
         &>div>p{
           background: #CCCCCC;
           color:#969696;
