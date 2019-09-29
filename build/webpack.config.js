@@ -6,7 +6,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = (env, options) => {
   const entry = {
-    index: options.mode === 'development' ? './index.jsx' : './index.js'
+    index: options.mode === 'development' ? './index.tsx' : './entry.ts'
   };
   const output = options.mode === 'development' ? {
     filename: '[name].js'
@@ -39,16 +39,6 @@ module.exports = (env, options) => {
     module: {
       rules: [
         {
-          test: /(\.js)|(\.jsx)$/,
-          exclude: [/node_modules/, /tinymce.min.js/],
-          loader: 'babel-loader',
-          resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
-          options: {
-            presets: ['react', 'es2015', 'stage-0', "mobx"],
-            plugins: ['transform-runtime']
-          }
-        },
-        {
           test: /\.tsx?$/,
           exclude: /node_modules/,
           resolve: { extensions: [".ts", ".tsx", ".js", ".jsx"] },
@@ -73,7 +63,7 @@ module.exports = (env, options) => {
       ]
     },
     plugins: [
-      //new BundleAnalyzerPlugin(),
+      new BundleAnalyzerPlugin(),
       new HtmlWebpackPlugin({
         hash: true,
         inject: true,
@@ -81,6 +71,9 @@ module.exports = (env, options) => {
         template: 'index.html',
         filename: 'index.html'
       })
-    ]
+    ],
+    externals: [{
+      "tinymce": "tinymce"
+    }]
   };
 };

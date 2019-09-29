@@ -71,7 +71,8 @@ export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100,
     !stop && setTimeout(caculate, step);
     return {
       stop: () => {
-        stop = true }
+        stop = true;
+      }
     };
 };
 
