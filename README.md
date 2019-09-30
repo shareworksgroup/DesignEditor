@@ -18,12 +18,24 @@
  
   1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
   执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装；
-  2. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
-  3. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了；
-  4. mentions动态字段提示功能支持Button与Text组件，通过输入#触发，输入之后替换成[[keyword]]，支持键盘上、下、回车操作；
-  5. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
+  1. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
+  1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以在自己项目配置`externals`外部依赖。
+  1. 以下几个模块也改为`peerDependencies`依赖
+  ```javascript
+  "react": ">=16.0.0",`
+  "react-dom": ">=16.0.0",
+  "classnames": ">=2.0.0",
+  "tinymce": ">=4.9.2",
+  "immutable": ">=3.8.1",
+  "immutable-undo": ">=2.0.0",
+  "mobx": ">=4.6.0",
+  "mobx-react": ">=5.3.6"`
+  ```
+  1. mentions动态字段提示功能支持Button与Text组件，通过输入#触发，输入之后替换成[[keyword]]，支持键盘上、下、回车操作；
+  1. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
     使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
-  6. 支持撤销重做( Ctrl+Z Ctrl+Y )
+  1. 支持撤销重做( Ctrl+Z Ctrl+Y )
+  1. 全面支持`TypeScript`，提供了d.ts接口声明
 
   ### 属性
 |   属性名        |     功能    |
