@@ -3,7 +3,7 @@ import { DragType, OperationMode } from '../../../lib/enum';
 import { DragSource, ConnectDragSource } from 'react-dnd';
 import * as Util from '../../common/DragUtil';
 
-function ContentFactory(contentType, label, iconClass) {
+function ContentFactory(contentType: string, label: string, iconClass: string): any {
   
   @(DragSource as any)(DragType.CONTENT, Util.getSource({ mode: OperationMode.INSERT, type: contentType }), Util.getCollect())
   class ContentElement extends React.Component<IContentElementProps> {
@@ -13,13 +13,12 @@ function ContentFactory(contentType, label, iconClass) {
       return connectDragSource(<li key={key}><i className={iconClass} /><p>{label}</p></li>);
     }
   }
-
-  interface IContentElementProps {
-    connectDragSource?: ConnectDragSource;
-    key?: string;
-  }
-
   return ContentElement;
+}
+
+interface IContentElementProps {
+  connectDragSource?: ConnectDragSource;
+  key?: string;
 }
 
 export default ContentFactory;

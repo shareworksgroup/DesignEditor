@@ -69,7 +69,6 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
   }
 
   render(){
-    const { } = this.props;
     return <Provider rootStore={rootStore}>
         <Wrapper />
     </Provider>;

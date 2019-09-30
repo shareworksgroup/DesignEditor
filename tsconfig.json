@@ -2,10 +2,10 @@
 
   "compilerOptions": {
     "module": "esnext",
-    "outDir": "./dist",
+    "outDir": "./lib",
     "sourceMap": true,
     "noImplicitAny": false,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "removeComments": false,
