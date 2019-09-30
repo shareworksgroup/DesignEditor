@@ -12,6 +12,7 @@ export enum ContentType {
   IMAGE = 'image',
   TEXT = 'text',
   SOCIAL = 'social',
+  UNKNOWN = 'unknown',
 };
 
 export enum RowType {
