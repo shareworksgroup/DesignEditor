@@ -17,9 +17,9 @@
   ## 使用说明
  
   1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
-  执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装；
-  1. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
-  1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以在自己项目配置`externals`外部依赖。
+  执行`npm run build`可构建输出，项目引用方式可以通过`npm link`软连接的方式进行安装；
+  1. 由于使用了`iconfont`，需要拷贝`node_modules/design-editor/dist/sources`到自己项目的Server目录下；
+  1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以自己配置`externals`外部依赖。如果是本地配置`tinymce`，需要自己布署其资源文件，从`node_modules/design-editor/dist/skins`拷贝即可；使用cdn的话则可以直接在页面引入，不需要关心资源文件。
   1. 以下几个模块也改为`peerDependencies`依赖
   ```javascript
   "react": ">=16.0.0",`
@@ -35,7 +35,8 @@
   1. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
     使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
   1. 支持撤销重做( Ctrl+Z Ctrl+Y )
-  1. 全面支持`TypeScript`，提供了d.ts接口声明
+  1. 20190930，优化打包体积
+  1. 20190930，全面支持`TypeScript`，提供了d.ts接口声明
 
   ### 属性
 |   属性名        |     功能    |
