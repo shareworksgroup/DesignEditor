@@ -673,41 +673,42 @@ body{
       text-align: right;
     }
   }
-  .social-item-card{
-    margin-bottom: 8px;
+  
+}
+.social-item-card{
+  margin-bottom: 8px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 15px 10px 10px;
+  .social-delete-button{
+    float: right;
+    color: #8e8e8e;
+    text-decoration: none;
+    font-size: 20px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-    padding: 15px 10px 10px;
-    .social-delete-button{
-      float: right;
-      color: #8e8e8e;
-      text-decoration: none;
-      font-size: 20px;
-      position: relative;
-      top: -1px;
-      right: 10px;
-      &:hover {
-        color: #565555;
-      }
-    }
-    .drag-handler {
-      font-size: 20px;
-      line-height: 0px;
-      margin: 0 8px 0px 2px;
-      position: relative;
-      top: -3px;
-      color: #bababa;
+    top: -1px;
+    right: 10px;
+    &:hover {
+      color: #565555;
     }
   }
+  .drag-handler {
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 0px;
+    margin: 0 8px 0px 2px;
+    position: relative;
+    top: -3px;
+    color: #bababa;
+  }
 }
-
 /*======================= design icon font button ==========================*/
 
 i.icon-button {

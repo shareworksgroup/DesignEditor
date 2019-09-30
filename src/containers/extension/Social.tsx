@@ -32,27 +32,27 @@ class Social extends Extension<ISocialProps> {
       items: [
         {
           guid: guid(),
-          icon: 'http://smsonedev.marketplacesupport.com:81/demo/IceMountain/Sources/images/generic-icon1.png',
+          icon: 'https://mktgcdn.dlvrit.com/wp-content/uploads/2017/09/social-_facebook-small-opt.png',
           url: 'https://www.facebook.com/InvitationHomesWeb'
         },
         {
           guid: guid(),
-          icon: 'http://smsonedev.marketplacesupport.com:81/demo/IceMountain/Sources/images/generic-icon2.png',
+          icon: 'https://img.icons8.com/color/2x/youtube-play.png',
           url: 'https://www.youtube.com/user/InvitationHomes'
         },
         {
           guid: guid(),
-          icon: 'http://smsonedev.marketplacesupport.com:81/demo/IceMountain/Sources/images/generic-icon3.png',
-          url: 'http://visitor.r20.constantcontact.com/manage/optin?v=001N4nuM40E6xHVcQ2fafr_r9hmuhX6yBC-0uSICWSKzNXEfuQsVKDg4MLSWoiboKI097kcU8OBWryVeTx_2sle1F1n6-bsYZKO1A1FLpjjrY4%3D'
+          icon: 'https://mktgcdn.dlvrit.com/wp-content/uploads/2017/09/social-_linkedin-small-opt.png',
+          url: 'https://www.linkedin.com'
         },
         {
           guid: guid(),
-          icon: 'http://smsonedev.marketplacesupport.com:81/demo/IceMountain/Sources/images/generic-icon4.png',
+          icon: 'https://img.icons8.com/color/2x/google-plus.png',
           url: 'https://plus.google.com/+Invitationhomes/posts'
         },
         {
           guid: guid(),
-          icon: 'http://smsonedev.marketplacesupport.com:81/demo/IceMountain/Sources/images/generic-icon5.png',
+          icon: 'https://mktgcdn.dlvrit.com/wp-content/uploads/2017/09/social-_twitter-small-opt.png',
           url: 'https://twitter.com/InvitationHomes'
         }
       ],

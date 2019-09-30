@@ -1,11 +1,9 @@
 import React from 'react';
-import classnames from 'classnames';
 import ColorPicker from 'rc-color-picker';
-import ColorPickerStyle from 'rc-color-picker/assets/index.css';
+import 'rc-color-picker/assets/index.css';
 import './index.less';
 import Number from './Number';
 import { rgb2rgba, rgba2rgb } from '../../lib/util';
-import { IRGBA } from '../../schemas/common';
 
 export default ({ lineWidth, lineStyle, lineColor, onUpdate }: ILineProps) => {
   const rgba = rgba2rgb(lineColor);

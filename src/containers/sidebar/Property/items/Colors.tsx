@@ -1,6 +1,6 @@
 import React from 'react';
 import ColorPicker from 'rc-color-picker';
-import ColorPickerStyle from 'rc-color-picker/assets/index.css';
+import 'rc-color-picker/assets/index.css';
 import { rgb2rgba, rgba2rgb } from '../../../../lib/util';
 
 const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor, hoverBackgroundColor }, onUpdate = () => { } }: IColorsProps) => {

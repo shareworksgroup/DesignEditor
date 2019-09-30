@@ -1,8 +1,7 @@
 import React from 'react';
 import { Input, Button } from '../../../../components';
 import { guid, reOrder } from '../../../../lib/util';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
+import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: 'none',
@@ -58,6 +57,19 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
     onUpdate('items', newItems);
   }
 
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    const { items, onUpdate = () => { } } = this.props;
+    if (typeof newIndex === 'undefined') {
+      return;
+    }
+    const newItems = reOrder(
+      items,
+      oldIndex,
+      newIndex
+    );
+    onUpdate('items', newItems);
+  };
+
   render() {
     const { items } = this.props;
     return (<div className="ds-widget ds-link-widget social-panel">
@@ -74,51 +86,48 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
         </div>
       </div>
       <div className="row" style={{ marginTop: 10 }}>
-
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable droppableId="droppable">
-            {(provided, snapshot) => (
-              <div className="col-12"
-                ref={provided.innerRef}
-              >
-                {
-                  items.map((item, index) => (
-                    <Draggable key={item.guid} draggableId={item.guid} index={index}>
-
-                      {(provided, snapshot) => (
-                        <div className="social-item-card" key={item.guid} ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}
-                        >
-                          <div>
-                            <i className="drag-handler icon icon-drag-handler"
-                              {...provided.dragHandleProps}
-                            />
-                            <img style={{ width: 24 }} src={item.icon} />
-                            <a href="javascript:void(0)" className="social-delete-button" onClick={() => { this.deleteItem(item.guid); }} ><i className="icon icon-trash" /></a>
-                          </div>
-                          <div className="col-12" style={{ fontFamily: 'Courier New' }}>
-                            <Input addOn="ICON" onChange={(e) => { this.modifyItem(item.guid, e.target.value, item.url); }} value={item.icon} />
-                            <div style={{ height: 5 }} />
-                            <Input addOn="LINK" onChange={(e) => { this.modifyItem(item.guid, item.icon, e.target.value); }} value={item.url} />
-                          </div>
-                        </div>
-                      )}
-                    </Draggable>
-                  ))
-                }
-              </div>
-            )}
-          </Droppable>
-        </DragDropContext>
+        <SortContainer onSortEnd={this.onSortEnd} useDragHandle>
+          {items.map((value, index) => (
+            <SortItem
+              value={value}
+              key={value.guid}
+              index={index}
+              onModifyItem={(icon: string, url: string) => this.modifyItem(value.guid, icon, url)}
+              onDeleteItem={() => this.deleteItem(value.guid)}
+            />
+          ))}
+        </SortContainer>
       </div>
     </div>);
   }
 }
 
+
+const SortContainer = SortableContainer(({ children }) => {
+  return <div className="col-12">{children}</div>;
+});
+const SortItem = SortableElement((props: ISortItemProps) => {
+  const { value, onModifyItem, onDeleteItem } = props;
+  return <div key={value.guid}><div className="social-item-card" >
+    <div>
+      <DragHandle />
+      <img style={{ width: 24 }} src={value.icon} />
+      <a href="javascript:void(0)" className="social-delete-button" onClick={() => { onDeleteItem(); }} ><i className="icon icon-trash" /></a>
+    </div>
+    <div className="col-12" style={{ fontFamily: 'Courier New' }}>
+      <Input addOn="ICON" onChange={(e) => { onModifyItem(e.target.value, value.url) }} value={value.icon} />
+      <div style={{ height: 5 }} />
+      <Input addOn="LINK" onChange={(e) => { onModifyItem(value.icon, e.target.value) }} value={value.url} />
+    </div>
+  </div></div>
+});
+const DragHandle = SortableHandle(() => <i className="drag-handler icon icon-drag-handler"/>);
+
+interface ISortItemProps {
+  value: ISocialItem;
+  onModifyItem: (icon: string, url: string) => void;
+  onDeleteItem: () => void;
+}
 interface ISocialItemProps {
   items?: ISocialItem[];
   onUpdate?: onUpdate;
