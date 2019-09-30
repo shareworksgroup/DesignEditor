@@ -3,7 +3,7 @@ import { DragType, OperationMode } from '../../../lib/enum';
 import { DragSource, ConnectDragSource } from 'react-dnd';
 import * as Util from '../../common/DragUtil';
 
-function RowFactory(rowType, segmentations = [1]) {
+function RowFactory(rowType, segmentations = [1]): any {
 
   @(DragSource as any)(DragType.ROW, Util.getSource({ mode: OperationMode.INSERT, type: rowType, cells: segmentations }), Util.getCollect())
   class RowElement extends React.Component<IRowElementProps> {

@@ -1,4 +1,0 @@
-{
-  "presets": ["env", "es2015-loose", "react", "stage-0", "mobx"],
-  "plugins": ["transform-runtime"]
-}
