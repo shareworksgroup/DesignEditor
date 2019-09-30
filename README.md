@@ -1,8 +1,8 @@
-# Design Editor
-## 主要目的是用React实现一个邮件模板编辑器
- 想法（或者说需求）来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板，它是替换普通所见即所得编辑器的完美解决方案，适合于内容编辑，但不适用于创建HTML结构，其功能太过复杂，需要进行定制的内容太多，所以使用体验不是很好（过于复杂且专业）。
+# ![icon](https://design-editor-93157.firebaseapp.com/favicon.png) Design Editor 
+## 邮件模板编辑器(React)
+ 想法（或者说需求）来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板，适合于内容编辑，但是其功能太过复杂（文档简陋），需要进行定制的内容太多，所以使用体验不是很好（过于复杂且专业）。
  
- 基于此，我萌生出用React实现一个邮件模板编辑器的想法，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
+ 基于此需求，我用React实现了一个邮件模板编辑器，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
  
  该项目完成后，能应用于多个有此需求场景的公司项目中。
 
@@ -11,28 +11,43 @@
   [2]: https://unlayer.com/
   [3]: https://design-editor-93157.firebaseapp.com/index.html
   
-  [DEMO][3]
+  **[DEMO][3]**
 
 
   ## 使用说明
  
   1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
   执行`npm run build`可构建输出，项目引用方式可以通过其它项目运行`npm install 此项目路径` 进行安装；
-  2. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
-  3. 由于使用了tinymce导致包体积比较庞大，一般设计器都如此，避免不了；
-  4. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
+  1. 由于使用了iconfont与tinymce，需要拷贝dist/skins与dist/sources两个目录到其它项目的Root目录下；
+  1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以在自己项目配置`externals`外部依赖。
+  1. 以下几个模块也改为`peerDependencies`依赖
+  ```javascript
+  "react": ">=16.0.0",`
+  "react-dom": ">=16.0.0",
+  "classnames": ">=2.0.0",
+  "tinymce": ">=4.9.2",
+  "immutable": ">=3.8.1",
+  "immutable-undo": ">=2.0.0",
+  "mobx": ">=4.6.0",
+  "mobx-react": ">=5.3.6"`
+  ```
+  1. mentions动态字段提示功能支持Button与Text组件，通过输入#触发，输入之后替换成[[keyword]]，支持键盘上、下、回车操作；
+  1. 图片上传需要自己提供后端服务，此项目提供了一个代理程序可以试用，
     使用`cd mocks`然后`node proxy [username] [password]`即可代理smsone系统dev环境的上传接口。
+  1. 支持撤销重做( Ctrl+Z Ctrl+Y )
+  1. 全面支持`TypeScript`，提供了d.ts接口声明
 
   ### 属性
 |   属性名        |     功能    |
 |   --------   |    -----:    |
 |   imageUploadUrl     |     提供图片上传地址  |
 |   mentions     |     提供动态字段提示列表 [{key,title}] （填充key值）  |
+|   contents     |     默认值为['button','divider','html','image','text','social']，可以通过此参数定制需要的内置默认组件  |
 
   ### 回调方法
 |   方法名        |     功能    |   参数    |   返回值    |
 |   --------   |    -----:    |   -----   |   -----     |
-|   ref     |     用于获取编辑器instance  |     编辑器instance    |   无    |
+|   onRef     |     用于获取编辑器instance  |     编辑器instance    |   无    |
 |   onUpload     |     图片上传完成处理数据格式  |    服务端返回的数据    |   实际图片地址    |
 |   onUploadError     |     捕获图片上传失败异常信息  |   error: { message: string, errorStack: string }  |   无  |
 
@@ -134,7 +149,7 @@ export default Video;
   ]}
   onUpload={data => data.fileUrl}
   onUploadError={error => console.log('5555', error.message)}
-  ref={(obj) => { instance = obj; window.instance = obj; }}>
+  onRef={(obj) => { instance = obj; window.instance = obj; }}>
   <Video />
 </DesignEditor>
 
@@ -152,13 +167,15 @@ export default Video;
 |   getProperties     |     提供属性编辑器片段  |    (values: Object 属性对象, update:(key, value) => {}  更新方法)    |   ReactNode    |
 |   render     |     提供渲染片段  |    props: { ...所有扩展的属性, focus: boolean 编辑区域中是否选中当前扩展 }    |   ReactNode    |
 
+ **如果觉得默认组件内置的toHtml片段满足不了需求或是需要更多属性编辑，可以在继承自原有组件的基础上加入自己个性化的东西**
+
   ### 属性编辑组件列表
   内置一些属性编辑组件如下：
 
 |   组件        |     功能    |   使用示例    |
 |   --------   |    -----    |   ------    |
 |   Link     |     配置链接  |    ```<Link link={link} linkType={linkType} title="Button Link" onUpdate={update} />```    |
-|   Colors     |     配置三项颜色，color+backgroundColor+hoverColor（可选）  |   ```<Colors title="Colors" colors={{ color, backgroundColor, hoverColor }} onUpdate={update} />```    |
+|   Colors     |     配置四项颜色，color+backgroundColor+hoverColor+hoverBackgroundColor（可选）  |   ```<Colors title="Colors" colors={{ color, backgroundColor, hoverColor, hoverBackgroundColor }} onUpdate={update} />```    |
 |   Align     |     对齐  |   ```<Align align={textAlign} onUpdate={update} />```     |
 |   LineHeight     |     行高  |   ```<LineHeight lineHeight={lineHeight} onUpdate={update} />```     |
 |   BorderRadius     |     圆角  |    ```<BorderRadius borderRadius={borderRadius} onUpdate={update} />```    |

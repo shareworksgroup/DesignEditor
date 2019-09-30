@@ -37,10 +37,10 @@
  */
 @font-face {
   font-family: "icons";
-  src: url("./fonts/icons.eot?772fcef2fb6f15ee64cb629c4141a49b?#iefix") format("embedded-opentype"),
-url("./fonts/icons.woff?772fcef2fb6f15ee64cb629c4141a49b") format("woff"),
-url("./fonts/icons.ttf?772fcef2fb6f15ee64cb629c4141a49b") format("truetype"),
-url("./fonts/icons.svg?772fcef2fb6f15ee64cb629c4141a49b#icons") format("svg");
+  src: url("./fonts/icons.eot?56c156137ae3591ca8252639f3f9600e?#iefix") format("embedded-opentype"),
+url("./fonts/icons.woff?56c156137ae3591ca8252639f3f9600e") format("woff"),
+url("./fonts/icons.ttf?56c156137ae3591ca8252639f3f9600e") format("truetype"),
+url("./fonts/icons.svg?56c156137ae3591ca8252639f3f9600e#icons") format("svg");
 }
 
 i.icon {
@@ -87,59 +87,68 @@ i.icon {
 .icon-down:before {
   content: "\f109";
 }
-.icon-email:before {
+.icon-drag-handler:before {
   content: "\f10a";
 }
-.icon-facebook:before {
+.icon-email:before {
   content: "\f10b";
 }
-.icon-google-plus:before {
+.icon-export:before {
   content: "\f10c";
 }
-.icon-html:before {
+.icon-facebook:before {
   content: "\f10d";
 }
-.icon-image:before {
+.icon-google-plus:before {
   content: "\f10e";
 }
-.icon-linkedin:before {
+.icon-html:before {
   content: "\f10f";
 }
-.icon-menu:before {
+.icon-image:before {
   content: "\f110";
 }
-.icon-move:before {
+.icon-import:before {
   content: "\f111";
 }
-.icon-play-button:before {
+.icon-linkedin:before {
   content: "\f112";
 }
-.icon-plus:before {
+.icon-menu:before {
   content: "\f113";
 }
-.icon-preview:before {
+.icon-move:before {
   content: "\f114";
 }
-.icon-text:before {
+.icon-play-button:before {
   content: "\f115";
 }
-.icon-trash:before {
+.icon-plus:before {
   content: "\f116";
 }
-.icon-twitter:before {
+.icon-preview:before {
   content: "\f117";
 }
-.icon-up:before {
+.icon-text:before {
   content: "\f118";
 }
-.icon-video:before {
+.icon-trash:before {
   content: "\f119";
 }
-.icon-youtube1:before {
+.icon-twitter:before {
   content: "\f11a";
 }
-.icon-youtube2:before {
+.icon-up:before {
   content: "\f11b";
+}
+.icon-video:before {
+  content: "\f11c";
+}
+.icon-youtube1:before {
+  content: "\f11d";
+}
+.icon-youtube2:before {
+  content: "\f11e";
 }
 
 	</style>
@@ -202,9 +211,21 @@ i.icon {
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
+			<i class="icon icon-drag-handler"></i>
+		</span>
+		<span>drag-handler</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
 			<i class="icon icon-email"></i>
 		</span>
 		<span>email</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-export"></i>
+		</span>
+		<span>export</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">
@@ -229,6 +250,12 @@ i.icon {
 			<i class="icon icon-image"></i>
 		</span>
 		<span>image</span>
+	</div>
+	<div class="preview">
+		<span class="preview__icon">
+			<i class="icon icon-import"></i>
+		</span>
+		<span>import</span>
 	</div>
 	<div class="preview">
 		<span class="preview__icon">

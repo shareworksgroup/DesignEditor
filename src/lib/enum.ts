@@ -12,6 +12,7 @@ export enum ContentType {
   IMAGE = 'image',
   TEXT = 'text',
   SOCIAL = 'social',
+  UNKNOWN = 'unknown',
 };
 
 export enum RowType {
@@ -19,6 +20,7 @@ export enum RowType {
   DOUBLE = 'double',
   THREE = 'three',
   FOUR = 'four',
+  FIVE = 'five',
   ONETWO = 'onetwo',
   TWOONE = 'twoone',
   ONETWOONETWO = 'onetwoonetwo',
@@ -63,4 +65,9 @@ export const Types = {
   Object: 'Object',
   Array: 'Array',
   Function: 'Function'
+};
+
+export const Position = {
+  BEFORE: 1,
+  AFTER: 2
 };

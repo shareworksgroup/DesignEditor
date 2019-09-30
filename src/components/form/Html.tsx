@@ -1,27 +1,24 @@
 import * as React from 'react';
-import {UnControlled as CodeMirror} from 'react-codemirror2';
-import 'codemirror/mode/xml/xml';
-import 'codemirror/lib/codemirror.css';
-import 'codemirror/theme/material.css';
+import Editor from './html/react-simple-code-editor';
+import { highlight, languages } from './html/prism';
+import './html/prism.css';
 
-class Html extends React.Component<{value:string, onChange:(value:string)=>{}, style: Object}, {}> {
-  constructor(props) {
-    super(props);
-  }
-  render(){
-    const { value, onChange = (value:string) => {}, style = {} } = this.props;
-    return <div style={style}><CodeMirror
+export default ({ value, onChange, style = {} }: IHtmlProps) => (
+  <div style={{ ...style, ...{ minHeight: 50 } }}>
+    <Editor
       value={value}
-      autoCursor={false}
-      options={{
-        mode: 'xml',
-        lineNumbers: true
+      onValueChange={value => onChange(value)}
+      highlight={code => { var a = highlight(code, languages.html); console.log(code, a); return a }}
+      padding={10}
+      style={{
+        fontFamily: '"Fira code", "Fira Mono", monospace',
+        fontSize: 12,
       }}
-      onChange={(editor, data, value) => {
-        onChange(value);
-      }}
-    /></div>;
-  }
-}
+    />
+  </div>);
 
-export default Html;
+interface IHtmlProps {
+  value?: string;
+  onChange?: (value: string) => void;
+  style?: IKeyValueMap;
+}

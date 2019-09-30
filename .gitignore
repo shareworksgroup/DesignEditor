@@ -31,7 +31,7 @@ Thumbs.db
 
 # 目标文件
 
-/dist/index.js
+
 /dist/index.html
 # vendor.min.js 的配置文件
 manifest.json

@@ -1,6 +1,6 @@
 import Guid from 'guid';
 import { IRGBA } from '../schemas/common';
-import { Types } from './enum';
+import { Types, ContentType, Position } from './enum';
 
 export const guid = (): string => Guid.create().value;
 
@@ -32,11 +32,17 @@ export const rgba2rgb = (rgba: string): IRGBA => {
   }
 }
 
-export const dynamicList = [ { key: 'test', title: 'test' } ];
+export const dynamicList = [
+  { key: 'keyword one', title: 'keyword one' },
+  { key: 'keyword two', title: 'keyword two' },
+  { key: 'keyword three', title: 'keyword three' },
+  { key: 'keyword four', title: 'keyword four' }
+];
 
 export const Config = {
   imageUploadUrl: 'http://localhost:3001/NewUserFeedback/upload',
   mentions: dynamicList,
+  contents: [ContentType.BUTTON, ContentType.DIVIDER, ContentType.HTML, ContentType.IMAGE, ContentType.SOCIAL, ContentType.TEXT],
   onUpload: data => data.fileUrl,
   onUploadError: () => {},
   set: (key, value) => {
@@ -47,12 +53,11 @@ export const Config = {
   }
 };
 
-export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100) =>
+export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100, step:number = 1000) =>
   (duration:number = 5, callback: Function) => {
     let stop = false;
-    const step = 1000;
-    let lastTime = duration * 1000;
-    let value = getRandomInt(minValue, (maxValue - minValue) /2 );
+    let residue = duration * 1000;
+    let value = getRandomInt(minValue, (maxValue - minValue) /4 );
     callback && callback(value);
     const caculate = () => {
       if (stop) {
@@ -60,13 +65,14 @@ export const generateIncressTimer = (minValue:number = 0, maxValue:number = 100)
       }
       value = getRandomInt(value, maxValue);
       callback && callback(value);
-      lastTime = lastTime - step;
-      !stop && lastTime > 0 && setTimeout(caculate, 1000);
+      residue = residue - step;
+      !stop && residue > 0 && setTimeout(caculate, step);
     };
-    !stop && setTimeout(caculate, 1000);
+    !stop && setTimeout(caculate, step);
     return {
       stop: () => {
-        stop = true }
+        stop = true;
+      }
     };
 };
 
@@ -105,4 +111,31 @@ export const reOrder = (list, startIndex, endIndex) => {
   const [removed] = result.splice(startIndex, 1);
   result.splice(endIndex, 0, removed);
   return result;
+};
+
+export const findIndex = window['findIndex'] = (array, callback) => {
+  let index = -1;
+  array.some((item, i) => {
+    if (callback(item)){
+      index = i;
+      return true;
+    }
+    return false;
+  });
+  return index;
+};
+
+export const defaultPosition = Position.BEFORE;
+
+export const getPositionByMiddleOffset = (dom, mousePosition) => {
+  const hoverBoundingRect = dom.getBoundingClientRect();
+  const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+  const clientOffset = mousePosition;
+  const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+  
+  let position = defaultPosition;
+  if (hoverClientY > hoverMiddleY) {
+    position = Position.AFTER;
+  }
+  return position;
 };
