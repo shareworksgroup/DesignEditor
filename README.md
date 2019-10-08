@@ -16,8 +16,8 @@
 
   ## 使用说明
  
-  1. 目前暂时不打算支持npm，clone到本地`npm install`之后执行`npm run start`可预览功能；
-  执行`npm run build`可构建输出，项目引用方式可以通过`npm link`软连接的方式进行安装；
+  1. 目前暂时不打算发布到npm仓库；clone到本地`npm install`之后执行`npm run start`可预览功能；
+  执行`npm run build`可构建输出，项目引用方式可以通过`npm link`软连接的方式进行安装，也可以发布到自己的私有npm；
   1. 由于使用了`iconfont`，需要拷贝`node_modules/design-editor/dist/sources`到自己项目的Server目录下；
   1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以自己配置`externals`外部依赖。如果是本地配置`tinymce`，需要自己布署其资源文件，从`node_modules/design-editor/dist/skins`拷贝即可；使用cdn的话则可以直接在页面引入，不需要关心资源文件。
   1. 以下几个模块也改为`peerDependencies`依赖
