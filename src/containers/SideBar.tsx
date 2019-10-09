@@ -28,7 +28,7 @@ class SideBar extends React.Component<ISideBarProps> {
     return <div className="ds_sidebar">
       <Tabs onClick={this.onTabClick}>
         <Tabs.Tab tab="Content" icon="icon icon-text"><Content /></Tabs.Tab>
-        <Tabs.Tab tab="Row" icon="icon icon-layout"><Row /></Tabs.Tab>
+        <Tabs.Tab tab="Row" icon="icon icon-drag-handler"><Row /></Tabs.Tab>
         <Tabs.Tab tab="Body" icon="icon icon-body">
           <div className="property-panel body-property-panel">
             <BodyProperty {...body} onUpdate={this.onUpdate}/>
