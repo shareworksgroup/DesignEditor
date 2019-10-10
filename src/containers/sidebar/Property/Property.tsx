@@ -51,6 +51,7 @@ class Property extends React.Component<IPropertyProps> {
       title = `Content / ${meta.subtype}`;
       extension = DesignState.getExtension(meta.subtype);
     }
+    /* eslint-disable */
     return <div className="ds-options-panel">
       <div className="ds-options-header">
         <div className="row">
@@ -58,10 +59,10 @@ class Property extends React.Component<IPropertyProps> {
             <span>{title}</span>
           </div>
           <div className="col-5 text-right">
-            <div className="options-item" onClick={() => { this.onDelete(propertyId, meta.type) }} data-tooltipped="" aria-describedby="tippy-tooltip-149" data-original-title="Delete" >
+            <div className="options-item" onClick={() => { this.onDelete(propertyId, meta.type); }} data-tooltipped="" aria-describedby="tippy-tooltip-149" data-original-title="Delete" >
               <a className="icon-delete icon"><i className="icon icon-trash" /></a>
             </div>
-            <div className="options-item" onClick={() => { this.onCopy(propertyId, meta.type) }} data-tooltipped="" aria-describedby="tippy-tooltip-150" data-original-title="Duplicate">
+            <div className="options-item" onClick={() => { this.onCopy(propertyId, meta.type); }} data-tooltipped="" aria-describedby="tippy-tooltip-150" data-original-title="Duplicate">
               <a className="icon-duplicate icon"><i className="icon icon-copy" /></a>
             </div>
             <a onClick={this.onClose} className="icon-close icon"><i className="icon icon-down" /></a>
@@ -72,6 +73,7 @@ class Property extends React.Component<IPropertyProps> {
         {extension ? new extension().getProperties(data.values, this.onUpdate) : <RowProperty {...data.values} onUpdate={this.onUpdate} />}
       </div>
     </div>;
+    /* eslint-enable */
   }
 }
 

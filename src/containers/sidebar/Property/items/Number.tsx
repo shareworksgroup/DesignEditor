@@ -8,7 +8,7 @@ const NumberItem = ({ title, value, step = 50, max = 1000, min = 0, attribute, o
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
       <div className="col-6 text-right">
-        <Number max={max} min={min} step={step} value={value} onChange={(val) => { onUpdate(attribute, val) }} />
+        <Number max={max} min={min} step={step} value={value} onChange={val => { onUpdate(attribute, val); }} />
       </div>
     </div>
   </div>);

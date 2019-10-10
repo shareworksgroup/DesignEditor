@@ -37,12 +37,12 @@ class Html extends Extension<IHtmlProps> {
     const { html, containerPadding } = values;
     return <React.Fragment>
       <Group title="LINE">
-        <HtmlEditor style={{ margin: '-20px' }} value={html} onChange={(value) => { update('html', value) }} />
+        <HtmlEditor style={{ margin: '-20px' }} value={html} onChange={value => { update('html', value); }} />
       </Group>
       <Group title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
   render() {
@@ -53,7 +53,7 @@ class Html extends Extension<IHtmlProps> {
       }}>
         <div dangerouslySetInnerHTML={{ __html: html }}></div>
       </div>
-    </div>
+    </div>;
   }
 }
 

@@ -11,7 +11,7 @@ import { IColumn } from 'src/schemas/transform';
 const target = {
   drop(props: IColumnProps, monitor: DropTargetMonitor) {
     const item = monitor.getItem();
-    if (item.mode === OperationMode.INSERT ) {
+    if (item.mode === OperationMode.INSERT) {
       rootStore.DesignState.execCommand('addContent', item, props.column.values._meta);
     } else {
       rootStore.DesignState.execCommand('moveContent', item, null, props.guid);
@@ -34,15 +34,15 @@ const collect = (connect, monitor) => ({
 class Column extends React.Component<IColumnProps> {
 
   onUpdate = (guid, key, value) => {
-    const { rootStore: { DesignState }} = this.props;
+    const { rootStore: { DesignState } } = this.props;
     DesignState.updateAttribute(guid, key, value);
   }
 
   render() {
-    const { connectDropTarget, isOver, column, canDrop, guid, size, rootStore: { DesignState }  } = this.props;
-    const style = column.contents.length === 0 ? {position: 'absolute', top:0, left:0, width: '100%'} : {};
+    const { connectDropTarget, isOver, column, canDrop, guid, size, rootStore: { DesignState } } = this.props;
+    const style = column.contents.length === 0 ? { position: 'absolute', top: 0, left: 0, width: '100%' } : {};
     return connectDropTarget(<div className={`col-${size} u_column`} >
-      { column.contents.length === 0 && <div className="ds-placeholder-empty">
+      {column.contents.length === 0 && <div className="ds-placeholder-empty">
         <span>No content here. Drag content from right.</span>
       </div>}
       {
@@ -53,12 +53,18 @@ class Column extends React.Component<IColumnProps> {
             return <div key={i.values._meta.guid}>parse {i.values._meta.subtype} failed</div>;
           }
           return <Content key={i.values._meta.guid} columnGuid={guid} guid={i.values._meta.guid} type={Extension.type} {...i.values}>
-            <ErrorBoundary><Extension {...i.values} focus={DesignState.selected === i.values._meta.guid} onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}/></ErrorBoundary>
+            <ErrorBoundary>
+              <Extension
+                {...i.values}
+                focus={DesignState.selected === i.values._meta.guid}
+                onUpdate={(key, value) => this.onUpdate(i.values._meta.guid, key, value)}
+              />
+            </ErrorBoundary>
           </Content>;
         })
       }
-     {isOver && canDrop &&  <PlaceHolder style={style} />}
-  </div>);
+      {isOver && canDrop && <PlaceHolder style={style} />}
+    </div>);
   }
 }
 

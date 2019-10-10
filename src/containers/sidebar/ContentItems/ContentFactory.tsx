@@ -4,7 +4,6 @@ import { DragSource, ConnectDragSource } from 'react-dnd';
 import * as Util from '../../common/DragUtil';
 
 function ContentFactory(contentType: string, label: string, iconClass: string): any {
-  
   @(DragSource as any)(DragType.CONTENT, Util.getSource({ mode: OperationMode.INSERT, type: contentType }), Util.getCollect())
   class ContentElement extends React.Component<IContentElementProps> {
     static type = contentType;

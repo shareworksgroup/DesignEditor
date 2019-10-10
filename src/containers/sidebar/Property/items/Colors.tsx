@@ -17,23 +17,47 @@ const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor
     <div className="row" style={{ marginTop: 10 }}>
       {color && <div className="col-6">
         <div className="ds-widget-label"><label><span>Text Color</span></label></div>
-        <div className="ds-color-picker"><ColorPicker color={colorRgba.rgb} alpha={colorRgba.alpha} onChange={(e) => { onUpdate('color', rgb2rgba(e.color, e.alpha)) }} /></div>
+        <div className="ds-color-picker">
+          <ColorPicker
+            color={colorRgba.rgb}
+            alpha={colorRgba.alpha}
+            onChange={e => { onUpdate('color', rgb2rgba(e.color, e.alpha)); }}
+          />
+        </div>
       </div>}
       {backgroundColor && <div className="col-6">
         <div className="ds-widget-label"><label><span>Background Color</span></label></div>
-        <div className="ds-color-picker"><ColorPicker color={backgroundColorRgba.rgb} alpha={backgroundColorRgba.alpha} onChange={(e) => { onUpdate('backgroundColor', rgb2rgba(e.color, e.alpha)) }} /></div>
+        <div className="ds-color-picker">
+          <ColorPicker
+            color={backgroundColorRgba.rgb}
+            alpha={backgroundColorRgba.alpha}
+            onChange={e => { onUpdate('backgroundColor', rgb2rgba(e.color, e.alpha)); }}
+          />
+        </div>
       </div>}
       {hoverColor && <div className="col-6">
         <div className="ds-widget-label"><label><span>Hover Color</span></label></div>
-        <div className="ds-color-picker"><ColorPicker color={hoverColorRgba.rgb} alpha={hoverColorRgba.alpha} onChange={(e) => { onUpdate('hoverColor', rgb2rgba(e.color, e.alpha)) }} /></div>
+        <div className="ds-color-picker">
+          <ColorPicker
+            color={hoverColorRgba.rgb}
+            alpha={hoverColorRgba.alpha}
+            onChange={e => { onUpdate('hoverColor', rgb2rgba(e.color, e.alpha)); }}
+          />
+        </div>
       </div>}
       {hoverBackgroundColor && <div className="col-6">
         <div className="ds-widget-label"><label><span>Hover Background Color</span></label></div>
-        <div className="ds-color-picker"><ColorPicker color={hoverBackgroundColorRgba.rgb} alpha={hoverBackgroundColorRgba.alpha} onChange={(e) => { onUpdate('hoverBackgroundColor', rgb2rgba(e.color, e.alpha)) }} /></div>
+        <div className="ds-color-picker">
+          <ColorPicker
+            color={hoverBackgroundColorRgba.rgb}
+            alpha={hoverBackgroundColorRgba.alpha}
+            onChange={e => { onUpdate('hoverBackgroundColor', rgb2rgba(e.color, e.alpha)); }}
+          />
+        </div>
       </div>}
     </div>
   </div>;
-}
+};
 
 interface IColorsProps {
   title?: string;

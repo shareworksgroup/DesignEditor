@@ -38,13 +38,13 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
     onUpdate('items', items);
   }
 
-  deleteItem = (guid) => {
+  deleteItem = guid => {
     const { items, onUpdate = () => { } } = this.props;
     const newItems = items.filter(item => item.guid !== guid);
     onUpdate('items', newItems);
   }
 
-  onDragEnd = (result) => {
+  onDragEnd = result => {
     const { items, onUpdate = () => { } } = this.props;
     if (!result.destination) {
       return;
@@ -80,8 +80,8 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
       </div>
       <div className="row" style={{ marginTop: 10 }}>
         <div className="col-12 social-add-panel" >
-          <Input addOn="ICON" onChange={(e) => { this.setState({ icon: e.target.value }); }} value={this.state.icon} />
-          <Input addOn="LINK" onChange={(e) => { this.setState({ url: e.target.value }); }} value={this.state.url} />
+          <Input addOn="ICON" onChange={e => { this.setState({ icon: e.target.value }); }} value={this.state.icon} />
+          <Input addOn="LINK" onChange={e => { this.setState({ url: e.target.value }); }} value={this.state.url} />
           <div className="social-button-wrap"><Button className="social-button" onClick={this.addItem} >Add</Button></div>
         </div>
       </div>
@@ -102,24 +102,23 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
   }
 }
 
-
-const SortContainer = SortableContainer(({ children }) => {
-  return <div className="col-12">{children}</div>;
-});
+const SortContainer = SortableContainer(({ children }) => <div className="col-12">{children}</div>);
 const SortItem = SortableElement((props: ISortItemProps) => {
   const { value, onModifyItem, onDeleteItem } = props;
-  return <div key={value.guid}><div className="social-item-card" >
-    <div>
-      <DragHandle />
-      <img style={{ width: 24 }} src={value.icon} />
-      <a href="javascript:void(0)" className="social-delete-button" onClick={() => { onDeleteItem(); }} ><i className="icon icon-trash" /></a>
+  return <div key={value.guid}>
+    <div className="social-item-card" >
+      <div>
+        <DragHandle />
+        <img style={{ width: 24 }} src={value.icon} />
+        <a href="javascript:void(0)" className="social-delete-button" onClick={() => { onDeleteItem(); }} ><i className="icon icon-trash" /></a>
+      </div>
+      <div className="col-12" style={{ fontFamily: 'Courier New' }}>
+        <Input addOn="ICON" onChange={e => { onModifyItem(e.target.value, value.url); }} value={value.icon} />
+        <div style={{ height: 5 }} />
+        <Input addOn="LINK" onChange={e => { onModifyItem(value.icon, e.target.value); }} value={value.url} />
+      </div>
     </div>
-    <div className="col-12" style={{ fontFamily: 'Courier New' }}>
-      <Input addOn="ICON" onChange={(e) => { onModifyItem(e.target.value, value.url) }} value={value.icon} />
-      <div style={{ height: 5 }} />
-      <Input addOn="LINK" onChange={(e) => { onModifyItem(value.icon, e.target.value) }} value={value.url} />
-    </div>
-  </div></div>
+  </div>;
 });
 const DragHandle = SortableHandle(() => <i className="drag-handler icon icon-drag-handler"/>);
 

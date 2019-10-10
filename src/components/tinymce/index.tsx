@@ -5,7 +5,7 @@ import Portal from '../portal';
 import { Config } from '../../lib/util';
 import tinymce from 'tinymce';
 
-const fn = () => {};
+const fn = () => { };
 
 interface IEditorProps {
   value?: string;
@@ -21,7 +21,7 @@ class Editor extends React.Component<IEditorProps> {
   dom: any;
   currentContent: any;
 
-  componentDidUpdate({ focus }){
+  componentDidUpdate({ focus }) {
     if (this.props.focus === focus) {
       return;
     }
@@ -43,7 +43,7 @@ class Editor extends React.Component<IEditorProps> {
     return false;
   }
 
-  onRef = (dom) => {
+  onRef = dom => {
     this.dom = dom;
   }
 
@@ -55,34 +55,34 @@ class Editor extends React.Component<IEditorProps> {
       menubar: false,
       inline: true,
       toolbar: ['fontselect fontsizeselect | bold italic underline'],
-      setup: (ed) => {
+      setup: ed => {
         this.editor = ed;
         setup(this.editor);
         onRef(this.editor);
-        ed.on('keydown', (e) => {
+        ed.on('keydown', e => {
           if (e.keyCode === 13) {
             e.preventDefault();
           }
         });
-        ed.on('change', (e) => {
+        ed.on('change', e => {
           self.currentContent = self.editor.getContent({ format: 'raw' });
           onChange(self.editor);
         });
       }
-    }, config)
+    }, config);
     tinymce.init(options);
   }
 
   render() {
     const { children, value } = this.props;
-    if (React.Children.count(children) > 1)
+    if (React.Children.count(children) > 1) {
       throw new Error('Tinymce children must be single');
-    return React.cloneElement(children as React.ReactElement<any>, 
+    }
+    return React.cloneElement(children as React.ReactElement<any>,
       {
         ref: this.onRef,
         dangerouslySetInnerHTML: { __html: value }
-      }
-    );
+      });
   }
 }
 
@@ -108,12 +108,12 @@ class TinyMce extends React.Component<ITinyMceProps> {
     position: { x: 0, y: 0 },
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.autoComplete = new AutoComplete();
     this._isMounted = true;
   }
 
-  componentDidUpdate({ focus }){
+  componentDidUpdate({ focus }) {
     if (!this.props.focus) {
       this.autoComplete.off();
     }
@@ -126,27 +126,27 @@ class TinyMce extends React.Component<ITinyMceProps> {
     this._isMounted = false;
   }
 
-  handleEditorChange = (editor) => {
+  handleEditorChange = editor => {
     const { onChange } = this.props;
-    let content = editor.getContent({ format: 'raw' });
-    var regex = /(<([^>]+)>)/ig;
+    const content = editor.getContent({ format: 'raw' });
+    const regex = /(<([^>]+)>)/ig;
     const pureContent = content.replace(regex, "");
     onChange('text', pureContent ? content : "");
   }
 
-  insertDynamic = (value) => {
+  insertDynamic = value => {
     if (this.editor) {
       Array(this.state.query.length + 1).fill(0).forEach(i => {
         this.editor.execCommand('delete');
       });
-      this.editor.insertContent('[[' + value.key + ']]', { merge: true });
+      this.editor.insertContent(`[[${value.key}]]`, { merge: true });
       this.setState({ showDynamic: false, query: '' });
     }
   }
 
-  initAutoComplete = (editor) => {
+  initAutoComplete = editor => {
     if (editor && this.autoComplete) {
-      this.autoComplete.on(editor, /^.*#([^#]*)$/, (result) => {
+      this.autoComplete.on(editor, /^.*#([^#]*)$/, result => {
         if (result.match) {
           this.setState({
             showDynamic: true,
@@ -160,7 +160,7 @@ class TinyMce extends React.Component<ITinyMceProps> {
       });
     }
   }
- 
+
   getContainer = () => {
     const container = document.createElement('div');
     if (this.props.getContainer) {
@@ -171,17 +171,17 @@ class TinyMce extends React.Component<ITinyMceProps> {
     return container;
   }
 
-  render(){
+  render() {
     const { children, value, autoComplete = true, focus = false, config = {} } = this.props;
     if (React.Children.count(children) !== 1) {
       throw new Error('TinyMce need one child component to initialize content');
     }
-    
+
     return <React.Fragment>
       <Editor
         config={config}
         value={value}
-        onRef={(editor) => { this.editor = editor; }}
+        onRef={editor => { this.editor = editor; }}
         onChange={this.handleEditorChange} focus={focus} setup={this.initAutoComplete}>
         {children}
       </Editor>
@@ -190,8 +190,8 @@ class TinyMce extends React.Component<ITinyMceProps> {
           data={this.state.data}
           show={this.state.showDynamic}
           position={this.state.position}
-          onClick={(item) => { this.insertDynamic(item); }}
-          onClose={() => { this._isMounted && this.setState({ showDynamic: false, query: '' }) }}
+          onClick={item => { this.insertDynamic(item); }}
+          onClose={() => { this._isMounted && this.setState({ showDynamic: false, query: '' }); }}
         />
       </Portal>
     </React.Fragment>;

@@ -22,7 +22,9 @@ class Social extends Extension<ISocialProps> {
     const { items, width, height, textAlign, containerPadding, margin } = data;
     return `<div>
       <div style="padding:${containerPadding};text-align:${textAlign}">
-        ${items.map(item => `<a key='${item.guid}' href='${item.url}' style='margin:${margin};'><img style='height:${height}px;width:${width}px;' src='${item.icon}'></img></a>`).join('')}
+        ${items.map(item => `<a key='${item.guid}' href='${item.url}' style='margin:${margin};'>
+          <img style='height:${height}px;width:${width}px;' src='${item.icon}' />
+        </a>`).join('')}
       </div>
     </div>`;
   }
@@ -77,7 +79,7 @@ class Social extends Extension<ISocialProps> {
         <Space title="Margin" value={margin} attribute="margin" onUpdate={update} />
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
   render() {
@@ -89,12 +91,9 @@ class Social extends Extension<ISocialProps> {
       }}>
         {items.map(item => <a key={item.guid} href={item.url} style={{
           margin,
-        }}><img style={{
-          width,
-          height,
-        }} src={item.icon}></img></a>)}
+        }}><img style={{ width, height }} src={item.icon}></img></a>)}
       </div>
-    </div>
+    </div>;
   }
 }
 

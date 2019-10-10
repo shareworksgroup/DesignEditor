@@ -1,6 +1,5 @@
 import React from 'react';
 import { Extension, PropertyWidget, PropertyGroup } from './entry';
-import { IExtendsionProps } from './containers/extension/Extension';
 
 const { Space, Align, Input, Switch } = PropertyWidget;
 
@@ -40,7 +39,12 @@ class Video extends Extension<IVideoProps> {
     const { url, textAlign, containerPadding, fullWidth } = values;
     return <React.Fragment>
       <PropertyGroup title="LINK">
-        <Input title="Video URL" value={url} attribute="url" desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL." onUpdate={update} />
+        <Input
+          title="Video URL"
+          value={url}
+          attribute="url"
+          desc="Add a YouTube or Vimeo URL to automatically generate a preview image. The image will link to the provided URL."
+          onUpdate={update} />
       </PropertyGroup>
       <PropertyGroup title="SPACING">
         <Switch title="Full Width" checked={fullWidth} attribute="fullWidth" onUpdate={update} />
@@ -49,7 +53,7 @@ class Video extends Extension<IVideoProps> {
       <PropertyGroup title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </PropertyGroup>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
 

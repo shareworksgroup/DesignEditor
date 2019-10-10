@@ -38,7 +38,9 @@ class Button extends Extension<IButtonProps> {
         }
       </style>
       <a target="${linkType}" href="${link || 'javascript:void(0)'}" id="button_${_meta.guid}"
-        style="display:inline-block;text-decoration: none;cursor: ${link ? 'pointer' : 'default'};color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;border-radius:${borderRadius}px;border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
+        style="display:inline-block;text-decoration: none;cursor: ${link ? 'pointer' : 'default'};
+        color:${color};background-color:${backgroundColor};padding:${padding};line-height:${lineHeight}%;
+        border-radius:${borderRadius}px;border:${lineWidth}px ${lineStyle} ${lineColor};">${html}</a>
       </div>
     </div>`;
   }
@@ -89,7 +91,7 @@ class Button extends Extension<IButtonProps> {
       <Group title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
   render() {
@@ -106,8 +108,8 @@ class Button extends Extension<IButtonProps> {
             color,
             backgroundColor,
             padding,
-            lineHeight: lineHeight + '%',
-            borderRadius: borderRadius + 'px',
+            lineHeight: `${lineHeight}%`,
+            borderRadius: `${borderRadius}px`,
             border: `${lineWidth}px ${lineStyle} ${lineColor}`
           }}
         >
