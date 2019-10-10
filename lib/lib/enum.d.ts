@@ -63,3 +63,4 @@ export declare const Position: {
     BEFORE: number;
     AFTER: number;
 };
+export declare const ExtensionGroupGeneral = "General";

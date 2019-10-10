@@ -1,6 +1,6 @@
 import React from 'react';
 declare class Content extends React.Component<IContentProps> {
-    render(): JSX.Element;
+    render(): any;
 }
 interface IContentProps {
     rootStore?: any;
