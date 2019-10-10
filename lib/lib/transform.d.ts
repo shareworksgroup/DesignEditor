@@ -1,9 +1,10 @@
-import { IData, IExtension } from '../schemas/transform';
+import { IData } from '../schemas/transform';
+import { IExtension } from 'src/containers/extension/Extension';
 declare class Transform {
     data: IData;
     bodyWidth: number;
-    extensions: Array<IExtension>;
-    constructor(rawData: IData, extensions: Array<IExtension>);
+    extensions: IExtension[];
+    constructor(rawData: IData, extensions: IExtension[]);
     toHtml(): string;
     private transferBody;
     private transferRow;

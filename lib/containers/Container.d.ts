@@ -1,5 +1,6 @@
 import React from 'react';
 import '../style/index.less';
+import { IExtensionGroupProps, IExtensionGroup } from './extension/ExtensionGroup';
 declare class DesignEditor extends React.Component<IDesignEditorProps> {
     componentDidMount(): void;
     componentWillReceiveProps(nextProps: any, nextState: any): void;
@@ -15,6 +16,7 @@ interface IApi {
     setData: (json: IKeyValueMap) => void;
 }
 interface IDesignEditorProps {
+    children?: React.ReactElement<IExtensionGroupProps, IExtensionGroup> | React.ReactElement<IExtensionGroupProps, IExtensionGroup>[];
     onRef?: (api: IApi) => void;
     mentions?: any;
     contents?: any;

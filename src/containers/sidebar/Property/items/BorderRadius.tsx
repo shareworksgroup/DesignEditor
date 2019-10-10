@@ -3,7 +3,7 @@ import { Number } from '../../../../components';
 
 const BorderRadius = ({ borderRadius = 4, title = "Rounded Border", onUpdate = () => { } }: IBorderRadiusProps) => (
   <div className="ds-widget ds-link-widget">
-    <div className="row">
+    <div className="card-row">
       <div className="ds-widget-label col-6">
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>

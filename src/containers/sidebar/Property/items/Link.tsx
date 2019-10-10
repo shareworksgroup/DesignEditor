@@ -3,7 +3,7 @@ import { Input } from '../../../../components';
 
 const Link = ({ title, linkType, link, onUpdate = () => { } }: ILinkProps) => (
   <div className="ds-widget ds-link-widget">
-    <div className="row">
+    <div className="card-row">
       <div className="ds-widget-label col-6">
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
@@ -14,7 +14,7 @@ const Link = ({ title, linkType, link, onUpdate = () => { } }: ILinkProps) => (
         </select>
       </div>
     </div>
-    <div className="row" style={{ marginTop: 10 }}>
+    <div className="card-row" style={{ marginTop: 10 }}>
       <div className="col-12">
         <Input addOn="URL" onChange={e => { onUpdate('link', e.target.value); }} value={link} />
       </div>

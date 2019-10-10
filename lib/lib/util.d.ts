@@ -29,7 +29,7 @@ export declare const getFileExtension: (text: string, index: number) => string;
 export declare const checkFileExtension: (extensions: string | string[]) => (filename: string) => boolean;
 export declare const imageTypes: Array<string>;
 export declare const imgCheck: Function;
-export declare const reOrder: (list: any, startIndex: any, endIndex: any) => {}[];
+export declare const reOrder: (list: any, startIndex: any, endIndex: any) => unknown[];
 export declare const findIndex: (array: any, callback: any) => number;
 export declare const defaultPosition: number;
 export declare const getPositionByMiddleOffset: (dom: HTMLElement, mousePosition: {

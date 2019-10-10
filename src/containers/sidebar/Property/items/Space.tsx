@@ -85,7 +85,7 @@ class Space extends React.Component<ISpaceProps, ISpaceState> {
   render() {
     const { title = 'Padding' } = this.props;
     return <div className="ds-widget ds-link-widget">
-      <div className="row">
+      <div className="card-row">
         <div className="ds-widget-label col-6">
           <label className="ds-label-primary"><span>{title}</span></label>
         </div>
@@ -128,7 +128,7 @@ class Space extends React.Component<ISpaceProps, ISpaceState> {
           </div>
         </div>
       </div>}
-      {!this.state.more && <div className="row" style={{ marginTop: 10 }}>
+      {!this.state.more && <div className="card-row" style={{ marginTop: 10 }}>
         <div className="col-6">
           <div className="ds-widget-label"><label><span>All Sides</span></label></div>
           <div className="ds-color-picker">

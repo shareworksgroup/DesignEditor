@@ -70,3 +70,5 @@ export const Position = {
   BEFORE: 1,
   AFTER: 2
 };
+
+export const ExtensionGroupGeneral = 'General';

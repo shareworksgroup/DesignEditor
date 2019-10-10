@@ -1,5 +1,5 @@
 import React from 'react';
-import Extension, { IExtendsionProps } from './Extension';
+import Extension from './Extension';
 import { ContentType } from '../../lib/enum';
 import Group from '../sidebar/Property/Group';
 import { TinyMce } from '../../components';

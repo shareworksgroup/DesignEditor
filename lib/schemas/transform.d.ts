@@ -122,7 +122,3 @@ export interface IContentMeta {
     subtype: ContentType;
     type: DesignType;
 }
-export interface IExtension {
-    new (): any;
-    type: ContentType;
-}

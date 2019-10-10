@@ -82,7 +82,7 @@ class Image extends React.Component<IImageProps> {
   render() {
     const { title = 'Image', desc, url, attribute = 'url', options = false, fullWidth, repeat, center, onUpdate = () => { } } = this.props;
     return (<div className="ds-widget ds-link-widget">
-      <div className="row">
+      <div className="card-row">
         <div className="ds-widget-label col-6">
           <label className="ds-label-primary"><span>{title}</span></label>
         </div>
@@ -92,7 +92,7 @@ class Image extends React.Component<IImageProps> {
           </label>
         </div>
       </div>
-      <div className="row" style={{ marginTop: 10 }}>
+      <div className="card-row" style={{ marginTop: 10 }}>
         <div className="col-12">
           <label
             ref={dom => { this.dropzone = dom; }}
@@ -111,24 +111,24 @@ class Image extends React.Component<IImageProps> {
           </div>}
         </div>
       </div>
-      <div className="row" style={{ marginTop: 10 }}>
+      <div className="card-row" style={{ marginTop: 10 }}>
         <div className="ds-widget-label col-12">
           <label className="ds-label-primary"><span>Image URL</span></label>
         </div>
       </div>
-      <div className="row" style={{ marginTop: 10 }}>
+      <div className="card-row" style={{ marginTop: 10 }}>
         <div className="col-12">
           <Input onChange={e => { onUpdate(attribute, e.target.value); }} value={url} />
         </div>
       </div>
       {
         options && <React.Fragment>
-          <div className="row" style={{ marginTop: 10 }}>
+          <div className="card-row" style={{ marginTop: 10 }}>
             <div className="ds-widget-label col-12">
               <label className="ds-label-primary"><span>Image Options</span></label>
             </div>
           </div>
-          <div className="row" style={{ marginTop: 10 }}>
+          <div className="card-row" style={{ marginTop: 10 }}>
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>
@@ -141,7 +141,7 @@ class Image extends React.Component<IImageProps> {
               </div>
             </div>
           </div>
-          <div className="row" style={{ marginTop: 5 }}>
+          <div className="card-row" style={{ marginTop: 5 }}>
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>
@@ -155,7 +155,7 @@ class Image extends React.Component<IImageProps> {
               </div>
             </div>
           </div>
-          <div className="row" style={{ marginTop: 5 }}>
+          <div className="card-row" style={{ marginTop: 5 }}>
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>

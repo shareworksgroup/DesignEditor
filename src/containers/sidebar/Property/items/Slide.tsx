@@ -5,7 +5,7 @@ import { Number } from '../../../../components';
 
 const Slide = ({ title = "Width", value = 100, attribute = 'width', onUpdate = () => { } }: ISlideProps) => (
   <div className="ds-widget ds-link-widget">
-    <div className="row">
+    <div className="card-row">
       <div className="ds-widget-label col-6">
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
