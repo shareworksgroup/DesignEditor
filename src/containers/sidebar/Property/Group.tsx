@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import AnimateHeight from 'react-animate-height';
 
 class Group extends React.Component<IGroupProps, IGroupState> {
@@ -17,10 +18,10 @@ class Group extends React.Component<IGroupProps, IGroupState> {
   }
 
   render() {
-    const { title, children } = this.props;
-    return <div className="card">
+    const { title, children, className } = this.props;
+    return <div className={classnames("card", className)}>
       <div className="card-header" onClick={this.toggle}>
-        <div className="row">
+        <div className="card-row">
           <div className="col-10"><span>{title}</span></div>
           <div className="col-2 header-expand-icon">
             <i className={this.state.expand ? "icon icon-up" : "icon icon-down"}></i>
@@ -41,6 +42,7 @@ class Group extends React.Component<IGroupProps, IGroupState> {
 
 interface IGroupProps {
   title?: string;
+  className?: string;
 }
 
 interface IGroupState {

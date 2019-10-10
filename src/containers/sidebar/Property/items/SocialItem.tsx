@@ -73,19 +73,19 @@ class SocialItem extends React.Component<ISocialItemProps, ISocialItemState> {
   render() {
     const { items } = this.props;
     return (<div className="ds-widget ds-link-widget social-panel">
-      <div className="row">
+      <div className="card-row">
         <div className="ds-widget-label col-6">
           <label className="ds-label-primary"><span>Icons</span></label>
         </div>
       </div>
-      <div className="row" style={{ marginTop: 10 }}>
+      <div className="card-row" style={{ marginTop: 10 }}>
         <div className="col-12 social-add-panel" >
           <Input addOn="ICON" onChange={e => { this.setState({ icon: e.target.value }); }} value={this.state.icon} />
           <Input addOn="LINK" onChange={e => { this.setState({ url: e.target.value }); }} value={this.state.url} />
           <div className="social-button-wrap"><Button className="social-button" onClick={this.addItem} >Add</Button></div>
         </div>
       </div>
-      <div className="row" style={{ marginTop: 10 }}>
+      <div className="card-row" style={{ marginTop: 10 }}>
         <SortContainer onSortEnd={this.onSortEnd} useDragHandle>
           {items.map((value, index) => (
             <SortItem

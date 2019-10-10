@@ -1,10 +1,11 @@
 import { observable, action, toJS, runInAction } from 'mobx';
 import { guid, findIndex } from '../lib/util';
 import { record } from '../lib/history';
-import { DesignType, OperationMode, Position } from '../lib/enum';
+import { DesignType, OperationMode, Position, ExtensionGroupGeneral } from '../lib/enum';
 import { bodyValues, rowValues } from '../lib/values';
 import { IRootStore } from '../schemas/common';
-import { IData, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
+import { IData, IRow, IColumn, IContent, IRowType, IContentType, IContentMeta } from '../schemas/transform';
+import { IExtension } from 'src/containers/extension/Extension';
 
 class DesignState {
 
@@ -12,6 +13,7 @@ class DesignState {
 
   constructor(transparent) {
     this.transparent = transparent;
+    this.extensionGroups.add(ExtensionGroupGeneral);
   }
 
   @record()
@@ -51,7 +53,7 @@ class DesignState {
   }
 
   @observable
-  extensions: Array<IExtension> = [];
+  extensions: IExtension[] = [];
 
   @action
   addExtension(extension: IExtension) {
@@ -62,8 +64,19 @@ class DesignState {
     return this.extensions.find(i => i.type === type);
   }
 
-  getExtensions(): Array<IExtension> {
+  getExtensions(): IExtension[] {
     return toJS(this.extensions);
+  }
+
+  extensionGroups: Set<string> = new Set<string>();
+
+  @action
+  addExtensionGroup(group: string) {
+    this.extensionGroups.add(group);
+  }
+
+  getExtensionGroups() : string[] {
+    return Array.from(this.extensionGroups);
   }
 
   attribute: Object = {};
@@ -90,7 +103,7 @@ class DesignState {
         column.contents.forEach(content => {
           const Extension = this.getExtension(content.values._meta.subtype);
           if (Extension) {
-            const initAttributes = new Extension().getInitialAttribute();
+            const initAttributes = (new Extension({}) as any as IExtension).getInitialAttribute();
             content.values = { ...initAttributes, ...content.values };
           }
         });

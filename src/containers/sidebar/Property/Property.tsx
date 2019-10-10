@@ -53,8 +53,8 @@ class Property extends React.Component<IPropertyProps> {
     }
     /* eslint-disable */
     return <div className="ds-options-panel">
-      <div className="ds-options-header">
-        <div className="row">
+      <div className="ds-options-header card">
+        <div className="card-row">
           <div className="col-7 ds-options-title">
             <span>{title}</span>
           </div>
