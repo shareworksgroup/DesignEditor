@@ -8,7 +8,7 @@ const LineItem = ({ title = "Line", lineWidth, lineStyle, lineColor, onUpdate = 
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
       <div className="col-6">
-        <Line lineWidth={lineWidth} lineStyle={lineStyle} lineColor={lineColor} onUpdate={(key, val) => { onUpdate(key, val) }} />
+        <Line lineWidth={lineWidth} lineStyle={lineStyle} lineColor={lineColor} onUpdate={(key, val) => { onUpdate(key, val); }} />
       </div>
     </div>
   </div>);
@@ -21,4 +21,4 @@ interface ILineItemProps {
   onUpdate?: onUpdate;
 }
 
-export default LineItem; 
+export default LineItem;

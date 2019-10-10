@@ -46,7 +46,7 @@ const collect = (connect, monitor) => ({
 @(DropTarget as any)([DragType.ROW], target, collect)
 @(DragSource as any)(
   DragType.ROW,
-  Util.getSource({ mode: OperationMode.MOVE, position: Position.BEFORE }, (props) => ({ guid: props.guid, type: props.subtype })),
+  Util.getSource({ mode: OperationMode.MOVE, position: Position.BEFORE }, props => ({ guid: props.guid, type: props.subtype })),
   Util.getCollect()
 )
 @inject('rootStore')
@@ -71,7 +71,7 @@ class Row extends React.Component<IRowProps> {
     this.setState({ position });
   }
 
-  onSelect = (e) => {
+  onSelect = e => {
     e.stopPropagation();
     const { guid, rootStore: { DesignState } } = this.props;
     DesignState.setSelected(guid);
@@ -104,12 +104,13 @@ class Row extends React.Component<IRowProps> {
     const total = cells.reduce((i, total) => i + total, 0);
     return <div>
       {isOver && canDrop && this.state.position === Position.BEFORE && <PlaceHolder />}
-      {connectDropTarget(<div className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')} onMouseUp={this.onSelect}>
+      {connectDropTarget(<div
+        className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')} onMouseUp={this.onSelect}>
         <Selector
           type="row"
           onDelete={this.onDelete}
           onCopy={this.onCopy}
-          onRef={(dom) => { connectDragSource(dom); }} />
+          onRef={dom => { connectDragSource(dom); }} />
         <div className="u_row" style={{
           backgroundColor,
           padding,

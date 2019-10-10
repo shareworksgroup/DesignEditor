@@ -1,4 +1,3 @@
-import { ContentType, DesignType, RowType } from './enum';
 import { IHtmlBlock, IData, IBody, IRow, IColumn, IContent, IExtension } from '../schemas/transform';
 
 class Transform {
@@ -17,7 +16,7 @@ class Transform {
   public toHtml(): string {
     const body = this.data.body;
     this.bodyWidth = this.data.body.values.width;
-    let htmlBlock = this.transferBody(this.data.body);
+    const htmlBlock = this.transferBody(this.data.body);
     body.rows.forEach((row, index) => {
       const rowBlock = this.transferRow(row);
       const cells = row.cells;
@@ -36,6 +35,7 @@ class Transform {
 
   private transferBody(body: IBody): IHtmlBlock {
     const { backgroundColor, fontFamily, containerPadding } = body.values;
+    /* eslint-disable */
     return {
       prefix: `<div style="box-sizing: border-box;background-color:${backgroundColor};font-family:${fontFamily};margin: 0 auto;padding:${containerPadding}">
       <style>
@@ -45,11 +45,12 @@ class Transform {
       content: '',
       suffix: '</div>',
     };
+    /* eslint-enable */
   }
 
   private transferRow(row: IRow): IHtmlBlock {
     const { backgroundColor, columnsBackgroundColor, padding, fullWidth, repeat, center, backgroundImage } = row.values;
-    const bgStyle = `background-image:url(${backgroundImage});background-repeat:${repeat?'repeat':'no-repeat'};background-position:${center?'center top':'left top'}`;
+    const bgStyle = `background-image:url(${backgroundImage});background-repeat:${repeat ? 'repeat' : 'no-repeat'};background-position:${center ? 'center top' : 'left top'}`; // eslint-disable-line
     const wrapperStyle = fullWidth ? bgStyle : '';
     const contentStyle = fullWidth ? '' : bgStyle;
     return {
@@ -67,7 +68,7 @@ class Transform {
       prefix: `<td colspan="${rowspan}" style="vertical-align:top;overflow:hidden;padding: 0;border-spacing: 0;">`,
       content: '',
       suffix: `</td>`,
-    }
+    };
   }
 
   private transferContent(content: IContent): string {

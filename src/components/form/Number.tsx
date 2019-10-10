@@ -13,11 +13,12 @@ class Number extends React.Component<INumberProps> {
   onChange = (e: React.ChangeEvent<HTMLInputElement>, type?: Operate) => {
     const { value, step = 1, min = 0, max = 100, onChange = () => {}, parser = _parser } = this.props;
     let val = e ? parseInt(parser(e.target.value), 10) : value;
+    // eslint-disable-next-line no-restricted-globals
     if (isNaN(val)) {
       onChange(0);
       return;
     }
-    switch(type) {
+    switch (type) {
       case Operate.Minus:
         val = (val - step) < min ? min : (val - step);
         break;
@@ -37,7 +38,7 @@ class Number extends React.Component<INumberProps> {
   }
 
   render() {
-    const { value, className, style= {}, formatter = _formatter } = this.props;
+    const { value, className, style = {}, formatter = _formatter } = this.props;
     return <div className={className} style={style}>
       <div className="ds-counter-control">
         <a onClick={this.onMinus} className="ds-counter-control-btn">-</a>

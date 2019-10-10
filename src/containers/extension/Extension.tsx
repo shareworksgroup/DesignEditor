@@ -6,9 +6,7 @@ abstract class Extension<P, T = any> extends React.Component<P & IExtendsionProp
   static check: boolean = true;
 
   componentWillUnmount() {
-    this.setState = (state: IExtendsionState, callback) => {
-      return;
-    };
+    this.setState = (state: IExtendsionState, callback) => { };
   }
 
   abstract getIconClass(): string;
@@ -21,7 +19,7 @@ abstract class Extension<P, T = any> extends React.Component<P & IExtendsionProp
 
   abstract getInitialAttribute(): P & IExtendsionProps;
 
-  abstract getProperties(values: P & IExtendsionProps, update: onUpdate): React.ReactFragment ;
+  abstract getProperties(values: P & IExtendsionProps, update: onUpdate): React.ReactFragment;
 }
 
 export interface IExtendsionProps {

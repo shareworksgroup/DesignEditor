@@ -10,7 +10,7 @@ ReactDom.render(<div>
     imageUploadUrl="http://localhost:3001/UserFeedback/upload"
     onUpload={data => data.fileUrl}
     onUploadError={error => console.log(error.message)}
-    onRef={(obj) => { instance = obj; (window as any).instance = obj; }}>
+    onRef={obj => { instance = obj; (window as any).instance = obj; }}>
     <Video />
   </Container>
 </div>, document.getElementById('root'));

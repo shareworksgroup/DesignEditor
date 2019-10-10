@@ -10,7 +10,7 @@ const InputItem = ({ title, value, attribute, desc, onUpdate = () => { } }: IInp
     </div>
     <div className="row" style={{ marginTop: 10 }}>
       <div className="col-12">
-        <Input onChange={(e) => { onUpdate(attribute, e.target.value) }} value={value} />
+        <Input onChange={e => { onUpdate(attribute, e.target.value); }} value={value} />
         {desc && <div className="ds-widget-hint">
           {desc}
         </div>}

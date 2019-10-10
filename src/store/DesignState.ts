@@ -4,7 +4,7 @@ import { record } from '../lib/history';
 import { DesignType, OperationMode, Position } from '../lib/enum';
 import { bodyValues, rowValues } from '../lib/values';
 import { IRootStore } from '../schemas/common';
-import { IData, IBody, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
+import { IData, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
 
 class DesignState {
 
@@ -85,8 +85,8 @@ class DesignState {
 
   @action
   compatibleWithOldData() {
-    this.data.body.rows.forEach((row) => {
-      row.columns.forEach((column) => {
+    this.data.body.rows.forEach(row => {
+      row.columns.forEach(column => {
         column.contents.forEach(content => {
           const Extension = this.getExtension(content.values._meta.subtype);
           if (Extension) {
@@ -164,7 +164,7 @@ class DesignState {
   @action
   addContent(content: IContentType, meta: IContentMeta) {
     this.data.body.rows.forEach((row, index) => {
-      const column = row.columns.filter((column) => column.values._meta.guid === meta.guid)[0];
+      const column = row.columns.filter(column => column.values._meta.guid === meta.guid)[0];
       if (column) {
         column.contents.push({
           values: {
@@ -175,7 +175,7 @@ class DesignState {
               type: DesignType.CONTENT
             }
           }
-        })
+        });
       }
     });
   }
@@ -183,10 +183,10 @@ class DesignState {
   @action
   insertContent(content: IContentType, offsetGuid: string, columnGuid: string, position = Position.BEFORE) {
     this.data.body.rows.forEach((row, index) => {
-      const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
+      const column = row.columns.filter(column => column.values._meta.guid === columnGuid)[0];
       if (column) {
         const index = findIndex(column.contents, content => content.values._meta.guid === offsetGuid);
-        column.contents.splice(position === Position.BEFORE ? index : index+1, 0, {
+        column.contents.splice(position === Position.BEFORE ? index : index + 1, 0, {
           values: {
             ...this.attribute[content.type],
             _meta: {
@@ -195,7 +195,7 @@ class DesignState {
               type: DesignType.CONTENT
             }
           }
-        })
+        });
       }
     });
   }
@@ -204,14 +204,14 @@ class DesignState {
   moveContent(content: IContentType, offsetGuid: string, columnGuid: string, position = Position.BEFORE) {
     // get and remove content from old position
     const contentData = this.getContent(content.guid, OperationMode.REMOVE);
-    this.data.body.rows.some((row) => {
-      const column = row.columns.filter((column) => column.values._meta.guid === columnGuid)[0];
+    this.data.body.rows.some(row => {
+      const column = row.columns.filter(column => column.values._meta.guid === columnGuid)[0];
       if (column) {
         const contents = column.contents;
 
         if (offsetGuid) {
           const offsetIndex = findIndex(contents, content => content.values._meta.guid === offsetGuid);
-          contents.splice(position === Position.BEFORE ? offsetIndex : offsetIndex+1, 0, contentData);
+          contents.splice(position === Position.BEFORE ? offsetIndex : offsetIndex + 1, 0, contentData);
         } else {
           contents.push(contentData);
         }
@@ -224,8 +224,8 @@ class DesignState {
   @action
   getContent(guid: string, operation?: OperationMode): IContent {
     let content = null;
-    this.data.body.rows.some((row) => {
-      row.columns.some((column) => {
+    this.data.body.rows.some(row => {
+      row.columns.some(column => {
         content = column.contents.filter(content => content.values._meta.guid === guid)[0];
         if (content && operation) {
           const index = findIndex(column.contents, content => content.values._meta.guid === guid);
@@ -283,8 +283,8 @@ class DesignState {
 
   getColumn(guid: string): IColumn {
     let column = null;
-    this.data.body.rows.some((row) => {
-      column = row.columns.filter((column) => column.values._meta.guid === guid)[0];
+    this.data.body.rows.some(row => {
+      column = row.columns.filter(column => column.values._meta.guid === guid)[0];
       return !!column;
     });
     return column;
@@ -302,7 +302,7 @@ class DesignState {
   @record(400)
   @action
   updateBodyAttribute(key: string, value: Object) {
-    const data = this.data.body
+    const data = this.data.body;
     if (data) {
       data.values = { ...data.values, ...{ [key]: value } };
     }

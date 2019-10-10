@@ -16,8 +16,8 @@ export declare const Config: {
     contents: ContentType[];
     onUpload: (data: any) => any;
     onUploadError: () => void;
-    set: (key: any, value: any) => void;
-    get: (key: any) => any;
+    set: (key: string, value: any) => void;
+    get: (key: string) => any;
 };
 export declare const generateIncressTimer: (minValue?: number, maxValue?: number, step?: number) => (duration: number, callback: Function) => {
     stop: () => void;
@@ -32,4 +32,7 @@ export declare const imgCheck: Function;
 export declare const reOrder: (list: any, startIndex: any, endIndex: any) => {}[];
 export declare const findIndex: (array: any, callback: any) => number;
 export declare const defaultPosition: number;
-export declare const getPositionByMiddleOffset: (dom: any, mousePosition: any) => number;
+export declare const getPositionByMiddleOffset: (dom: HTMLElement, mousePosition: {
+    x: number;
+    y: number;
+}) => number;

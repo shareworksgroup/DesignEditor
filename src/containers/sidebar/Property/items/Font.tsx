@@ -8,7 +8,7 @@ const Font = ({ title, fontFamily, onUpdate = () => { } }: IFontProps) => (
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
       <div className="col-6">
-        <select className="form-control form-control-sm" value={fontFamily} onChange={(e) => { onUpdate('fontFamily', e.target.value) }}>
+        <select className="form-control form-control-sm" value={fontFamily} onChange={e => { onUpdate('fontFamily', e.target.value); }}>
           {
             Object.keys(Fonts).map(i => <option key={i} value={Fonts[i]}>{i}</option>)
           }

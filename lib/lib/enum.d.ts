@@ -42,12 +42,12 @@ export declare const Fonts: {
     'Slabo 27px': string;
     'Source Sans Pro': string;
     'Roboto Condensed': string;
-    'Sarabun': string;
-    'Oswald': string;
-    'Charm': string;
+    Sarabun: string;
+    Oswald: string;
+    Charm: string;
     'Open Sans Condensed': string;
-    'Ubuntu': string;
-    'Poppins': string;
+    Ubuntu: string;
+    Poppins: string;
     'ZCOOL XiaoWei': string;
     'ZCOOL QingKe HuangYou': string;
 };

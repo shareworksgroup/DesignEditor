@@ -7,7 +7,7 @@ const AlignItem = ({ align = 'center', title = "Alignments", onUpdate = () => { 
       <label className="ds-label-primary"><span>{title}</span></label>
     </div>
     <div className="col-6">
-      <Align align={align} onChange={(align) => { onUpdate('textAlign', align) }} />
+      <Align align={align} onChange={align => { onUpdate('textAlign', align); }} />
     </div>
   </div>
 </div>);

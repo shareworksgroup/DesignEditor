@@ -8,7 +8,7 @@ export default ({ value, onChange, style = {} }: IHtmlProps) => (
     <Editor
       value={value}
       onValueChange={value => onChange(value)}
-      highlight={code => { var a = highlight(code, languages.html); console.log(code, a); return a }}
+      highlight={code => { const a = highlight(code, languages.html); console.log(code, a); return a; }}
       padding={10}
       style={{
         fontFamily: '"Fira code", "Fira Mono", monospace',
