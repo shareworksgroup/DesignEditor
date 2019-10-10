@@ -25,7 +25,8 @@ class Image extends Extension<IImageProps> {
     return `<div 
     style="padding:${containerPadding}">
       <div style="text-align:${textAlign}">
-        <a href="${link || 'javascript:void(0)'}" style="text-decoration: none; cursor: ${link ? 'pointer' : 'default'}" target="${linkType}"><img alt="${alter}" src="${url}" style="${[imgWidthStyle, imgHeightStyle].join(';')}" /></a>
+        <a href="${link || 'javascript:void(0)'}" style="text-decoration: none; cursor: ${link ? 'pointer' : 'default'}"
+        target="${linkType}"><img alt="${alter}" src="${url}" style="${[imgWidthStyle, imgHeightStyle].join(';')}" /></a>
       </div>
     </div>`;
   }
@@ -63,7 +64,7 @@ class Image extends Extension<IImageProps> {
       <Group title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
   render() {
@@ -80,7 +81,7 @@ class Image extends Extension<IImageProps> {
       }}>
         {url ? <img alt={alter} src={url} style={{ verticalAlign: 'top', ...imgWidthStyle, ...imgHeightStyle }} /> : <p>IMAGE</p>}
       </div>
-    </div>
+    </div>;
   }
 }
 

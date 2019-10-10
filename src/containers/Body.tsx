@@ -49,7 +49,7 @@ class Body extends React.Component<IBodyProps> {
         {
           data.body.rows.map(row => {
             const meta = row.values._meta;
-            return <Row width={width} key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />
+            return <Row width={width} key={meta.guid} guid={meta.guid} subtype={meta.subtype} cells={row.cells} />;
           })
         }
         {(isOver && canDrop) && <PlaceHolder />}

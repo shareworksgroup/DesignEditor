@@ -11,10 +11,7 @@ const Button = (props: IButtonProps) => {
   </button>;
 };
 
-Button.Group = (props: IButtonGroupProps) => {
-  const { children, className } = props;
-  return <div className={classnames("buttonGroup", className)}>{children}</div>
-};
+Button.Group = ({ children, className }: IButtonGroupProps) => <div className={classnames("buttonGroup", className)}>{children}</div>;
 
 interface IButtonProps {
   children?: React.ReactFragment;

@@ -1,22 +1,20 @@
 
 
 export interface IRootStore {
-  DesignState: any,
+  DesignState: any;
 }
 
 export interface IStoreProps {
-  rootStore: IRootStore
+  rootStore: IRootStore;
 }
 
 export interface IDndProps {
-  connectDropTarget: Function,
-  isOver: boolean,
-  canDrop: boolean
+  connectDropTarget: Function;
+  isOver: boolean;
+  canDrop: boolean;
 }
 
 export interface IRGBA {
-  rgb: string,
-  alpha: number,
+  rgb: string;
+  alpha: number;
 }
-
-

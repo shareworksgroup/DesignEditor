@@ -26,7 +26,7 @@ class UndoRedeo {
     document.addEventListener('keydown', this.undoRedo);
   }
 
-  undoRedo = (e) => {
+  undoRedo = e => {
     if (!this.store) {
       return;
     }
@@ -37,8 +37,7 @@ class UndoRedeo {
         this.history = this.history.redo(this.store.getData());
         this.store.setData(data);
       }
-    }
-    else if (e.which === 90 && e.ctrlKey) {
+    } else if (e.which === 90 && e.ctrlKey) {
       if (this.history.canUndo) {
         const data = this.history.previous;
         this.history = this.history.undo(this.store.getData());
@@ -51,10 +50,9 @@ class UndoRedeo {
     const data = this.store.getData();
     this.history = this.history.push(data);
   }
-
 }
 
-let undoRedo = new UndoRedeo();
+const undoRedo = new UndoRedeo();
 
 interface RecordResult {
   value: Function
@@ -76,4 +74,4 @@ export const record = (delay?: number): Function => (target: Object, key: string
       return descripter.value.apply(this, args);
     }
   };
-}
+};

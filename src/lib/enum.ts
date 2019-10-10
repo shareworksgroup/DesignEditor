@@ -2,8 +2,7 @@ export enum DragType {
   CONTENT = 'content',
   ROW = 'row',
   BODY = 'body',
-};
-
+}
 
 export enum ContentType {
   BUTTON = 'button',
@@ -13,7 +12,7 @@ export enum ContentType {
   TEXT = 'text',
   SOCIAL = 'social',
   UNKNOWN = 'unknown',
-};
+}
 
 export enum RowType {
   SINGLE = 'single',
@@ -26,21 +25,21 @@ export enum RowType {
   ONETWOONETWO = 'onetwoonetwo',
   TWOONETWOONE = 'twoonetwoone',
   ONEFOURONE = 'onefourone',
-};
+}
 
 export enum OperationMode {
   INSERT = 1,
   MOVE = 2,
   REMOVE = 3,
   COPY = 4,
-};
+}
 
 export enum DesignType {
   BODY = 'u_body',
   ROW = 'u_row',
   COLUMN = 'u_column',
   CONTENT = 'u_content',
-};
+}
 
 export const Fonts = {
   "MicroSoft Yahei": "MicroSoft Yahei",
@@ -48,12 +47,12 @@ export const Fonts = {
   'Slabo 27px': "'Slabo 27px', serif",
   'Source Sans Pro': "'Source Sans Pro', sans-serif",
   'Roboto Condensed': "'Roboto Condensed', sans-serif",
-  'Sarabun': "'Sarabun', sans-serif",
-  'Oswald': "'Oswald', sans-serif",
-  'Charm': "'Charm', cursive",
+  Sarabun: "'Sarabun', sans-serif",
+  Oswald: "'Oswald', sans-serif",
+  Charm: "'Charm', cursive",
   'Open Sans Condensed': "'Open Sans Condensed', sans-serif",
-  'Ubuntu': "'Ubuntu', sans-serif",
-  'Poppins': "'Poppins', sans-serif",
+  Ubuntu: "'Ubuntu', sans-serif",
+  Poppins: "'Poppins', sans-serif",
   'ZCOOL XiaoWei': "'ZCOOL XiaoWei', serif",
   'ZCOOL QingKe HuangYou': "'ZCOOL QingKe HuangYou', cursive"
 };

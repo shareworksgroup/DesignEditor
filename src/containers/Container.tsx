@@ -13,7 +13,7 @@ import Wrapper from './Wrapper';
 class DesignEditor extends React.Component<IDesignEditorProps> {
 
   componentDidMount() {
-    const { onRef = () => {} } = this.props;
+    const { onRef = () => { } } = this.props;
     this.initConfig();
     onRef({
       export: this.export,
@@ -22,14 +22,14 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
     });
   }
 
-  componentWillReceiveProps(nextProps, nextState){
+  componentWillReceiveProps(nextProps, nextState) {
     const { mentions } = this.props;
     if (mentions && JSON.stringify(Config.get('mentions')) !== JSON.stringify(mentions)) {
       Config.set('mentions', mentions);
     }
   }
 
-  initConfig(){
+  initConfig() {
     const { children, imageUploadUrl, onUpload, onUploadError, mentions, contents } = this.props;
     Config.set('imageUploadUrl', imageUploadUrl);
     onUpload && Config.set('onUpload', onUpload);
@@ -40,13 +40,13 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
       const content = new Content();
       Content.type = content.getContentType();
       if (Config.get('contents').some(type => type === Content.type)) {
-        rootStore.DesignState.addExtension(Content)
+        rootStore.DesignState.addExtension(Content);
         rootStore.DesignState.setAttribute(Content.type, content.getInitialAttribute());
       }
     });
     React.Children.forEach(children, (Child: any) => {
       if (Child) {
-        const content = new Child.type()
+        const content = new Child.type(); // eslint-disable-line
         Child.type.type = content.getContentType();
         rootStore.DesignState.addExtension(Child.type);
         rootStore.DesignState.setAttribute(Child.type.type, content.getInitialAttribute());
@@ -64,13 +64,13 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
     return rootStore.DesignState.getData();
   }
 
-  setData = (json) => {
+  setData = json => {
     rootStore.DesignState.execCommand('setData', json);
   }
 
-  render(){
+  render() {
     return <Provider rootStore={rootStore}>
-        <Wrapper />
+      <Wrapper />
     </Provider>;
   }
 }

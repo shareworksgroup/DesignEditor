@@ -32,19 +32,19 @@ class Image extends React.Component<IImageProps> {
     }
   }
 
-  onPrevent = (e) => {
+  onPrevent = e => {
     e.stopPropagation();
     e.preventDefault();
   }
 
-  onDrop = (e) => {
+  onDrop = e => {
     const files = e.dataTransfer.files;
     if (files && files.length > 0) {
       this.onChange({ target: { files } });
     }
   }
 
-  onChange = (e) => {
+  onChange = e => {
     if (this.state.uploading) {
       return;
     }
@@ -54,13 +54,13 @@ class Image extends React.Component<IImageProps> {
     if (!file || !imgCheck(file.name)) {
       return;
     }
-    var formData = new FormData();
+    const formData = new FormData();
     formData.append('img', file, file.name);
-    let config = {
+    const config = {
       headers: { 'Content-Type': 'multipart/form-data' }
     };
     this.setState({ uploading: true });
-    const timer = this.timerGenerate(5, (progress) => {
+    const timer = this.timerGenerate(5, progress => {
       this.setState({ progress });
     });
     axios.post(Config.get('imageUploadUrl'), formData, config).then(response => {
@@ -87,13 +87,15 @@ class Image extends React.Component<IImageProps> {
           <label className="ds-label-primary"><span>{title}</span></label>
         </div>
         <div className="col-6 text-right">
-          <label htmlFor={this.state.uploading ? '' : 'fileInput'} style={{ color: '#007bff', fontSize: '12px', cursor: 'pointer' }}>Upload Image</label>
+          <label htmlFor={this.state.uploading ? '' : 'fileInput'} style={{ color: '#007bff', fontSize: '12px', cursor: 'pointer' }}>
+            Upload Image
+          </label>
         </div>
       </div>
       <div className="row" style={{ marginTop: 10 }}>
         <div className="col-12">
           <label
-            ref={(dom) => { this.dropzone = dom; }}
+            ref={dom => { this.dropzone = dom; }}
             className="ds-dropzone" aria-disabled="false" htmlFor={this.state.uploading ? '' : 'fileInput'}>
             <div>
               {!this.state.uploading && <span>Drop a new image here, or click to select files to upload.</span>}
@@ -116,7 +118,7 @@ class Image extends React.Component<IImageProps> {
       </div>
       <div className="row" style={{ marginTop: 10 }}>
         <div className="col-12">
-          <Input onChange={(e) => { onUpdate(attribute, e.target.value) }} value={url} />
+          <Input onChange={e => { onUpdate(attribute, e.target.value); }} value={url} />
         </div>
       </div>
       {
@@ -130,8 +132,11 @@ class Image extends React.Component<IImageProps> {
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>
-                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('fullWidth', !fullWidth); }}>Full Width</span>
-                  <Switch checked={fullWidth} onChange={(checked) => { onUpdate('fullWidth', checked); }} height={17} width={34} />
+                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }}
+                    onClick={() => { onUpdate('fullWidth', !fullWidth); }}>
+                    Full Width
+                  </span>
+                  <Switch checked={fullWidth} onChange={checked => { onUpdate('fullWidth', checked); }} height={17} width={34} />
                 </label>
               </div>
             </div>
@@ -140,8 +145,12 @@ class Image extends React.Component<IImageProps> {
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>
-                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('repeat', !repeat); }}>Repeat</span>
-                  <Switch checked={repeat} onChange={(checked) => { onUpdate('repeat', checked); }} height={17} width={34} />
+                  <span
+                    style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }}
+                    onClick={() => { onUpdate('repeat', !repeat); }}>
+                    Repeat
+                  </span>
+                  <Switch checked={repeat} onChange={checked => { onUpdate('repeat', checked); }} height={17} width={34} />
                 </label>
               </div>
             </div>
@@ -150,8 +159,12 @@ class Image extends React.Component<IImageProps> {
             <div className="col-6">
               <div className="ds-widget-label">
                 <label>
-                  <span style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }} onClick={() => { onUpdate('fullWidth', !center); }}>Center</span>
-                  <Switch checked={center} onChange={(checked) => { onUpdate('center', checked); }} height={17} width={34} />
+                  <span
+                    style={{ position: 'relative', cursor: 'pointer', top: '-3px', marginRight: '5px' }}
+                    onClick={() => { onUpdate('fullWidth', !center); }}>
+                    Center
+                  </span>
+                  <Switch checked={center} onChange={checked => { onUpdate('center', checked); }} height={17} width={34} />
                 </label>
               </div>
             </div>

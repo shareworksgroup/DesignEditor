@@ -19,7 +19,7 @@ declare class Space extends React.Component<ISpaceProps, ISpaceState> {
         left: number;
         all: number;
     };
-    onMore: (checked: any) => void;
+    onMore: (checked: boolean) => void;
     onChange: (operate: any, val: any) => void;
     render(): JSX.Element;
 }

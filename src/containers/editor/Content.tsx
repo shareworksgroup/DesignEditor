@@ -20,13 +20,13 @@ const target = {
       item.guid !== props.guid && rootStore.DesignState.execCommand('moveContent', item, props.guid, props.columnGuid, monitor.getItem().position);
     }
   },
-  hover(props: IContentProps, monitor, component){
+  hover(props: IContentProps, monitor, component) {
     const dom = findDOMNode(component);
     const position = getPositionByMiddleOffset(dom, monitor.getClientOffset());
     monitor.getItem().position = position;
     component.getDecoratedComponentInstance().wrappedInstance.setPosition(position);
   },
-  canDrop(props: IContentProps, monitor){
+  canDrop(props: IContentProps, monitor) {
     const item = monitor.getItem();
     if (props.guid === item.guid) {
       return false;
@@ -42,7 +42,9 @@ const collect = (connect, monitor) => ({
 });
 
 @(DropTarget as any)([DragType.CONTENT], target, collect)
-@(DragSource as any)(DragType.CONTENT, Util.getSource({ mode: OperationMode.MOVE, position: defaultPosition }, (props) => ({ guid: props.guid, type: props.type })), Util.getCollect())
+@(DragSource as any)(DragType.CONTENT,
+  Util.getSource({ mode: OperationMode.MOVE, position: defaultPosition },
+    props => ({ guid: props.guid, type: props.type })), Util.getCollect())
 @inject('rootStore')
 @observer
 class Content extends React.Component<IContentProps> {
@@ -60,15 +62,15 @@ class Content extends React.Component<IContentProps> {
     position: defaultPosition
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this._isMounted = true;
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this._isMounted = false;
   }
 
-  onSelect = (e) => {
+  onSelect = e => {
     const { guid, rootStore: { DesignState } } = this.props;
     DesignState.setSelected(guid);
     e.stopPropagation();
@@ -92,18 +94,19 @@ class Content extends React.Component<IContentProps> {
   render() {
     const { connectDropTarget, connectDragSource, isOver, canDrop, children, guid, rootStore: { DesignState } } = this.props;
     return <div>
-        { isOver && canDrop && this.state.position === Position.BEFORE && <PlaceHolder /> }
-        {connectDropTarget(<div className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')}  onMouseUp={this.onSelect}>
-          <Selector
-            type="content"
-            onRef={(dom) => {connectDragSource(dom);}}
-            placeholder="Content" 
-            onDelete={this.onDelete}
-            onCopy={this.onCopy}
-          />
-          { children }
-        </div>)}
-        { isOver && canDrop && this.state.position === Position.AFTER && <PlaceHolder /> }
+      {isOver && canDrop && this.state.position === Position.BEFORE && <PlaceHolder />}
+      {connectDropTarget(<div
+        className={classnames("ds-layer ds-layer-selectable", (guid === DesignState.selected) && 'ds-layer-selected')} onMouseUp={this.onSelect}>
+        <Selector
+          type="content"
+          onRef={dom => { connectDragSource(dom); }}
+          placeholder="Content"
+          onDelete={this.onDelete}
+          onCopy={this.onCopy}
+        />
+        {children}
+      </div>)}
+      {isOver && canDrop && this.state.position === Position.AFTER && <PlaceHolder />}
     </div>;
   }
 }

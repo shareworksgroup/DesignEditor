@@ -12,11 +12,11 @@ const Color = ({ title = 'Color', value = '#fff', attribute = 'color', onUpdate 
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
       <div className="col-6 text-right">
-        <ColorPicker color={rgba.rgb} alpha={rgba.alpha} onChange={(e) => { onUpdate(attribute, rgb2rgba(e.color, e.alpha)) }} />
+        <ColorPicker color={rgba.rgb} alpha={rgba.alpha} onChange={e => { onUpdate(attribute, rgb2rgba(e.color, e.alpha)); }} />
       </div>
     </div>
   </div>;
-}
+};
 
 interface IColorProps {
   title?: string;

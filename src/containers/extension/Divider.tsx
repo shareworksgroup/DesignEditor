@@ -48,7 +48,7 @@ class Divider extends Extension<IDividerProps> {
       <Group title="GENERAL">
         <Space title="Container Padding" value={containerPadding} attribute="containerPadding" onUpdate={update} />
       </Group>
-    </React.Fragment>
+    </React.Fragment>;
   }
 
   render() {
@@ -61,11 +61,11 @@ class Divider extends Extension<IDividerProps> {
         <div
           style={{
             borderTop: `${lineWidth}px ${lineStyle} ${lineColor}`,
-            width: width + '%',
+            width: `${width}%`,
           }}
         ></div>
       </div>
-    </div>
+    </div>;
   }
 }
 

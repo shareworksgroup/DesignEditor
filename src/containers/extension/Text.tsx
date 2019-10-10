@@ -62,7 +62,7 @@ class Text extends Extension<ITextProps> {
       <div id={`id_${_meta.guid}`} style={{
         textAlign,
         color,
-        lineHeight: lineHeight + '%',
+        lineHeight: `${lineHeight}%`,
         padding: containerPadding,
       }}>
         <TinyMce

@@ -8,7 +8,7 @@ class Row extends React.Component<IRowProps> {
   render() {
     return <ul className="ds_row">
       {Items.map((Component, index) => <Component key={index} />)}
-    </ul>
+    </ul>;
   }
 }
 
