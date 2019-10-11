@@ -10,6 +10,7 @@ const fn = () => { };
 interface IEditorProps {
   value?: string;
   focus?: boolean;
+  preventEnter?: boolean;
   setup?: (editor: any) => void;
   onChange?: (editor: any) => void;
   onRef?: (editor: any) => void;
@@ -60,7 +61,7 @@ class Editor extends React.Component<IEditorProps> {
         setup(this.editor);
         onRef(this.editor);
         ed.on('keydown', e => {
-          if (e.keyCode === 13) {
+          if (e.keyCode === 13 && self.props.preventEnter) {
             e.preventDefault();
           }
         });
@@ -181,6 +182,7 @@ class TinyMce extends React.Component<ITinyMceProps> {
       <Editor
         config={config}
         value={value}
+        preventEnter={this.state.showDynamic}
         onRef={editor => { this.editor = editor; }}
         onChange={this.handleEditorChange} focus={focus} setup={this.initAutoComplete}>
         {children}

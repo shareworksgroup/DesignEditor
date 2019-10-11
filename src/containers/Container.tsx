@@ -22,10 +22,19 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
       getData: this.getData,
       setData: this.setData,
     });
+    window.addEventListener('keyup', this.bindShortKey);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.bindShortKey);
+  }
+
+  bindShortKey = (e: KeyboardEvent) => {
+    if (e.keyCode === 46 || (e.metaKey && e.keyCode === 8)) rootStore.DesignState.deleteSelected();
   }
 
   componentWillReceiveProps(nextProps, nextState) {
-    const { mentions } = this.props;
+    const { mentions } = nextProps;
     if (mentions && JSON.stringify(Config.get('mentions')) !== JSON.stringify(mentions)) {
       Config.set('mentions', mentions);
     }
