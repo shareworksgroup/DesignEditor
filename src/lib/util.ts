@@ -5,9 +5,9 @@ import { Types, ContentType, Position } from './enum';
 export const guid = (): string => Guid.create().value;
 
 export const rgb2rgba = (rgb: string, alpha: number): string => {
-  const r = parseInt(`0x${rgb.substr(1, 2)}`, 10);
-  const g = parseInt(`0x${rgb.substr(3, 2)}`, 10);
-  const b = parseInt(`0x${rgb.substr(5, 2)}`, 10);
+  const r = parseInt(`0x${rgb.substr(1, 2)}`, 16);
+  const g = parseInt(`0x${rgb.substr(3, 2)}`, 16);
+  const b = parseInt(`0x${rgb.substr(5, 2)}`, 16);
   return `rgba(${r},${g},${b},${alpha / 100})`;
 };
 
