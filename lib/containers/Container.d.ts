@@ -3,6 +3,8 @@ import '../style/index.less';
 import { IExtensionGroupProps, IExtensionGroup } from './extension/ExtensionGroup';
 declare class DesignEditor extends React.Component<IDesignEditorProps> {
     componentDidMount(): void;
+    componentWillUnmount(): void;
+    bindShortKey: (e: KeyboardEvent) => void;
     componentWillReceiveProps(nextProps: any, nextState: any): void;
     initConfig(): void;
     export: () => string;

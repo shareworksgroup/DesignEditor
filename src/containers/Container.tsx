@@ -22,11 +22,11 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
       getData: this.getData,
       setData: this.setData,
     });
-    window.addEventListener('keyup', this.bindShortKey);
+    window.addEventListener('keydown', this.bindShortKey);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('keyup', this.bindShortKey);
+    window.removeEventListener('keydown', this.bindShortKey);
   }
 
   bindShortKey = (e: KeyboardEvent) => {

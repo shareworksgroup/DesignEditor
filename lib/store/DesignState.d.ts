@@ -9,6 +9,7 @@ declare class DesignState {
     data: IData;
     selected: string;
     setSelected(guid: string): void;
+    deleteSelected(): void;
     extensions: IExtension[];
     addExtension(extension: IExtension): void;
     getExtension(type: string): IExtension;
