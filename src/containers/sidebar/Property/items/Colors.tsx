@@ -9,12 +9,12 @@ const Colors = ({ title = 'Colors', colors: { color, backgroundColor, hoverColor
   const hoverColorRgba = rgba2rgb(hoverColor);
   const hoverBackgroundColorRgba = rgba2rgb(hoverBackgroundColor);
   return <div className="ds-widget ds-link-widget">
-    <div className="row">
+    <div className="card-row">
       <div className="ds-widget-label col-6">
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>
     </div>
-    <div className="row" style={{ marginTop: 10 }}>
+    <div className="card-row" style={{ marginTop: 10 }}>
       {color && <div className="col-6">
         <div className="ds-widget-label"><label><span>Text Color</span></label></div>
         <div className="ds-color-picker">

@@ -6,6 +6,7 @@ declare class Group extends React.Component<IGroupProps, IGroupState> {
 }
 interface IGroupProps {
     title?: string;
+    className?: string;
 }
 interface IGroupState {
     height: 'auto' | number;

@@ -7,7 +7,7 @@ import 'rc-color-picker/assets/index.css';
 const Color = ({ title = 'Color', value = '#fff', attribute = 'color', onUpdate = () => { } }: IColorProps) => {
   const rgba: IRGBA = rgba2rgb(value);
   return <div className="ds-widget ds-link-widget">
-    <div className="row">
+    <div className="card-row">
       <div className="ds-widget-label col-6">
         <label className="ds-label-primary"><span>{title}</span></label>
       </div>

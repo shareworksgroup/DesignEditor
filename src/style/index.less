@@ -196,10 +196,7 @@ body{
       .options-item{
         display: inline;
       }
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-      }
+    
       .ds-options-content {
         position: absolute;
         width: 100%;
@@ -227,35 +224,7 @@ body{
       .svg-inline--fa.fa-w-14 {
         width: 0.875em;
       } 
-      .card{
-        .card-header {
-          font-weight: 600;
-          font-size: 12px;
-          color: rgb(81, 97, 103);
-          background-color: rgb(234, 234, 234);
-          cursor: pointer;
-          text-transform: uppercase;
-          border-bottom: 0px !important;
-          padding: 0.75rem 1.25rem;
-          .header-expand-icon {
-            height:12px;
-            overflow: hidden;
-            text-align: right;
-            >i {
-              font-size: 14px;
-              color: #a3a3a3;
-              position: relative;
-            }
-          }
-        }
-        .collapse{
-          overflow: hidden;
-          padding: 5px 0;
-        }
-        .card-body {
-          padding: 15px 20px;
-        }
-      }
+      
     }
   }
   .ds-body {
@@ -287,7 +256,47 @@ body{
     }
   }
   
-
+  .card{
+    .card-header {
+      font-weight: 600;
+      font-size: 12px;
+      color: rgb(81, 97, 103);
+      background-color: rgb(234, 234, 234);
+      cursor: pointer;
+      text-transform: uppercase;
+      border-bottom: 0px !important;
+      padding: 0.75rem 1.25rem;
+      .header-expand-icon {
+        height:12px;
+        overflow: hidden;
+        text-align: right;
+        >i {
+          font-size: 14px;
+          color: #a3a3a3;
+          position: relative;
+        }
+      }
+    }
+    .card-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .collapse{
+      overflow: hidden;
+      padding: 5px 0;
+    }
+    .card-body {
+      padding: 15px 20px;
+    }
+    &.content-card {
+      .card-header {
+        text-transform: unset;
+      }
+      .card-body {
+        padding: 0;
+      }
+    }
+  }
   .design-web {
     .row {
       display: flex;
@@ -713,9 +722,9 @@ body{
 
 i.icon-button {
   &:after {
-    content: 'text';
+    content: 'ok';
     position: absolute;
-    left: 46px;
+    left: 49px;
     top: -3px;
     color: #fff;
     font-size: 12px;

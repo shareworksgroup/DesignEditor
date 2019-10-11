@@ -6,6 +6,8 @@ import { Button, Divider, Html, Image, Text, Social } from './extension';
 import Transform from '../lib/transform';
 import { Config } from '../lib/util';
 import Wrapper from './Wrapper';
+import Extension, { IExtensionProps, IExtension } from './extension/Extension';
+import ExtensionGroup, { IExtensionGroupProps, IExtensionGroup } from './extension/ExtensionGroup';
 
 
 (window as any).rootStore = rootStore;
@@ -36,20 +38,19 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
     onUploadError && Config.set('onUploadError', onUploadError);
     mentions && Config.set('mentions', mentions);
     contents && Config.set('contents', contents);
-    [Button, Divider, Html, Image, Text, Social].forEach((Content: any) => {
-      const content = new Content();
-      Content.type = content.getContentType();
-      if (Config.get('contents').some(type => type === Content.type)) {
-        rootStore.DesignState.addExtension(Content);
-        rootStore.DesignState.setAttribute(Content.type, content.getInitialAttribute());
+    [Button, Divider, Html, Image, Text, Social].forEach((Content: React.ComponentClass<IExtensionProps>) => {
+      const content = new Content({}) as any as IExtension;
+      const contentType = content.getContentType();
+      (Content as any as IExtension).type = contentType;
+      (Content as any as IExtension).group = 'General';
+      if (Config.get('contents').some(type => type === contentType)) {
+        rootStore.DesignState.addExtension((Content as any as IExtension));
+        rootStore.DesignState.setAttribute(contentType, content.getInitialAttribute());
       }
     });
-    React.Children.forEach(children, (Child: any) => {
-      if (Child) {
-        const content = new Child.type(); // eslint-disable-line
-        Child.type.type = content.getContentType();
-        rootStore.DesignState.addExtension(Child.type);
-        rootStore.DesignState.setAttribute(Child.type.type, content.getInitialAttribute());
+    React.Children.forEach<React.ReactElement<IExtensionGroupProps, IExtensionGroup>>(children, child => {
+      if (child) {
+        rootStore.DesignState.addExtensionGroup(child.props.title);
       }
     });
   }
@@ -70,7 +71,7 @@ class DesignEditor extends React.Component<IDesignEditorProps> {
 
   render() {
     return <Provider rootStore={rootStore}>
-      <Wrapper />
+      <div><Wrapper />{this.props.children}</div>
     </Provider>;
   }
 }
@@ -82,6 +83,7 @@ interface IApi {
 }
 
 interface IDesignEditorProps {
+  children?: React.ReactElement<IExtensionGroupProps, IExtensionGroup> | React.ReactElement<IExtensionGroupProps, IExtensionGroup>[];
   onRef?: (api: IApi) => void;
   mentions?: any;
   contents?: any;

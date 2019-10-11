@@ -18,7 +18,7 @@ module.exports = (env, options) => {
     libraryTarget: 'umd',
     umdNamedDefine: true
   };
-  const plugins = [new BundleAnalyzerPlugin()];
+  const plugins = []; // [new BundleAnalyzerPlugin()];
   if (isProduction) {
     plugins.push(new PeerDepsExternalsPlugin());
   } else {

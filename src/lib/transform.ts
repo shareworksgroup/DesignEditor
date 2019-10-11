@@ -1,4 +1,5 @@
-import { IHtmlBlock, IData, IBody, IRow, IColumn, IContent, IExtension } from '../schemas/transform';
+import { IHtmlBlock, IData, IBody, IRow, IColumn, IContent } from '../schemas/transform';
+import { IExtension } from 'src/containers/extension/Extension';
 
 class Transform {
 
@@ -6,9 +7,9 @@ class Transform {
 
   bodyWidth: number = 600;
 
-  extensions: Array<IExtension> = null;
+  extensions: IExtension[] = null;
 
-  constructor(rawData: IData, extensions: Array<IExtension>) {
+  constructor(rawData: IData, extensions: IExtension[]) {
     this.data = rawData;
     this.extensions = extensions;
   }
@@ -73,7 +74,7 @@ class Transform {
 
   private transferContent(content: IContent): string {
     const IExtension = this.getExtensionByType(content.values._meta.subtype);
-    return new IExtension().toHtml(content.values);
+    return (new IExtension({}) as any as IExtension).toHtml(content.values);
   }
 
   private getExtensionByType(type) {

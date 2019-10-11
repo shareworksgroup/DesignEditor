@@ -1,6 +1,7 @@
 import { OperationMode } from '../lib/enum';
 import { IRootStore } from '../schemas/common';
-import { IData, IRow, IColumn, IContent, IExtension, IRowType, IContentType, IContentMeta } from '../schemas/transform';
+import { IData, IRow, IColumn, IContent, IRowType, IContentType, IContentMeta } from '../schemas/transform';
+import { IExtension } from 'src/containers/extension/Extension';
 declare class DesignState {
     transparent: IRootStore;
     constructor(transparent: any);
@@ -8,10 +9,13 @@ declare class DesignState {
     data: IData;
     selected: string;
     setSelected(guid: string): void;
-    extensions: Array<IExtension>;
+    extensions: IExtension[];
     addExtension(extension: IExtension): void;
     getExtension(type: string): IExtension;
-    getExtensions(): Array<IExtension>;
+    getExtensions(): IExtension[];
+    extensionGroups: Set<string>;
+    addExtensionGroup(group: string): void;
+    getExtensionGroups(): string[];
     attribute: Object;
     setAttribute(type: string, attribute: Object): void;
     getData(): IData;
