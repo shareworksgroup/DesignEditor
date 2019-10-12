@@ -154,7 +154,9 @@ export default Video;
   onUpload={data => data.fileUrl}
   onUploadError={error => console.log('5555', error.message)}
   onRef={(obj) => { instance = obj; window.instance = obj; }}>
-  <Video />
+  <ExtensionGroup title="Custom Group">
+    <Video />
+  </ExtensionGroup>
 </DesignEditor>
 
 ```
