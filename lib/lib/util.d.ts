@@ -16,6 +16,7 @@ export declare const Config: {
     contents: ContentType[];
     onUpload: (data: any) => any;
     onUploadError: () => void;
+    enableUndoRedo: boolean;
     set: (key: string, value: any) => void;
     get: (key: string) => any;
 };

@@ -4,7 +4,6 @@ import Container, { ExtensionGroup, ExtensionGroupGeneral } from './entry';
 import Video from './Video';
 
 let instance = null;
-
 ReactDom.render(<div>
   <Container
     imageUploadUrl="http://localhost:3001/UserFeedback/upload"
