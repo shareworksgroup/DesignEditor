@@ -1,8 +1,9 @@
 import History from 'immutable-undo';
 import debounce from 'lodash/debounce';
 import DesignState from '../store/DesignState';
+import { Config } from './util';
 
-class UndoRedeo {
+class UndoRedo {
 
   history: History;
   store: DesignState;
@@ -26,23 +27,31 @@ class UndoRedeo {
     document.addEventListener('keydown', this.undoRedo);
   }
 
-  undoRedo = e => {
-    if (!this.store) {
+  redo = () => {
+    this.history.redo(this.store.getData());
+    if (this.history.canRedo) {
+      const data = this.history.next;
+      this.history = this.history.redo(this.store.getData());
+      this.store.setData(data);
+    }
+  }
+
+  undo = () => {
+    if (this.history.canUndo) {
+      const data = this.history.previous;
+      this.history = this.history.undo(this.store.getData());
+      this.store.setData(data);
+    }
+  }
+
+  undoRedo = (e: KeyboardEvent) => {
+    if (!this.store || !Config.enableUndoRedo) {
       return;
     }
-    if (e.which === 89 && e.ctrlKey) {
-      this.history.redo(this.store.getData());
-      if (this.history.canRedo) {
-        const data = this.history.next;
-        this.history = this.history.redo(this.store.getData());
-        this.store.setData(data);
-      }
-    } else if (e.which === 90 && e.ctrlKey) {
-      if (this.history.canUndo) {
-        const data = this.history.previous;
-        this.history = this.history.undo(this.store.getData());
-        this.store.setData(data);
-      }
+    if (e.keyCode === 89 && e.ctrlKey) {
+      this.redo();
+    } else if (e.keyCode === 90 && e.ctrlKey) {
+      this.undo();
     }
   }
 
@@ -52,7 +61,7 @@ class UndoRedeo {
   }
 }
 
-const undoRedo = new UndoRedeo();
+const undoRedo = new UndoRedo();
 
 interface RecordResult {
   value: Function
@@ -74,4 +83,9 @@ export const record = (delay?: number): Function => (target: Object, key: string
       return descripter.value.apply(this, args);
     }
   };
+};
+
+export const UndoRedoApi = {
+  undo: undoRedo.undo,
+  redo: undoRedo.redo
 };

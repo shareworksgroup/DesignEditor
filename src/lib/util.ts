@@ -46,6 +46,7 @@ export const Config = {
   contents: [ContentType.BUTTON, ContentType.DIVIDER, ContentType.HTML, ContentType.IMAGE, ContentType.SOCIAL, ContentType.TEXT],
   onUpload: data => data.fileUrl,
   onUploadError: () => { },
+  enableUndoRedo: true,
   set: (key: string, value: any) => {
     Config[key] = value;
   },
