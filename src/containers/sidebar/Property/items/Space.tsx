@@ -102,7 +102,7 @@ class Space extends React.Component<ISpaceProps, ISpaceState> {
           </div>
         </div>
       </div>
-      {this.state.more && <div className="row more-options" style={{ marginTop: 10 }}>
+      {this.state.more && <div className="card-row more-options" style={{ marginTop: 10 }}>
         <div className="col-6">
           <div className="ds-widget-label"><label><span>Top</span></label></div>
           <div className="ds-color-picker">

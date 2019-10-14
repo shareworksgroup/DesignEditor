@@ -52,6 +52,16 @@ class DesignState {
     });
   }
 
+  @action
+  deleteSelected() {
+    if (!this.selected) return;
+    if (this.getContent(this.selected)) {
+      this.execCommand('deleteContent', this.selected);
+    } else {
+      this.execCommand('deleteRow', this.selected);
+    }
+  }
+
   @observable
   extensions: IExtension[] = [];
 
