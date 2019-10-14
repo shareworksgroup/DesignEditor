@@ -1,5 +1,5 @@
 # ![icon](https://design-editor-93157.firebaseapp.com/favicon.png) Design Editor 
-## 邮件模板编辑器(React)
+## 布局编辑器(React)
  想法来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板，适合于内容编辑，但是其功能太过复杂（文档简陋），需要进行定制的内容太多，所以使用体验不是很好（过于复杂且专业）。
  
  基于此需求，我用React实现了一个邮件模板编辑器，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
