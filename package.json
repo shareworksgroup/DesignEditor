@@ -1,0 +1,132 @@
+{
+  "name": "design-editor",
+  "version": "1.0.9",
+  "main": "./dist/index.js",
+  "types": "./lib/entry.d.ts",
+  "author": "lang.yang",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/jest": "^23.1.1",
+    "@types/react": "^16.8.8",
+    "@typescript-eslint/eslint-plugin": "^2.3.1",
+    "@typescript-eslint/parser": "^2.3.1",
+    "axios-mock-adapter": "^1.15.0",
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "classnames": "^2.2.6",
+    "cookie-parse": "^0.4.0",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "css-loader": "^0.28.11",
+    "del": "^3.0.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "express": "^4.16.4",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "files-exist": "^1.1.0",
+    "html-webpack-plugin": "^3.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "immutable-undo": "^2.0.0",
+    "less": "^3.0.4",
+    "less-loader": "^4.1.0",
+    "merge-stream": "^1.0.1",
+    "node-sass": "^4.9.0",
+    "path": "^0.12.7",
+    "peer-deps-externals-webpack-plugin": "^1.0.4",
+    "postcss-loader": "^2.1.5",
+    "react-custom-scrollbars": "^4.2.1",
+    "mobx": "^4.6.0",
+    "mobx-react": "^5.3.6",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-sortable-hoc": "^1.10.1",
+    "react-test-renderer": "^16.4.1",
+    "regenerator-runtime": "^0.11.1",
+    "sass-loader": "^7.0.3",
+    "showdown": "^1.8.6",
+    "style-loader": "^0.21.0",
+    "supervisor": "^0.12.0",
+    "ts-loader": "^5.3.3",
+    "typescript": "^3.2.2",
+    "url-loader": "^1.1.1",
+    "url-pattern": "^1.0.3",
+    "webfonts-generator": "^0.3.5",
+    "webpack": "^4.20.2",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.1.1",
+    "webpack-dev-server": "^3.1.4",
+    "yarn": "^1.7.0"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js --mode development",
+    "build": "./node_modules/.bin/webpack --config ./build/webpack.config.js --mode production",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "lint": "./node_modules/.bin/eslint . --ext .ts,.tsx",
+    "font": "node ./build/font/font-generator.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "guid": "0.0.12",
+    "immutable": "^4.0.0-rc.12",
+    "lodash-decorators": "^6.0.0",
+    "rc-animate": "^2.5.4",
+    "rc-color-picker": "^1.2.6",
+    "rc-progress": "^2.2.6",
+    "rc-slider": "^8.6.4",
+    "rc-tooltip": "^3.7.3",
+    "react-animate-height": "^2.0.7",
+    "react-dnd": "^6.0.0",
+    "react-dnd-html5-backend": "^6.0.0",
+    "react-switch": "^3.0.4",
+    "react-transition-group": "^1.2.1"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-dom": ">=16.0.0",
+    "classnames": ">=2.0.0",
+    "tinymce": ">=4.9.2",
+    "immutable": ">=3.8.1",
+    "immutable-undo": ">=2.0.0",
+    "mobx": ">=4.6.0",
+    "mobx-react": ">=5.3.6"
+  },
+  "sideEffects": [
+    "*.less",
+    "*.css"
+  ],
+  "jest": {
+    "moduleDirectories": [
+      "node_modules"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "jsx",
+      "js"
+    ],
+    "transform": {
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.ts?$": "ts-jest",
+      "^.+\\.mess?$": "babel-jest"
+    },
+    "setupTestFrameworkScriptFile": "./node_modules/jest-enzyme/lib/index.js",
+    "unmockedModulePathPatterns": [
+      "react",
+      "enzyme",
+      "jest-enzyme"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|mess|less)$": "identity-obj-proxy",
+      "@store": "<rootDir>/src/store"
+    }
+  }
+}

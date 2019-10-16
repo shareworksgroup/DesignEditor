@@ -1,0 +1,50 @@
+
+@prefixTopFade: slide-top-fade;
+@prefixBottomFade: slide-bottom-fade;
+@duration: 250ms;
+
+.@{prefixTopFade}-enter {
+  opacity: 0;
+  transform: translate3d(0, -20%, 0);
+}
+
+.@{prefixTopFade}-enter.@{prefixTopFade}-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all @duration ease-out;
+}
+
+.@{prefixTopFade}-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.@{prefixTopFade}-leave.@{prefixTopFade}-leave-active {
+  opacity: 0;
+  transform: translate3d(0, -20%, 0);
+  transition: all @duration ease-out;
+}
+
+
+.@{prefixBottomFade}-enter {
+  opacity: 0;
+  transform: translate3d(0, 20%, 0);
+}
+
+.@{prefixBottomFade}-enter.@{prefixBottomFade}-enter-active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: all @duration ease-out;
+}
+
+.@{prefixBottomFade}-leave {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.@{prefixBottomFade}-leave.@{prefixBottomFade}-leave-active {
+  opacity: 0;
+  transform: translate3d(0, 20%, 0);
+  transition: all @duration ease-out;
+}
+
