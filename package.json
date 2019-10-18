@@ -65,7 +65,7 @@
     "webpack-bundle-analyzer": "^3.0.3",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.4",
-    "yarn": "^1.7.0"
+    "yarn": "^1.17.3"
   },
   "scripts": {
     "start": "./node_modules/.bin/webpack-dev-server --config ./build/webpack.config.js --mode development",
