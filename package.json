@@ -1,6 +1,6 @@
 {
   "name": "design-editor",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "./dist/index.js",
   "types": "./lib/entry.d.ts",
   "author": "lang.yang",
@@ -9,6 +9,10 @@
     "dist",
     "lib"
   ],
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/shareworksgroup/DesignEditor"
+  },
   "devDependencies": {
     "@types/axios": "^0.14.0",
     "@types/jest": "^23.1.1",
