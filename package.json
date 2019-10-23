@@ -1,6 +1,6 @@
 {
   "name": "design-editor",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "./dist/index.js",
   "types": "./lib/entry.d.ts",
   "author": "lang.yang",
