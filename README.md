@@ -2,7 +2,7 @@
 ## 布局编辑器(React)
  想法来源于EmailHQ项目，该项目目前使用的邮件模板编辑器是[GrapesJS][1]，GrapesJS是一个开源的、多用途的Web Builder框架，它结合了不同的工具和特性，目的是帮助用户在不了解任何编码的情况下构建HTML模板，适合于内容编辑，但是其功能太过复杂（文档简陋），需要进行定制的内容太多，所以使用体验不是很好（过于复杂且专业）。
  
- 基于此需求，我用React实现了一个布局编辑器，参照原型为[unlayer][2]，这是一个商业软件，基于服务收费。
+ 基于此需求，我用React实现了一个布局编辑器，参照原型为[unlayer][2]（一个商业软件，基于服务收费，最高399刀/月）。
  
  该项目完成后，能应用于多个有此需求场景的公司项目中。
 
@@ -10,14 +10,17 @@
   [1]: https://grapesjs.com/
   [2]: https://unlayer.com/
   [3]: https://design-editor-93157.firebaseapp.com/index.html
+  [4]: https://www.npmjs.com/package/design-editor
   
+  **[NPM][4]**<br>
   **[DEMO][3]**
 
 
   ## 使用说明
- 
-  1. 目前暂时不打算发布到npm仓库；clone到本地`npm install`之后执行`npm run start`可预览功能；
-  执行`npm run build`可构建输出，项目引用方式可以通过`npm link`软连接的方式进行安装，也可以发布到自己的私有npm；
+  ```
+  npm i design-editor
+  ```
+  
   1. 由于使用了`iconfont`，需要拷贝`node_modules/design-editor/dist/sources`到自己项目的Server目录下；
   1. 由于使用了tinymce导致包体积比较庞大，所以将`tinymce`改为`peerDependencies`依赖，可以自己配置`externals`外部依赖。如果是本地配置`tinymce`，需要自己布署其资源文件，从`node_modules/design-editor/dist/skins`拷贝即可；使用cdn的话则可以直接在页面引入，不需要关心资源文件。
   1. 以下几个模块也改为`peerDependencies`依赖
