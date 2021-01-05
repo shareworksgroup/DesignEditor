@@ -79,7 +79,7 @@
     "font": "node ./build/font/font-generator.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "guid": "0.0.12",
     "immutable": "^4.0.0-rc.12",
     "lodash-decorators": "^6.0.0",
